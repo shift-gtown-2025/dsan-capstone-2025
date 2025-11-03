@@ -20,14 +20,14 @@
     "avg_ad_spend_active_only"
   ],
   "final_metrics": {
-    "silhouette_score": 0.5873937076311647,
-    "davies_bouldin_index": 0.6979016108673924,
-    "calinski_harabasz_score": 5061.474435379754,
-    "balance_ratio": 1.7702265372168284,
+    "silhouette_score": 0.5855009806352618,
+    "davies_bouldin_index": 0.7062482817332688,
+    "calinski_harabasz_score": 4919.604023560256,
+    "balance_ratio": 1.747181964573269,
     "cluster_sizes": {
-      "0": 639,
-      "1": 1094,
-      "2": 618
+      "0": 621,
+      "1": 1085,
+      "2": 646
     }
   }
 }

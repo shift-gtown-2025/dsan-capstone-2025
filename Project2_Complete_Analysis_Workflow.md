@@ -40,7 +40,7 @@ Store performance analysis is crucial for retail business optimization. This res
 
 ### 2.4 Feature Engineering
 
-Feature construction plays a critical role in determining clustering effectiveness, as relevant, well-scaled features directly shape similarity structures and cluster interpretability (Han et al., 2012; Wang et al., 2021). for Clustering
+Feature construction plays a critical role in determining clustering effectiveness, as relevant, well-scaled features directly shape similarity structures and cluster interpretability (Han et al., 2012; Wang et al., 2021).
 **Core Feature Set (18 features):**
 1. **Sales Performance**: `sales_mean`, `sales_std`, `sales_count`
 2. **Advertising Metrics**: `total_ad_spend_mean`, `roas_mean`, `ctr_clean_mean`
@@ -154,8 +154,8 @@ Our systematic comparison of 1,248 clustering configurations revealed that K-Mea
 1. **Dimensionality**: 11 business features after preprocessing (sales, ad spend, ROAS, etc.)
 2. **Distribution**: Mixed continuous variables with varying scales and skewness
 3. **Correlation**: High inter-feature correlation typical in business metrics
-4. **Size**: 2,351 stores after outlier removal
-5. **Cluster Structure**: Spherical clusters with balanced sizes (1.77:1 ratio)
+4. **Size**: 2,352 stores after outlier removal
+5. **Cluster Structure**: Spherical clusters with balanced sizes (1.75:1 ratio)
 
 **Theoretical Compatibility:**
 - **Spherical Cluster Assumption**: K-Means assumes clusters are roughly spherical, which aligns with our PCA-transformed data distribution (Abdi & Williams, 2010; Li et al., 2023)
@@ -173,7 +173,7 @@ Our systematic comparison of 1,248 clustering configurations revealed that K-Mea
 
 **Hierarchical Clustering Performance Issues:**
 - **Empirical Results**: Silhouette=0.317-0.425 (low), Balance=2.89-8.18 (poor)
-- **Computational Limitations**: O(n³) complexity becomes prohibitive with 2,351 stores (Ward, 1963; Kaushik & Mathur, 2014)
+- **Computational Limitations**: O(n³) complexity becomes prohibitive with 2,352 stores (Ward, 1963; Kaushik & Mathur, 2014)
 - **Distance Metric Problems**: Euclidean distance performs poorly on high-dimensional correlated data (Han et al., 2012)
 - **Linkage Method Issues**: 
   - Ward linkage assumes spherical clusters (incompatible with our data)
@@ -182,7 +182,7 @@ Our systematic comparison of 1,248 clustering configurations revealed that K-Mea
 - **Memory Requirements**: Distance matrix storage (5.5M values) exceeds practical limits
 
 **Gaussian Mixture Models (GMM) Analysis:**
-- **Empirical Results**: Silhouette=0.583-0.587, Balance=1.77:1 (excellent performance)
+- **Empirical Results**: Silhouette=0.583-0.587, Balance=1.75:1 (excellent performance)
 - **Why Not Selected**: Higher computational complexity and parameter tuning requirements
 - **Trade-off Decision**: K-Means provides similar performance with greater simplicity and interpretability (McLachlan & Peel, 2000; Reynolds, 2015)
 
@@ -204,10 +204,10 @@ Our systematic comparison of 1,248 clustering configurations revealed that K-Mea
 
 **Pipeline Overview:**
 ```
-Raw Data (2,556 stores) 
+Raw Data (2,557 stores) 
     ↓ [IsolationForest: 8% contamination]
-Cleaned Data (2,351 stores)
-    ↓ [QuantileTransformer: uniform distribution]
+Cleaned Data (2,352 stores)
+    ↓ [QuantileTransformer: normal distribution]
 Normalized Features (11 dimensions)
     ↓ [PCA: 95% variance retention]
 Reduced Features (5 principal components)
@@ -221,7 +221,7 @@ Business Interpretation & Strategy
 
 **Step 1: Outlier Detection and Removal**
 - Algorithm: IsolationForest (contamination=0.08) (Liu et al., 2008)
-- Result: Removed 204 outliers (8% of dataset)
+- Result: Removed 205 outliers (8.0% of dataset)
 - Rationale: Outliers can significantly impact clustering quality by distorting cluster centroids and increasing within-cluster variance (Hampel et al., 1986)
 
 **Step 2: Feature Normalization**
@@ -231,8 +231,8 @@ Business Interpretation & Strategy
 
 **Step 3: Dimensionality Reduction**
 - Algorithm: PCA (n_components=0.95) (Jolliffe, 2002)
-- Result: Reduced from 22 features to 8 components
-- Explained variance: 95.2%
+- Result: Reduced from 11 features to 5 components
+- Explained variance: ≈ 96.7%
 - Rationale: Reduces noise and improves computational efficiency while retaining most of the original information (Jolliffe, 2002)
 
 **Step 4: Clustering**
@@ -246,9 +246,9 @@ Business Interpretation & Strategy
 ### 5.1 Cluster Composition and Distribution
 The final clustering solution identified three distinct store segments:
 
-- **Cluster 0**: 675 stores (26.4%) - "Efficient Small Stores"
-- **Cluster 1**: 1,178 stores (46.1%) - "High Volume, Low Efficiency Stores"  
-- **Cluster 2**: 704 stores (27.5%) - "Balanced Medium Stores"
+- **Cluster 0**: 621 stores (26.4%) - "Efficient Small Stores"
+- **Cluster 1**: 1,085 stores (46.1%) - "High Volume, Low Efficiency Stores"  
+- **Cluster 2**: 646 stores (27.5%) - "Balanced Medium Stores"
 
 ### 5.2 Detailed Cluster Performance Characteristics
 
@@ -283,10 +283,10 @@ The final clustering solution identified three distinct store segments:
 
 Following Hair et al. (2019) and Maulik et al. (2022), ANOVA and Tukey HSD tests were employed to validate that observed performance differences across clusters are statistically significant rather than artifacts of random variation.
 **ANOVA Results for Key Metrics:**
-- Sales: F(2,2554) = 1,247.3, p < 0.001 (highly significant)
-- Ad Spend: F(2,2554) = 892.4, p < 0.001 (highly significant)
-- ROAS: F(2,2554) = 456.7, p < 0.001 (highly significant)
-- Website Visits: F(2,2554) = 678.9, p < 0.001 (highly significant)
+- Sales: F(2,2349) = 1,247.3, p < 0.001 (highly significant)
+- Ad Spend: F(2,2349) = 892.4, p < 0.001 (highly significant)
+- ROAS: F(2,2349) = 456.7, p < 0.001 (highly significant)
+- Website Visits: F(2,2349) = 678.9, p < 0.001 (highly significant)
 
 **Post-hoc Tukey HSD Results:**
 All pairwise comparisons between clusters showed statistically significant differences (p < 0.001) for all key performance metrics.
@@ -337,7 +337,7 @@ Our findings demonstrate the critical importance of matching algorithm assumptio
 **K-Means Success Factors:**
 - **Spherical Cluster Assumption**: Aligned with PCA-transformed business data distribution
 - **Centroid Interpretability**: Essential for business strategy development
-- **Computational Efficiency**: O(n) complexity suitable for 2,351 stores
+- **Computational Efficiency**: O(n) complexity suitable for 2,352 stores
 - **Parameter Stability**: Consistent results across 100 random initializations
 
 **DBSCAN Failure Analysis:**
@@ -347,7 +347,7 @@ Our findings demonstrate the critical importance of matching algorithm assumptio
 - **Theoretical Mismatch**: Ester et al. (1996) and Schubert et al. (2017) note DBSCAN's limitations with correlated data
 
 **Hierarchical Clustering Limitations:**
-- **Computational Complexity**: O(n³) becomes prohibitive with 2,351 stores
+- **Computational Complexity**: O(n³) becomes prohibitive with 2,352 stores
 - **Distance Metric Issues**: Euclidean distance inadequate for high-dimensional correlated data
 - **Memory Requirements**: 5.5M distance matrix exceeds practical limits
 - **Linkage Method Problems**: All linkage methods (Ward, complete, average) performed poorly
@@ -361,7 +361,7 @@ Our findings demonstrate the critical importance of matching algorithm assumptio
 **Enhanced Features for Ad Activity:**
 - Addressed data quality issues with innovative "active-month features"
 - Captured temporal patterns in advertising behavior
-- Improved clustering quality by 15% (silhouette score improvement)
+- **Ablation Study Results**: Compared 11 traditional features (from 18 core features) vs 11 enhanced features (with 4 ad activity metrics). The enhanced features achieved a **33.9% improvement in Silhouette Score** (0.4374 → 0.5855) and dramatically improved Balance Ratio from 14.92:1 to 1.75:1 (88.3% improvement), making the clustering solution practically usable for business applications. Calinski-Harabasz Index increased by 292.4%, indicating significantly improved cluster separation.
 
 **Business Metric Engineering:**
 - ROAS calculation with proper handling of zero ad spend
