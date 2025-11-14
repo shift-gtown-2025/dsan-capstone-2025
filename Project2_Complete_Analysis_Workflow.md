@@ -162,38 +162,33 @@ Our systematic comparison of 1,248 clustering configurations revealed that K-Mea
 - **Centroid-Based Approach**: Business interpretation requires clear cluster centers, which K-Means provides through centroids (Rahaman et al., 2021; Saha & Ghosh, 2021)
 - **Scalability**: O(n) complexity makes K-Means suitable for our dataset size (Min et al., 2023)
 
-**Why Other Algorithms Failed:**
+**Why Other Algorithms Were Not Selected:**
 
-**DBSCAN Performance Issues:**
-- **Empirical Results**: Silhouette=0.603 (high) but Balance=28:1 (extremely poor)
-- **Theoretical Mismatch**: DBSCAN assumes uniform density within clusters (Ester et al., 1996; Schubert et al., 2017)
-- **Data Incompatibility**: Our business data exhibits varying density patterns across different store types and regions
-- **Parameter Sensitivity**: No combination of eps (0.3-1.5) and min_samples (5-20) could produce balanced clusters
-- **Business Limitation**: Only 2 clusters generated, insufficient for strategic segmentation
+**DBSCAN Performance Analysis:**
+- **Empirical Results (ISO→QT→PCA95 pipeline)**: Silhouette=0.643 (highest), Davies–Bouldin=0.570 (lowest), Balance=1.95:1 (acceptable), Stability=88%
+- **Performance Trade-off**: While DBSCAN achieved the highest clustering quality metrics, it demonstrated lower stability (88% consistency) compared to K-Means (100% stability)
+- **Practical Limitation**: The reduced reproducibility may limit its utility for business applications requiring consistent, deterministic results across multiple runs
+- **Theoretical Consideration**: DBSCAN assumes uniform density within clusters (Ester et al., 1996; Schubert et al., 2017), which may not fully align with our business data's varying density patterns
 
-**Hierarchical Clustering Performance Issues:**
-- **Empirical Results**: Silhouette=0.317-0.425 (low), Balance=2.89-8.18 (poor)
+**Hierarchical Clustering Performance Analysis:**
+- **Empirical Results (ISO→QT→PCA95 pipeline)**: Silhouette=0.578 (lowest among evaluated methods), Davies–Bouldin=0.721, Balance=1.73:1 (best balance ratio)
+- **Performance Trade-off**: While achieving the best balance ratio, Hierarchical clustering produced the lowest Silhouette score among the four evaluated algorithms
 - **Computational Limitations**: O(n³) complexity becomes prohibitive with 2,352 stores (Ward, 1963; Kaushik & Mathur, 2014)
-- **Distance Metric Problems**: Euclidean distance performs poorly on high-dimensional correlated data (Han et al., 2012)
-- **Linkage Method Issues**: 
-  - Ward linkage assumes spherical clusters (incompatible with our data)
-  - Complete linkage creates chain effects
-  - Average linkage is sensitive to noise
-- **Memory Requirements**: Distance matrix storage (5.5M values) exceeds practical limits
+- **Practical Limitation**: Higher computational cost and lower clustering quality make it less suitable for this application compared to K-Means
 
 **Gaussian Mixture Models (GMM) Analysis:**
 - **Empirical Results**: Silhouette=0.583-0.587, Balance=1.75:1 (excellent performance)
 - **Why Not Selected**: Higher computational complexity and parameter tuning requirements
 - **Trade-off Decision**: K-Means provides similar performance with greater simplicity and interpretability (McLachlan & Peel, 2000; Reynolds, 2015)
 
-**Data-Method Compatibility Matrix:**
+**Data-Method Compatibility Matrix (ISO→QT→PCA95 Pipeline):**
 
-| Algorithm | Data Compatibility | Performance | Business Utility | Final Score |
-|-----------|-------------------|-------------|------------------|-------------|
-| K-Means | ✅ Spherical clusters | ✅ Silhouette=0.587 | ✅ 3 balanced clusters | ⭐⭐⭐⭐⭐ |
-| GMM | ✅ Flexible shapes | ✅ Silhouette=0.587 | ✅ 3 balanced clusters | ⭐⭐⭐⭐ |
-| DBSCAN | ❌ Density uniform | ✅ Silhouette=0.603 | ❌ 2 unbalanced clusters | ⭐⭐ |
-| Hierarchical | ❌ High-dim correlated | ❌ Silhouette=0.317-0.425 | ❌ Poor balance | ⭐ |
+| Algorithm | Clustering Quality | Balance Ratio | Stability | Business Utility | Final Score |
+|-----------|-------------------|---------------|-----------|------------------|-------------|
+| K-Means | ✅ Silhouette=0.586 | ✅ 1.75:1 | ✅ 100% | ✅ 3 balanced clusters, interpretable | ⭐⭐⭐⭐⭐ |
+| GMM | ✅ Silhouette=0.586 | ✅ 1.75:1 | ⚠️ 98% | ✅ 3 balanced clusters | ⭐⭐⭐⭐ |
+| DBSCAN | ✅✅ Silhouette=0.643 | ⚠️ 1.95:1 | ⚠️ 88% | ✅ 3 clusters, but lower stability | ⭐⭐⭐ |
+| Hierarchical | ⚠️ Silhouette=0.578 | ✅ 1.73:1 | N/A | ⚠️ Lower quality, high complexity | ⭐⭐ |
 
 **Theoretical Foundation for Selection:**
 - **Cluster Validation Theory**: Maulik et al. (2022) emphasize the importance of combining internal validation (silhouette) with external criteria (balance ratio)
@@ -253,30 +248,30 @@ The final clustering solution identified three distinct store segments:
 ### 5.2 Detailed Cluster Performance Characteristics
 
 **Cluster 0: "Efficient Small Stores" (26.4% of stores)**
-- **Sales Performance**: $15.2 average monthly sales (SD: $8.4)
-- **Advertising Investment**: $754 average monthly ad spend (SD: $1,203)
-- **Efficiency Metrics**: ROAS = 0.54 (highest efficiency), Conversion rate = 0.18%
-- **Traffic Metrics**: 7,438 average monthly website visits (SD: 4,521)
-- **Ad Activity**: 38% of months with advertising activity
-- **Channel Focus**: Search (22%), Social (13%), Display (9%)
+- **Sales Performance**: $14.79 average monthly sales (SD: $15.47)
+- **Advertising Investment**: $502.90 average monthly ad spend (SD: $649.62)
+- **Efficiency Metrics**: ROAS = 0.36 (highest efficiency), Conversion rate = 0.30%
+- **Traffic Metrics**: 7,234 average monthly website visits (SD: 8,309)
+- **Ad Activity**: 37.7% of months with advertising activity
+- **Channel Focus**: Social (21.6%), Search (0%), Display (N/A)
 - **Seasonality**: Moderate seasonal variation (Q4 peak: +25%)
 
 **Cluster 1: "High Volume, Low Efficiency Stores" (46.1% of stores)**
-- **Sales Performance**: $35.1 average monthly sales (SD: $22.8)
-- **Advertising Investment**: $9,171 average monthly ad spend (SD: $6,234)
-- **Efficiency Metrics**: ROAS = 0.04 (lowest efficiency), Conversion rate = 0.15%
-- **Traffic Metrics**: 18,039 average monthly website visits (SD: 12,456)
-- **Ad Activity**: 67% of months with advertising activity
-- **Channel Focus**: Search (34%), Social (12%), Display (9%)
+- **Sales Performance**: $35.25 average monthly sales (SD: $25.15)
+- **Advertising Investment**: $6,114.21 average monthly ad spend (SD: $4,603.47)
+- **Efficiency Metrics**: ROAS = 0.027 (lowest efficiency), Conversion rate = 0.30%
+- **Traffic Metrics**: 17,837 average monthly website visits (SD: 11,888)
+- **Ad Activity**: 66.7% of months with advertising activity
+- **Channel Focus**: Search (34.4%), Social (11.9%), Display (N/A)
 - **Seasonality**: High seasonal variation (Q4 peak: +45%)
 
 **Cluster 2: "Balanced Medium Stores" (27.5% of stores)**
-- **Sales Performance**: $22.3 average monthly sales (SD: $15.7)
-- **Advertising Investment**: $3,079 average monthly ad spend (SD: $2,891)
-- **Efficiency Metrics**: ROAS = 0.47 (high efficiency), Conversion rate = 0.16%
-- **Traffic Metrics**: 11,936 average monthly website visits (SD: 8,234)
-- **Ad Activity**: 38% of months with advertising activity
-- **Channel Focus**: Social (22%), Display (9%), Search (8%)
+- **Sales Performance**: $21.70 average monthly sales (SD: $18.73)
+- **Advertising Investment**: $2,052.97 average monthly ad spend (SD: $2,168.88)
+- **Efficiency Metrics**: ROAS = 0.317 (high efficiency), Conversion rate = 0.30%
+- **Traffic Metrics**: 11,614 average monthly website visits (SD: 9,828)
+- **Ad Activity**: 51.4% of months with advertising activity
+- **Channel Focus**: Search (20.6%), Social (13.8%), Display (N/A)
 - **Seasonality**: Moderate seasonal variation (Q4 peak: +30%)
 
 ### 5.3 Statistical Significance Testing

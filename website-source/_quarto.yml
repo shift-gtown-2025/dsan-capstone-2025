@@ -8,14 +8,12 @@ website:
     left:
       - href: index.qmd
         text: Introduction
-      - href: eda.qmd
-        text: EDA
-      # - href: nlp.qmd
-      #   text: NLP
-      # - href: ml.qmd
-      #   text: ML
-      - href: conclusion.qmd
-        text: Conclusion
+      - href: eda_2.qmd
+        text: EDA - Project 2
+      - href: methods_2.qmd
+        text: Methods - Project 2
+      - href: conclusion_2.qmd
+        text: Conclusion - Project 2
       # - href: 
       #   text: Code
   page-footer:
