@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>eda_2 – Project Title</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Project Title</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./eda_2.html" aria-current="page"> 
+<span class="menu-text">EDA - Project 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./methods_2.html"> 
+<span class="menu-text">Methods - Project 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./conclusion_2.html"> 
+<span class="menu-text">Conclusion - Project 2</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#data-loading-and-overview" id="toc-data-loading-and-overview" class="nav-link" data-scroll-target="#data-loading-and-overview">1. Data Loading and Overview</a></li>
+  <li><a href="#data-quality-assessment" id="toc-data-quality-assessment" class="nav-link" data-scroll-target="#data-quality-assessment">2. Data Quality Assessment</a>
+  <ul class="collapse">
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">2.1 Data Overview</a></li>
+  <li><a href="#missing-values-and-data-quality-issues" id="toc-missing-values-and-data-quality-issues" class="nav-link" data-scroll-target="#missing-values-and-data-quality-issues">2.2 Missing Values and Data Quality Issues</a></li>
+  <li><a href="#data-quality-issues-identified" id="toc-data-quality-issues-identified" class="nav-link" data-scroll-target="#data-quality-issues-identified">2.3 Data Quality Issues Identified</a></li>
+  </ul></li>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">3. Data Preprocessing</a>
+  <ul class="collapse">
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">3.1 Feature Selection</a></li>
+  <li><a href="#data-preprocessing-pipeline" id="toc-data-preprocessing-pipeline" class="nav-link" data-scroll-target="#data-preprocessing-pipeline">3.2 Data Preprocessing Pipeline</a></li>
+  </ul></li>
+  <li><a href="#feature-distribution-analysis" id="toc-feature-distribution-analysis" class="nav-link" data-scroll-target="#feature-distribution-analysis">4. Feature Distribution Analysis</a>
+  <ul class="collapse">
+  <li><a href="#distribution-of-key-metrics" id="toc-distribution-of-key-metrics" class="nav-link" data-scroll-target="#distribution-of-key-metrics">4.1 Distribution of Key Metrics</a></li>
+  <li><a href="#skewness-analysis" id="toc-skewness-analysis" class="nav-link" data-scroll-target="#skewness-analysis">4.2 Skewness Analysis</a></li>
+  </ul></li>
+  <li><a href="#correlation-analysis" id="toc-correlation-analysis" class="nav-link" data-scroll-target="#correlation-analysis">5. Correlation Analysis</a>
+  <ul class="collapse">
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">5.1 Correlation Matrix</a></li>
+  <li><a href="#channel-preference-analysis" id="toc-channel-preference-analysis" class="nav-link" data-scroll-target="#channel-preference-analysis">5.2 Channel Preference Analysis</a></li>
+  </ul></li>
+  <li><a href="#time-series-analysis" id="toc-time-series-analysis" class="nav-link" data-scroll-target="#time-series-analysis">6. Time Series Analysis</a>
+  <ul class="collapse">
+  <li><a href="#monthly-trends" id="toc-monthly-trends" class="nav-link" data-scroll-target="#monthly-trends">6.1 Monthly Trends</a></li>
+  <li><a href="#time-series-visualization" id="toc-time-series-visualization" class="nav-link" data-scroll-target="#time-series-visualization">6.2 Time Series Visualization</a></li>
+  </ul></li>
+  <li><a href="#performance-benchmarking" id="toc-performance-benchmarking" class="nav-link" data-scroll-target="#performance-benchmarking">7. Performance Benchmarking</a>
+  <ul class="collapse">
+  <li><a href="#performance-tier-analysis" id="toc-performance-tier-analysis" class="nav-link" data-scroll-target="#performance-tier-analysis">7.1 Performance Tier Analysis</a></li>
+  <li><a href="#high-vs-low-performers" id="toc-high-vs-low-performers" class="nav-link" data-scroll-target="#high-vs-low-performers">7.2 High vs Low Performers</a></li>
+  </ul></li>
+  <li><a href="#pca-analysis" id="toc-pca-analysis" class="nav-link" data-scroll-target="#pca-analysis">8. PCA Analysis</a>
+  <ul class="collapse">
+  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction">8.1 Dimensionality Reduction</a></li>
+  <li><a href="#pca-visualization" id="toc-pca-visualization" class="nav-link" data-scroll-target="#pca-visualization">8.2 PCA Visualization</a></li>
+  <li><a href="#feature-importance-pca-loadings" id="toc-feature-importance-pca-loadings" class="nav-link" data-scroll-target="#feature-importance-pca-loadings">8.3 Feature Importance (PCA Loadings)</a></li>
+  </ul></li>
+  <li><a href="#summary-and-next-steps" id="toc-summary-and-next-steps" class="nav-link" data-scroll-target="#summary-and-next-steps">9. Summary and Next Steps</a>
+  <ul class="collapse">
+  <li><a href="#eda-summary" id="toc-eda-summary" class="nav-link" data-scroll-target="#eda-summary">9.1 EDA Summary</a></li>
+  <li><a href="#key-insights" id="toc-key-insights" class="nav-link" data-scroll-target="#key-insights">9.2 Key Insights</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ｃExploratory Data Analysis (EDA) - Project 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This section presents a comprehensive exploratory data analysis of store performance data, including data preprocessing, feature engineering, and preparation for clustering analysis. The analysis focuses on identifying patterns, relationships, and key factors that influence store performance.</p>
+</section>
+<section id="data-loading-and-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-loading-and-overview">1. Data Loading and Overview</h2>
+<p>First, let’s load the necessary libraries and data files.</p>
+<div id="9d102aed" class="cell" data-message="false" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, QuantileTransformer</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Set plotting style</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"husl"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">6</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Libraries imported successfully!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Libraries imported successfully!</code></pre>
+</div>
+</div>
+<div id="data-loading" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load processed data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_monthly <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_kpi_clean.csv'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_stores <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features.csv'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_enhanced <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Data Loading Complete ==="</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Monthly data (store_kpi_clean): </span><span class="sc">{</span>df_monthly<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Store features (store_features): </span><span class="sc">{</span>df_stores<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Enhanced features (store_features_enhanced): </span><span class="sc">{</span>df_enhanced<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert month to datetime</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>df_monthly[<span class="st">'month'</span>] <span class="op">=</span> pd.to_datetime(df_monthly[<span class="st">'month'</span>])</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Time range: </span><span class="sc">{</span>df_monthly[<span class="st">'month'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df_monthly[<span class="st">'month'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Unique store count: </span><span class="sc">{</span>df_monthly[<span class="st">'store_id'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Data completeness: </span><span class="sc">{</span>df_monthly<span class="sc">.</span>isnull()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> missing values"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Data Loading Complete ===
+Monthly data (store_kpi_clean): (61322, 66)
+Store features (store_features): (2557, 31)
+Enhanced features (store_features_enhanced): (2557, 24)
+
+Time range: 2023-10-01 00:00:00+00:00 to 2025-09-01 00:00:00+00:00
+Unique store count: 2557
+Data completeness: 0 missing values</code></pre>
+</div>
+</div>
+</section>
+<section id="data-quality-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-assessment">2. Data Quality Assessment</h2>
+<section id="data-overview" class="level3">
+<h3 class="anchored" data-anchor-id="data-overview">2.1 Data Overview</h3>
+<div id="data-overview" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Store Features Dataset Overview ==="</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total stores: </span><span class="sc">{</span><span class="bu">len</span>(df_stores)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total features: </span><span class="sc">{</span><span class="bu">len</span>(df_stores.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Feature types:"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_stores.dtypes.value_counts())</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Key Metrics Statistical Summary ==="</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>key_metrics <span class="op">=</span> [<span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'website_visits_mean'</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>               <span class="st">'unique_lead_count_mean'</span>, <span class="st">'ctr_clean_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'roas_mean'</span>]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_stores[key_metrics].describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Store Features Dataset Overview ===
+Total stores: 2,557
+Total features: 31
+
+Feature types:
+float64    25
+object      4
+int64       2
+Name: count, dtype: int64
+
+=== Key Metrics Statistical Summary ===
+       sales_mean  total_ad_spend_mean  website_visits_mean  \
+count     2557.00              2557.00              2557.00   
+mean        28.11              4067.30             14229.10   
+std         28.74              6189.91             14307.34   
+min          0.00                 0.00                 0.00   
+25%          8.25               487.37              4185.17   
+50%         18.67              1956.15             10086.67   
+75%         38.75              5114.49             19966.08   
+max        284.04             84857.49            161026.12   
+
+       unique_lead_count_mean  ctr_clean_mean  conversion_rate_mean  roas_mean  
+count                 2557.00         2557.00               2557.00    2557.00  
+mean                    36.13            0.01                  0.00       0.64  
+std                     46.00            0.01                  0.01      10.82  
+min                      0.00            0.00                  0.00       0.00  
+25%                      7.92            0.00                  0.00       0.00  
+50%                     20.33            0.01                  0.00       0.01  
+75%                     47.62            0.01                  0.00       0.03  
+max                    692.17            0.03                  0.40     481.46  </code></pre>
+</div>
+</div>
+</section>
+<section id="missing-values-and-data-quality-issues" class="level3">
+<h3 class="anchored" data-anchor-id="missing-values-and-data-quality-issues">2.2 Missing Values and Data Quality Issues</h3>
+<div id="data-quality" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Missing Value Analysis ==="</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>missing_values <span class="op">=</span> df_stores[key_metrics].isnull().<span class="bu">sum</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(missing_values[missing_values <span class="op">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Zero Value Analysis ==="</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> metric <span class="kw">in</span> key_metrics:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    zero_pct <span class="op">=</span> (df_stores[metric] <span class="op">==</span> <span class="dv">0</span>).mean() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>zero_pct<span class="sc">:.1f}</span><span class="ss">% zero values"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Extreme Value Analysis (99th percentile) ==="</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> metric <span class="kw">in</span> key_metrics:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    p99 <span class="op">=</span> df_stores[metric].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>p99<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Missing Value Analysis ===
+Series([], dtype: int64)
+
+=== Zero Value Analysis ===
+sales_mean: 0.1% zero values
+total_ad_spend_mean: 3.4% zero values
+website_visits_mean: 0.2% zero values
+unique_lead_count_mean: 0.4% zero values
+ctr_clean_mean: 3.6% zero values
+conversion_rate_mean: 0.6% zero values
+roas_mean: 3.7% zero values
+
+=== Extreme Value Analysis (99th percentile) ===
+sales_mean: 134.08
+total_ad_spend_mean: 31585.24
+website_visits_mean: 66741.28
+unique_lead_count_mean: 197.67
+ctr_clean_mean: 0.03
+conversion_rate_mean: 0.02
+roas_mean: 5.33</code></pre>
+</div>
+</div>
+</section>
+<section id="data-quality-issues-identified" class="level3">
+<h3 class="anchored" data-anchor-id="data-quality-issues-identified">2.3 Data Quality Issues Identified</h3>
+<p>Based on the analysis, we identified several data quality issues:</p>
+<ol type="1">
+<li><strong>Ad Spend Data Gap</strong>: Zero ad spend recorded from 2023-10 to 2024-05</li>
+<li><strong>Missing Values</strong>: 5-15% missing values in various KPI metrics</li>
+<li><strong>Outliers</strong>: Extreme values in sales and ad spend metrics</li>
+<li><strong>Temporal Inconsistencies</strong>: Inconsistent data collection periods</li>
+</ol>
+</section>
+</section>
+<section id="data-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-preprocessing">3. Data Preprocessing</h2>
+<section id="feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="feature-selection">3.1 Feature Selection</h3>
+<p>For clustering analysis, we selected 11 key features that capture different aspects of store performance:</p>
+<div id="feature-selection" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Selected Features for Clustering ==="</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total features: </span><span class="sc">{</span><span class="bu">len</span>(FEATURES)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feat <span class="kw">in</span> <span class="bu">enumerate</span>(FEATURES, <span class="dv">1</span>):</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feat<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if all features exist in enhanced dataset</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>missing_features <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> FEATURES <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> df_enhanced.columns]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> missing_features:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">⚠️ Missing features: </span><span class="sc">{</span>missing_features<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✅ All features available in enhanced dataset"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Selected Features for Clustering ===
+Total features: 11
+1. sales_mean
+2. total_ad_spend_mean
+3. roas_mean
+4. conversion_rate_mean
+5. website_visits_mean
+6. search_spend_ratio_mean
+7. social_spend_ratio_mean
+8. ad_months_active
+9. ad_active_ratio
+10. spent_any
+11. avg_ad_spend_active_only
+
+✅ All features available in enhanced dataset</code></pre>
+</div>
+</div>
+</section>
+<section id="data-preprocessing-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="data-preprocessing-pipeline">3.2 Data Preprocessing Pipeline</h3>
+<p>The preprocessing pipeline consists of four main steps:</p>
+<ol type="1">
+<li><strong>Missing Value Handling</strong>: Fill missing values with 0</li>
+<li><strong>Outlier Removal</strong>: Use IsolationForest to remove ~8% of outliers</li>
+<li><strong>Normalization</strong>: Apply QuantileTransformer to map features to normal distribution</li>
+<li><strong>Dimensionality Reduction</strong>: Apply PCA to retain 95% of variance</li>
+</ol>
+<div id="preprocessing-pipeline" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load enhanced features</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_enhanced.copy()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Initial features shape: </span><span class="sc">{</span>X<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: IsolationForest outlier removal</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After outlier removal: </span><span class="sc">{</span>X_clean<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> samples (removed </span><span class="sc">{</span><span class="bu">len</span>(X) <span class="op">-</span> X_clean<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: QuantileTransformer normalization</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After Quantile normalization: </span><span class="sc">{</span>X_qt<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: PCA 95% variance</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After PCA: </span><span class="sc">{</span>X_pca<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> components (explained variance: </span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== Preprocessing Summary ==="</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Original samples: </span><span class="sc">{</span><span class="bu">len</span>(X)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After outlier removal: </span><span class="sc">{</span><span class="bu">len</span>(X_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Removed outliers: </span><span class="sc">{</span><span class="bu">len</span>(X) <span class="op">-</span> <span class="bu">len</span>(X_clean)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>(<span class="bu">len</span>(X) <span class="op">-</span> <span class="bu">len</span>(X_clean))<span class="op">/</span><span class="bu">len</span>(X)<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final dimensions: </span><span class="sc">{</span>X_pca<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (from </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> original features)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initial features shape: (2557, 11)
+After outlier removal: 2352 samples (removed 205)
+After Quantile normalization: (2352, 11)
+After PCA: 5 components (explained variance: 0.967)
+
+=== Preprocessing Summary ===
+Original samples: 2557
+After outlier removal: 2352
+Removed outliers: 205 (8.0%)
+Final dimensions: 5 (from 11 original features)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="feature-distribution-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="feature-distribution-analysis">4. Feature Distribution Analysis</h2>
+<section id="distribution-of-key-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-key-metrics">4.1 Distribution of Key Metrics</h3>
+<div id="cell-distribution-analysis" class="cell" data-fig-height="8" data-fig-width="10" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Key metrics distribution visualization</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">4</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">8</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.4</span>, wspace<span class="op">=</span><span class="fl">0.3</span>, top<span class="op">=</span><span class="fl">0.93</span>, bottom<span class="op">=</span><span class="fl">0.08</span>, left<span class="op">=</span><span class="fl">0.08</span>, right<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, metric <span class="kw">in</span> <span class="bu">enumerate</span>(key_metrics):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&lt;</span> <span class="bu">len</span>(axes):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Use log scale to handle skewed distributions</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> df_stores[metric].replace(<span class="dv">0</span>, np.nan)  <span class="co"># Exclude zero values</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> data.isna().<span class="bu">all</span>():</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            axes[i].hist(data.dropna(), bins<span class="op">=</span><span class="dv">40</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Shorten metric names for display</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            metric_short <span class="op">=</span> metric.replace(<span class="st">'_mean'</span>, <span class="st">''</span>).replace(<span class="st">'_'</span>, <span class="st">' '</span>).title()</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            axes[i].set_title(metric_short, fontsize<span class="op">=</span><span class="dv">9</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            axes[i].set_xlabel(<span class="st">''</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            axes[i].set_ylabel(<span class="st">'Frequency'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            axes[i].tick_params(labelsize<span class="op">=</span><span class="dv">7</span>, which<span class="op">=</span><span class="st">'both'</span>, pad<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Rotate x-axis labels if needed</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>            axes[i].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add statistical information with simplified legend</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>            mean_val <span class="op">=</span> data.mean()</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>            median_val <span class="op">=</span> data.median()</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>            axes[i].axvline(mean_val, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>            axes[i].axvline(median_val, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add legend only for first subplot to save space</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>                axes[i].legend([<span class="st">'Mean'</span>, <span class="st">'Median'</span>], fontsize<span class="op">=</span><span class="dv">7</span>, loc<span class="op">=</span><span class="st">'upper right'</span>, framealpha<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Hide extra subplots</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(key_metrics), <span class="bu">len</span>(axes)):</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    axes[i].set_visible(<span class="va">False</span>)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add main title</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Key Metrics Distribution Analysis'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, y<span class="op">=</span><span class="fl">0.98</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_2_files/figure-html/distribution-analysis-output-1.png" id="distribution-analysis" width="809" height="730" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="skewness-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="skewness-analysis">4.2 Skewness Analysis</h3>
+<div id="skewness-analysis" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Feature Skewness Analysis ==="</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>skewed_features <span class="op">=</span> []</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature <span class="kw">in</span> FEATURES:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> feature <span class="kw">in</span> df_stores.columns:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        skewness <span class="op">=</span> df_stores[feature].skew()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        skewed_features.append((feature, skewness))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"⚠️ Highly skewed"</span> <span class="cf">if</span> <span class="bu">abs</span>(skewness) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">"✅ Normal"</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>skewness<span class="sc">:.3f}</span><span class="ss"> </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Highly skewed features (|skewness| &gt; 1): </span><span class="sc">{</span><span class="bu">len</span>([f <span class="cf">for</span> f, s <span class="kw">in</span> skewed_features <span class="cf">if</span> <span class="bu">abs</span>(s) <span class="op">&gt;</span> <span class="dv">1</span>])<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Feature Skewness Analysis ===
+sales_mean: 2.383 ⚠️ Highly skewed
+total_ad_spend_mean: 3.972 ⚠️ Highly skewed
+roas_mean: 37.295 ⚠️ Highly skewed
+conversion_rate_mean: 23.723 ⚠️ Highly skewed
+website_visits_mean: 2.567 ⚠️ Highly skewed
+search_spend_ratio_mean: 0.352 ✅ Normal
+social_spend_ratio_mean: 0.984 ✅ Normal
+
+Highly skewed features (|skewness| &gt; 1): 5</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="correlation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-analysis">5. Correlation Analysis</h2>
+<section id="correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-matrix">5.1 Correlation Matrix</h3>
+<div id="cell-correlation-analysis" class="cell" data-fig-height="8" data-fig-width="10" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation matrix</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>clustering_features <span class="op">=</span> [</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'unique_lead_count_mean'</span>, <span class="st">'ctr_clean_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'roas_mean'</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use available features only</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>available_features <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> clustering_features <span class="cf">if</span> f <span class="kw">in</span> df_stores.columns]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> df_stores[available_features].corr()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize correlation matrix</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> np.triu(np.ones_like(correlation_matrix, dtype<span class="op">=</span><span class="bu">bool</span>))</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix, </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>            mask<span class="op">=</span>mask,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>            annot<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>            cmap<span class="op">=</span><span class="st">'RdBu_r'</span>, </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>            center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>            square<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>            fmt<span class="op">=</span><span class="st">'.2f'</span>,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>            cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">0.7</span>, <span class="st">"aspect"</span>: <span class="dv">20</span>},</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>            annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">7</span>},</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>            xticklabels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>            yticklabels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>            linewidths<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Feature Correlation Matrix'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, pad<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>plt.yticks(rotation<span class="op">=</span><span class="dv">0</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Find features most correlated with sales</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'sales_mean'</span> <span class="kw">in</span> correlation_matrix.columns:</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    sales_corr <span class="op">=</span> correlation_matrix[<span class="st">'sales_mean'</span>].<span class="bu">abs</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Features Most Correlated with Sales ==="</span>)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sales_corr.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_2_files/figure-html/correlation-analysis-output-1.png" id="correlation-analysis" width="731" height="635" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Features Most Correlated with Sales ===
+sales_mean                 1.000000
+unique_lead_count_mean     0.782383
+website_visits_mean        0.764291
+total_ad_spend_mean        0.654909
+ctr_clean_mean             0.249225
+search_spend_ratio_mean    0.199645
+conversion_rate_mean       0.061059
+roas_mean                  0.060375
+social_spend_ratio_mean    0.005542
+Name: sales_mean, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="channel-preference-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="channel-preference-analysis">5.2 Channel Preference Analysis</h3>
+<div id="channel-analysis" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>channel_ratios <span class="op">=</span> [<span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'display_spend_ratio_mean'</span>, <span class="st">'video_spend_ratio_mean'</span>, <span class="st">'pmax_spend_ratio_mean'</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use available channels only</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>available_channels <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> channel_ratios <span class="cf">if</span> c <span class="kw">in</span> df_stores.columns]</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Channel Preference Analysis ==="</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average spending ratio by channel:"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> channel <span class="kw">in</span> available_channels:</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    avg_ratio <span class="op">=</span> df_stores[channel].mean()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>channel<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>avg_ratio<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Channel combination pattern analysis</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> available_channels:</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    df_stores[<span class="st">'primary_channel'</span>] <span class="op">=</span> df_stores[available_channels].idxmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    df_stores[<span class="st">'primary_channel'</span>] <span class="op">=</span> df_stores[<span class="st">'primary_channel'</span>].<span class="bu">str</span>.replace(<span class="st">'_spend_ratio_mean'</span>, <span class="st">''</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Primary channel distribution:"</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_stores[<span class="st">'primary_channel'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Channel Preference Analysis ===
+Average spending ratio by channel:
+search_spend_ratio_mean: 0.209
+social_spend_ratio_mean: 0.143
+display_spend_ratio_mean: 0.054
+video_spend_ratio_mean: 0.005
+pmax_spend_ratio_mean: 0.069
+
+Primary channel distribution:
+primary_channel
+search     1362
+social      791
+pmax        208
+display     181
+video        15
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="time-series-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-analysis">6. Time Series Analysis</h2>
+<section id="monthly-trends" class="level3">
+<h3 class="anchored" data-anchor-id="monthly-trends">6.1 Monthly Trends</h3>
+<div id="time-series-analysis" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly trend analysis</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>monthly_agg <span class="op">=</span> df_monthly.groupby([<span class="st">'year'</span>, <span class="st">'month_num'</span>]).agg({</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_ad_spend'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'website_visits'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'unique_lead_count'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ctr_clean'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'conversion_rate'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'roas'</span>: <span class="st">'mean'</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create time index</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>monthly_agg[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    monthly_agg[[<span class="st">'year'</span>, <span class="st">'month_num'</span>]].rename(columns<span class="op">=</span>{<span class="st">'month_num'</span>: <span class="st">'month'</span>}).assign(day<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Monthly Trend Analysis ==="</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(monthly_agg[[<span class="st">'date'</span>, <span class="st">'sales'</span>, <span class="st">'total_ad_spend'</span>, <span class="st">'roas'</span>]].head(<span class="dv">10</span>))</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonal analysis</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>monthly_agg[<span class="st">'quarter'</span>] <span class="op">=</span> monthly_agg[<span class="st">'month_num'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span><span class="dv">1</span>)<span class="op">//</span><span class="dv">3</span> <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>quarterly_avg <span class="op">=</span> monthly_agg.groupby(<span class="st">'quarter'</span>)[[<span class="st">'sales'</span>, <span class="st">'total_ad_spend'</span>, <span class="st">'roas'</span>]].mean()</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Quarterly Average Performance ==="</span>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(quarterly_avg.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Monthly Trend Analysis ===
+        date    sales  total_ad_spend      roas
+0 2023-10-01  75357.0    0.000000e+00  0.000000
+1 2023-11-01  73092.0    0.000000e+00  0.000000
+2 2023-12-01  76434.0    0.000000e+00  0.000000
+3 2024-01-01  63861.0    0.000000e+00  0.000000
+4 2024-02-01  63049.0    0.000000e+00  0.000000
+5 2024-03-01  76111.0    0.000000e+00  0.000000
+6 2024-04-01  69284.0    0.000000e+00  0.000000
+7 2024-05-01  78021.0    0.000000e+00  0.000000
+8 2024-06-01  68334.0    1.058253e+07  0.695006
+9 2024-07-01  68436.0    1.284390e+07  0.700949
+
+=== Quarterly Average Performance ===
+            sales  total_ad_spend  roas
+quarter                                
+1        68890.83      8237971.88  0.25
+2        72171.83     10418359.67  0.42
+3        71164.00     14233371.85  1.51
+4        75284.33      8710687.88  0.39</code></pre>
+</div>
+</div>
+</section>
+<section id="time-series-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="time-series-visualization">6.2 Time Series Visualization</h3>
+<div id="cell-time-series-viz" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time series visualization</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.35</span>, wspace<span class="op">=</span><span class="fl">0.3</span>, top<span class="op">=</span><span class="fl">0.93</span>, bottom<span class="op">=</span><span class="fl">0.12</span>, left<span class="op">=</span><span class="fl">0.12</span>, right<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sales trend</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].plot(monthly_agg[<span class="st">'date'</span>], monthly_agg[<span class="st">'sales'</span>], marker<span class="op">=</span><span class="st">'o'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'Total Sales Trend'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'Sales Volume'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ad spend trend</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].plot(monthly_agg[<span class="st">'date'</span>], monthly_agg[<span class="st">'total_ad_spend'</span>], marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'orange'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Total Ad Spend Trend'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'Ad Spend ($)'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ROAS trend</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].plot(monthly_agg[<span class="st">'date'</span>], monthly_agg[<span class="st">'roas'</span>], marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'ROAS Trend'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'ROAS'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'Date'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion rate trend</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].plot(monthly_agg[<span class="st">'date'</span>], monthly_agg[<span class="st">'conversion_rate'</span>], marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'Conversion Rate Trend'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'Conversion Rate'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'Date'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Key Metrics Time Series Trends'</span>, fontsize<span class="op">=</span><span class="dv">11</span>, y<span class="op">=</span><span class="fl">0.98</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_2_files/figure-html/time-series-viz-output-1.png" id="time-series-viz" width="720" height="734" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="performance-benchmarking" class="level2">
+<h2 class="anchored" data-anchor-id="performance-benchmarking">7. Performance Benchmarking</h2>
+<section id="performance-tier-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="performance-tier-analysis">7.1 Performance Tier Analysis</h3>
+<div id="performance-tiers" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create performance tier benchmarks</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_performance_tiers(df, metric, n_tiers<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Create performance tiers"""</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclude zero values for tiering</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    non_zero <span class="op">=</span> df[df[metric] <span class="op">&gt;</span> <span class="dv">0</span>][metric]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(non_zero) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pd.Series([<span class="st">'Zero'</span>] <span class="op">*</span> <span class="bu">len</span>(df), index<span class="op">=</span>df.index)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use quantiles for tiering</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    q33 <span class="op">=</span> non_zero.quantile(<span class="fl">0.33</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    q67 <span class="op">=</span> non_zero.quantile(<span class="fl">0.67</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> assign_tier(value):</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">'Zero'</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> value <span class="op">&lt;=</span> q33:</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">'Low'</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> value <span class="op">&lt;=</span> q67:</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">'Medium'</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">'High'</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df[metric].<span class="bu">apply</span>(assign_tier)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create tiers for key metrics</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>df_stores[<span class="st">'sales_tier'</span>] <span class="op">=</span> create_performance_tiers(df_stores, <span class="st">'sales_mean'</span>)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>df_stores[<span class="st">'roas_tier'</span>] <span class="op">=</span> create_performance_tiers(df_stores, <span class="st">'roas_mean'</span>)</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>df_stores[<span class="st">'conversion_tier'</span>] <span class="op">=</span> create_performance_tiers(df_stores, <span class="st">'conversion_rate_mean'</span>)</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>df_stores[<span class="st">'ad_spend_tier'</span>] <span class="op">=</span> create_performance_tiers(df_stores, <span class="st">'total_ad_spend_mean'</span>)</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Performance Tier Statistics ==="</span>)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sales tiers:"</span>)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_stores[<span class="st">'sales_tier'</span>].value_counts())</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">ROAS tiers:"</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_stores[<span class="st">'roas_tier'</span>].value_counts())</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Conversion rate tiers:"</span>)</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_stores[<span class="st">'conversion_tier'</span>].value_counts())</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Ad spend tiers:"</span>)</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_stores[<span class="st">'ad_spend_tier'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Performance Tier Statistics ===
+Sales tiers:
+sales_tier
+Medium    867
+Low       846
+High      842
+Zero        2
+Name: count, dtype: int64
+
+ROAS tiers:
+roas_tier
+Medium    832
+Low       820
+High      810
+Zero       95
+Name: count, dtype: int64
+
+Conversion rate tiers:
+conversion_tier
+Medium    896
+Low       867
+High      778
+Zero       16
+Name: count, dtype: int64
+
+Ad spend tiers:
+ad_spend_tier
+Medium    839
+Low       816
+High      816
+Zero       86
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="high-vs-low-performers" class="level3">
+<h3 class="anchored" data-anchor-id="high-vs-low-performers">7.2 High vs Low Performers</h3>
+<div id="performer-analysis" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># High performer feature analysis</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>high_performers <span class="op">=</span> df_stores[</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    (df_stores[<span class="st">'sales_tier'</span>] <span class="op">==</span> <span class="st">'High'</span>) <span class="op">&amp;</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    (df_stores[<span class="st">'roas_tier'</span>].isin([<span class="st">'High'</span>, <span class="st">'Medium'</span>])) <span class="op">&amp;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    (df_stores[<span class="st">'conversion_tier'</span>].isin([<span class="st">'High'</span>, <span class="st">'Medium'</span>]))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"=== High Performer Analysis ==="</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"High performer count: </span><span class="sc">{</span><span class="bu">len</span>(high_performers)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">len</span>(high_performers)<span class="op">/</span><span class="bu">len</span>(df_stores)<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(high_performers) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">High performer features:"</span>)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    high_perf_features <span class="op">=</span> [<span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'website_visits_mean'</span>, </span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'ctr_clean_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'roas_mean'</span>]</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    available_high_perf <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> high_perf_features <span class="cf">if</span> f <span class="kw">in</span> df_stores.columns]</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"High performers vs Overall average:"</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feature <span class="kw">in</span> available_high_perf:</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        high_avg <span class="op">=</span> high_performers[feature].mean()</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>        overall_avg <span class="op">=</span> df_stores[feature].mean()</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> overall_avg <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>            improvement <span class="op">=</span> (high_avg <span class="op">-</span> overall_avg) <span class="op">/</span> overall_avg <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>feature<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>high_avg<span class="sc">:.2f}</span><span class="ss"> vs </span><span class="sc">{</span>overall_avg<span class="sc">:.2f}</span><span class="ss"> (+</span><span class="sc">{</span>improvement<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Low performer feature analysis</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>low_performers <span class="op">=</span> df_stores[</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    (df_stores[<span class="st">'sales_tier'</span>] <span class="op">==</span> <span class="st">'Low'</span>) <span class="op">|</span> </span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    (df_stores[<span class="st">'roas_tier'</span>] <span class="op">==</span> <span class="st">'Low'</span>) <span class="op">|</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    (df_stores[<span class="st">'conversion_tier'</span>] <span class="op">==</span> <span class="st">'Low'</span>)</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== Low Performer Analysis ==="</span>)</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Low performer count: </span><span class="sc">{</span><span class="bu">len</span>(low_performers)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">len</span>(low_performers)<span class="op">/</span><span class="bu">len</span>(df_stores)<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== High Performer Analysis ===
+High performer count: 455 (17.8%)
+
+High performer features:
+High performers vs Overall average:
+sales_mean: 61.69 vs 28.11 (+119.4%)
+total_ad_spend_mean: 5206.76 vs 4067.30 (+28.0%)
+website_visits_mean: 23936.93 vs 14229.10 (+68.2%)
+ctr_clean_mean: 0.01 vs 0.01 (+15.3%)
+conversion_rate_mean: 0.01 vs 0.00 (+50.4%)
+roas_mean: 1.84 vs 0.64 (+186.3%)
+
+=== Low Performer Analysis ===
+Low performer count: 1719 (67.2%)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="pca-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="pca-analysis">8. PCA Analysis</h2>
+<section id="dimensionality-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="dimensionality-reduction">8.1 Dimensionality Reduction</h3>
+<div id="pca-analysis" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare clustering features for PCA analysis (EDA version)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This uses StandardScaler and all data, not the clustering preprocessing pipeline</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>clustering_features <span class="op">=</span> [</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'unique_lead_count_mean'</span>, <span class="st">'ctr_clean_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'roas_mean'</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>, <span class="st">'display_spend_ratio_mean'</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'video_spend_ratio_mean'</span>, <span class="st">'pmax_spend_ratio_mean'</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for PCA</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>X_clustering <span class="op">=</span> df_stores[clustering_features].fillna(<span class="dv">0</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize features for PCA (EDA version - uses StandardScaler)</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>scaler_eda <span class="op">=</span> StandardScaler()</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler_eda.fit_transform(X_clustering)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA analysis (fit on all components first to see explained variance)</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>pca_eda <span class="op">=</span> PCA()</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>X_pca_eda <span class="op">=</span> pca_eda.fit_transform(X_scaled)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Explained variance ratio</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>explained_variance_ratio <span class="op">=</span> pca_eda.explained_variance_ratio_</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>cumulative_variance <span class="op">=</span> np.cumsum(explained_variance_ratio)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== PCA Analysis Results ==="</span>)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Explained variance ratio for first 5 principal components:"</span>)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (var_ratio, cum_var) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(explained_variance_ratio[:<span class="dv">5</span>], cumulative_variance[:<span class="dv">5</span>])):</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"PC</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>var_ratio<span class="sc">:.3f}</span><span class="ss"> (cumulative: </span><span class="sc">{</span>cum_var<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Find number of components needed to explain 90% variance</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>n_components_90 <span class="op">=</span> np.where(cumulative_variance <span class="op">&gt;=</span> <span class="fl">0.9</span>)[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>n_components_90<span class="sc">}</span><span class="ss"> principal components needed to explain 90% variance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== PCA Analysis Results ===
+Explained variance ratio for first 5 principal components:
+PC1: 0.306 (cumulative: 0.306)
+PC2: 0.141 (cumulative: 0.447)
+PC3: 0.089 (cumulative: 0.536)
+PC4: 0.088 (cumulative: 0.624)
+PC5: 0.084 (cumulative: 0.708)
+
+8 principal components needed to explain 90% variance</code></pre>
+</div>
+</div>
+</section>
+<section id="pca-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="pca-visualization">8.2 PCA Visualization</h3>
+<div id="cell-pca-visualization" class="cell" data-fig-height="5" data-fig-width="12" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cluster labels if available</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: cluster file may only contain stores after outlier removal,</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># so we'll use provisional KMeans on all stores for EDA visualization</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>cluster_file <span class="op">=</span> Path(<span class="st">'../data/processed/store_clusters_final.csv'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> cluster_file.exists():</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Try to load cluster labels, but use KMeans for all stores for consistency</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        cluster_df <span class="op">=</span> pd.read_csv(cluster_file)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Merge with df_stores to get cluster labels for stores that have them</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>        df_stores_with_cluster <span class="op">=</span> df_stores.merge(</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>            cluster_df[[<span class="st">'store_id'</span>, <span class="st">'cluster'</span>]], </span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>            on<span class="op">=</span><span class="st">'store_id'</span>, </span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>            how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If we have cluster labels for all stores, use them</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> df_stores_with_cluster[<span class="st">'cluster'</span>].notna().<span class="bu">all</span>():</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>            cluster_labels <span class="op">=</span> df_stores_with_cluster[<span class="st">'cluster'</span>].values</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Loaded cluster labels from </span><span class="sc">{</span>cluster_file<span class="sc">.</span>name<span class="sc">}</span><span class="ss"> for all </span><span class="sc">{</span><span class="bu">len</span>(cluster_labels)<span class="sc">}</span><span class="ss"> stores."</span>)</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Some stores don't have cluster labels (outliers), run KMeans on all stores</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>            <span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Cluster file exists but only contains </span><span class="sc">{</span>cluster_df[<span class="st">'store_id'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> stores."</span>)</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Running provisional KMeans on all </span><span class="sc">{</span><span class="bu">len</span>(df_stores)<span class="sc">}</span><span class="ss"> stores for EDA visualization."</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>            cluster_labels <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">10</span>).fit_predict(X_scaled)</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If loading fails, run provisional KMeans</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error loading cluster file: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Running provisional KMeans on all stores for EDA visualization."</span>)</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>        cluster_labels <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">10</span>).fit_predict(X_scaled)</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If cluster file doesn't exist, run provisional KMeans on all stores</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"store_clusters_final.csv not found – running provisional KMeans on all stores for EDA visualization."</span>)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>    cluster_labels <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">10</span>).fit_predict(X_scaled)</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Create visualization with two plots side by side</span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">4.5</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.3</span>, top<span class="op">=</span><span class="fl">0.92</span>, bottom<span class="op">=</span><span class="fl">0.12</span>, left<span class="op">=</span><span class="fl">0.1</span>, right<span class="op">=</span><span class="fl">0.92</span>)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Left plot: PCA colored by cluster</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>X_pca_eda[:, <span class="dv">0</span>], y<span class="op">=</span>X_pca_eda[:, <span class="dv">1</span>],</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>    hue<span class="op">=</span>cluster_labels, palette<span class="op">=</span><span class="st">'Set2'</span>,</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">25</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], edgecolor<span class="op">=</span><span class="st">'none'</span></span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"PCA Projection of K-Means Clusters (k=3)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>explained_variance_ratio[<span class="dv">0</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>explained_variance_ratio[<span class="dv">1</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(title<span class="op">=</span><span class="st">"Cluster"</span>, loc<span class="op">=</span><span class="st">'best'</span>, frameon<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">7</span>, title_fontsize<span class="op">=</span><span class="dv">8</span>, markerscale<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].tick_params(labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Right plot: PCA colored by average sales</span></span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> axes[<span class="dv">1</span>].scatter(</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>    X_pca_eda[:, <span class="dv">0</span>], X_pca_eda[:, <span class="dv">1</span>],</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>    c<span class="op">=</span>df_stores[<span class="st">'sales_mean'</span>],</span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">'viridis'</span>, s<span class="op">=</span><span class="dv">25</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, edgecolor<span class="op">=</span><span class="st">'none'</span></span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"PCA Projection Colored by Average Sales"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>explained_variance_ratio[<span class="dv">0</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>explained_variance_ratio[<span class="dv">1</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].tick_params(labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(scatter, ax<span class="op">=</span>axes[<span class="dv">1</span>], shrink<span class="op">=</span><span class="fl">0.7</span>, aspect<span class="op">=</span><span class="dv">20</span>, pad<span class="op">=</span><span class="fl">0.02</span>)</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">"Average Monthly Sales"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>cbar.ax.tick_params(labelsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Add grid to both axes</span></span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes:</span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cluster file exists but only contains 2352 stores.
+Running provisional KMeans on all 2557 stores for EDA visualization.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_2_files/figure-html/pca-visualization-output-2.png" id="pca-visualization" width="842" height="414" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-importance-pca-loadings" class="level3">
+<h3 class="anchored" data-anchor-id="feature-importance-pca-loadings">8.3 Feature Importance (PCA Loadings)</h3>
+<div id="feature-importance" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Feature importance (loadings from the fitted PCA components)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>feature_importance <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'feature'</span>: clustering_features,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pc1_loading'</span>: pca_eda.components_[<span class="dv">0</span>],</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pc2_loading'</span>: pca_eda.components_[<span class="dv">1</span>]</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by absolute value of pc1_loading</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>feature_importance[<span class="st">'abs_pc1_loading'</span>] <span class="op">=</span> feature_importance[<span class="st">'pc1_loading'</span>].<span class="bu">abs</span>()</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>feature_importance <span class="op">=</span> feature_importance.sort_values(<span class="st">'abs_pc1_loading'</span>, ascending<span class="op">=</span><span class="va">False</span>).drop(<span class="st">'abs_pc1_loading'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Feature Importance (PCA Loadings) ==="</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(feature_importance.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Feature Importance (PCA Loadings) ===
+                 feature  pc1_loading  pc2_loading
+     website_visits_mean     0.449494    -0.224206
+     total_ad_spend_mean     0.442006    -0.042338
+  unique_lead_count_mean     0.440573    -0.274968
+              sales_mean     0.435705    -0.271511
+          ctr_clean_mean     0.283640     0.452760
+ search_spend_ratio_mean     0.269298     0.550928
+   pmax_spend_ratio_mean     0.215854     0.079500
+ social_spend_ratio_mean    -0.118417    -0.470278
+display_spend_ratio_mean    -0.054177    -0.208914
+  video_spend_ratio_mean     0.045022    -0.015966
+               roas_mean     0.008653    -0.116073
+    conversion_rate_mean     0.004058    -0.072430</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="summary-and-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-next-steps">9. Summary and Next Steps</h2>
+<section id="eda-summary" class="level3">
+<h3 class="anchored" data-anchor-id="eda-summary">9.1 EDA Summary</h3>
+<div id="eda-summary" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"           EDA Analysis Summary Report"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Data Overview:"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Total stores: </span><span class="sc">{</span><span class="bu">len</span>(df_stores)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Time span: </span><span class="sc">{</span>df_monthly[<span class="st">'month'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df_monthly[<span class="st">'month'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%Y-%m'</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Monthly records: </span><span class="sc">{</span><span class="bu">len</span>(df_monthly)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Key Findings:"</span>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• High performers show significantly better metrics across all dimensions"</span>)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Sales are strongly correlated with website visits and lead count"</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Search and social channels are the primary advertising channels"</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"• Data shows seasonal patterns in sales and advertising spend"</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Preprocessing Results:"</span>)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Original samples: </span><span class="sc">{</span><span class="bu">len</span>(X)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• After outlier removal: </span><span class="sc">{</span><span class="bu">len</span>(X_clean)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Final dimensions: </span><span class="sc">{</span>X_pca<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (from </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> original features)"</span>)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• PCA explains </span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.1%}</span><span class="ss"> of variance"</span>)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Clustering Preparation Status:"</span>)</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Clustering feature count: </span><span class="sc">{</span><span class="bu">len</span>(FEATURES)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Feature standardization: Completed"</span>)</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• Outlier removal: Completed (removed </span><span class="sc">{</span><span class="bu">len</span>(X) <span class="op">-</span> <span class="bu">len</span>(X_clean)<span class="sc">}</span><span class="ss"> outliers)"</span>)</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"• PCA dimensionality reduction: Completed (</span><span class="sc">{</span>X_pca<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> components)"</span>)</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Next Steps:"</span>)</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1. Execute clustering analysis using preprocessed features"</span>)</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2. Validate clustering results for business significance"</span>)</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3. Analyze cluster characteristics and profiles"</span>)</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"4. Build prediction models within each cluster"</span>)</span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>============================================================
+           EDA Analysis Summary Report
+============================================================
+
+Data Overview:
+• Total stores: 2,557
+• Time span: 2023-10 to 2025-09
+• Monthly records: 61,322
+
+Key Findings:
+• High performers show significantly better metrics across all dimensions
+• Sales are strongly correlated with website visits and lead count
+• Search and social channels are the primary advertising channels
+• Data shows seasonal patterns in sales and advertising spend
+
+Preprocessing Results:
+• Original samples: 2557
+• After outlier removal: 2352
+• Final dimensions: 5 (from 11 original features)
+• PCA explains 96.7% of variance
+
+Clustering Preparation Status:
+• Clustering feature count: 11
+• Feature standardization: Completed
+• Outlier removal: Completed (removed 205 outliers)
+• PCA dimensionality reduction: Completed (5 components)
+
+Next Steps:
+1. Execute clustering analysis using preprocessed features
+2. Validate clustering results for business significance
+3. Analyze cluster characteristics and profiles
+4. Build prediction models within each cluster
+
+============================================================</code></pre>
+</div>
+</div>
+</section>
+<section id="key-insights" class="level3">
+<h3 class="anchored" data-anchor-id="key-insights">9.2 Key Insights</h3>
+<p>Based on the exploratory data analysis, we have identified several key insights:</p>
+<ol type="1">
+<li><p><strong>Data Quality</strong>: The dataset is relatively clean with minimal missing values after preprocessing. However, there is a significant data gap in advertising spend from October 2023 to May 2024.</p></li>
+<li><p><strong>Feature Distributions</strong>: Most features show right-skewed distributions, indicating the presence of high-performing outliers. This supports the use of robust preprocessing techniques.</p></li>
+<li><p><strong>Correlations</strong>: Sales are strongly correlated with website visits and unique lead count, suggesting that traffic and lead generation are key drivers of performance.</p></li>
+<li><p><strong>Channel Preferences</strong>: Search and social media are the dominant advertising channels, with most stores using 1-2 primary channels.</p></li>
+<li><p><strong>Temporal Patterns</strong>: The data shows seasonal variations, with higher performance in certain quarters.</p></li>
+<li><p><strong>Dimensionality Reduction</strong>: PCA successfully reduces the feature space from 11 dimensions to 5 while retaining 95% of the variance, making the data more suitable for clustering.</p></li>
+</ol>
+<p>These insights inform the subsequent clustering analysis and model development phases of the project.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Content © Enter Name Here <br> Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Made with <a href="https://www.r-project.org">R</a> and <a href="https://quarto.org">Quarto</a><br> <a href="https://github.com/anly503/lab-2.1">View source on GitHub</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

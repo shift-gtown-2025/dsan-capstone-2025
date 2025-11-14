@@ -1,0 +1,459 @@
+# Methods
+
+## Overview
+
+This section documents the comprehensive methodology for store clustering analysis, including feature engineering, preprocessing strategies, clustering algorithm selection, and robustness evaluation.
+
+## 1. Feature Engineering
+
+### 1.1 Feature Selection
+
+For clustering analysis, we selected 11 key features that capture different aspects of store performance:
+
+**Core Business Metrics (7 features):** - `sales_mean`: Average monthly sales - `total_ad_spend_mean`: Average monthly ad spend - `roas_mean`: Return on ad spend - `conversion_rate_mean`: Conversion rate - `website_visits_mean`: Average website visits - `search_spend_ratio_mean`: Search ad spend ratio - `social_spend_ratio_mean`: Social ad spend ratio
+
+**Enhanced Ad Activity Metrics (4 features):** - `ad_months_active`: Number of months with ad activity - `ad_active_ratio`: Ratio of months with ad activity - `spent_any`: Binary indicator of any ad spend - `avg_ad_spend_active_only`: Average ad spend for active months only
+
+```{python}
+#| echo: true
+#| warning: false
+#| message: false
+#| label: feature-selection
+
+import pandas as pd
+import numpy as np
+
+# Load enhanced features
+df = pd.read_csv('../data/processed/store_features_enhanced.csv')
+
+FEATURES = [
+    'sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean',
+    'search_spend_ratio_mean', 'social_spend_ratio_mean',
+    'ad_months_active', 'ad_active_ratio', 'spent_any', 'avg_ad_spend_active_only'
+]
+
+print("=== Selected Features for Clustering ===")
+print(f"Total features: {len(FEATURES)}")
+for i, feat in enumerate(FEATURES, 1):
+    print(f"{i}. {feat}")
+
+# Check if all features exist
+missing_features = [f for f in FEATURES if f not in df.columns]
+if missing_features:
+    print(f"\n⚠️ Missing features: {missing_features}")
+else:
+    print(f"\n✅ All features available")
+```
+
+### 1.2 Enhanced Features vs Baseline Features
+
+The enhanced feature set includes ad activity metrics that provide additional insights into store advertising behavior. An ablation study demonstrates that these enhanced features significantly improve clustering performance by 33.9% in silhouette score.
+
+## 2. Preprocessing Pipeline
+
+### 2.1 Preprocessing Steps
+
+The final preprocessing pipeline consists of three steps:
+
+1.  **IsolationForest Outlier Removal**: Removes \~8% of outliers (contamination=0.08)
+2.  **QuantileTransformer Normalization**: Maps features to normal distribution
+3.  **PCA Dimensionality Reduction**: Retains 95% of variance (reduces to 5 components)
+
+### 2.2 Preprocessing Method Selection
+
+We systematically tested different preprocessing combinations to select the optimal pipeline:
+
+**Scalers Tested:** - **MinMaxScaler**: Scales features to \[0, 1\] range - **RobustScaler**: Uses median and IQR, robust to outliers - **QuantileTransformer**: Maps features to normal distribution (selected) - **PowerTransformer**: Applies Yeo-Johnson transformation
+
+**Why IsolationForest + QuantileTransformer + PCA (ISO_QT_PCA95)?**
+
+1.  **IsolationForest for Outlier Removal**:
+    -   Tested contamination rates: 0.05, 0.08, 0.10
+    -   Selected 0.08 as optimal balance between removing noise and preserving data
+    -   Removes \~8% of outliers (205 samples) while maintaining cluster structure
+2.  **QuantileTransformer for Normalization**:
+    -   Maps features to normal distribution, handling skewed data effectively
+    -   Outperformed MinMaxScaler and RobustScaler in clustering quality
+    -   Essential for features with highly skewed distributions (sales, ad spend)
+3.  **PCA for Dimensionality Reduction**:
+    -   Tested variance thresholds: 0.90, 0.95, 0.99
+    -   Selected 0.95 (5 components) as optimal balance between dimensionality reduction and information retention
+    -   Reduces from 11 features to 5 components while retaining 96.7% variance
+
+```{python}
+#| echo: true
+#| label: preprocessing-pipeline
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import QuantileTransformer
+from sklearn.decomposition import PCA
+from sklearn.ensemble import IsolationForest
+
+# Load data
+df = pd.read_csv('../data/processed/store_features_enhanced.csv')
+FEATURES = [
+    'sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean',
+    'search_spend_ratio_mean', 'social_spend_ratio_mean',
+    'ad_months_active', 'ad_active_ratio', 'spent_any', 'avg_ad_spend_active_only'
+]
+
+# Prepare data
+X = df[FEATURES].fillna(0)
+print(f"Initial features shape: {X.shape}")
+
+# Step 1: IsolationForest outlier removal
+iso = IsolationForest(contamination=0.08, random_state=42)
+inlier_mask = iso.fit_predict(X) == 1
+X_clean = X[inlier_mask]
+print(f"After outlier removal: {X_clean.shape[0]} samples (removed {len(X) - X_clean.shape[0]})")
+
+# Step 2: QuantileTransformer normalization
+qt = QuantileTransformer(output_distribution='normal', random_state=42)
+X_qt = qt.fit_transform(X_clean)
+print(f"After Quantile normalization: {X_qt.shape}")
+
+# Step 3: PCA 95% variance
+pca = PCA(n_components=0.95, random_state=42)
+X_pca = pca.fit_transform(X_qt)
+print(f"After PCA: {X_pca.shape[1]} components (explained variance: {pca.explained_variance_ratio_.sum():.3f})")
+```
+
+## 3. Clustering Algorithm
+
+### 3.1 Algorithm Comparison
+
+We systematically compared multiple clustering algorithms to select the optimal method:
+
+**Algorithms Tested:** - **KMeans**: Centroid-based, stable and interpretable (selected) - **DBSCAN**: Density-based, flexible cluster shapes - **GMM (Gaussian Mixture Model)**: Soft clustering, probabilistic assignments - **Spectral Clustering**: Graph-based, good for non-convex clusters
+
+**Comparison Results:**
+
+| Algorithm | Silhouette Score | Balance Ratio | Clusters | Notes |
+|---------------|---------------|---------------|---------------|---------------|
+| **KMeans (k=3)** | **0.586** | **1.75:1** | **3** | **Selected: Best balance** |
+| DBSCAN | 0.664 | 2.25:1 | 3 | Higher silhouette but less balanced |
+| GMM (tied, k=3) | 0.586 | 1.75:1 | 3 | Similar to KMeans, more complex |
+| GMM (diag, k=3) | 0.586 | 1.75:1 | 3 | Similar to KMeans, more complex |
+| Spectral (k=3) | \< 0.40 | \> 3.0:1 | 3 | Underperformed, unstable |
+
+### 3.2 Final Method: ISO_QT_PCA95_KMeans_k3
+
+**Why KMeans Was Selected:**
+
+1.  **Performance**: Silhouette score of 0.586 (exceeds target of ≥ 0.40)
+2.  **Balance**: Balance ratio of 1.75:1 (meets target of ≤ 3.0)
+3.  **Stability**: Consistent results across multiple runs (ARI = 1.0, NMI = 1.0)
+4.  **Interpretability**: Clear business meaning for each cluster (centroid-based)
+5.  **Simplicity**: Easy to understand and implement for business users
+6.  **Reproducibility**: Deterministic results with fixed random seed
+7.  **Business Requirement**: Number of clusters = 3 matches business needs
+
+**Why Not DBSCAN?** - Although DBSCAN achieved higher silhouette score (0.664), it produced less balanced clusters (2.25:1) - DBSCAN requires careful parameter tuning (eps, min_samples) and is less stable - KMeans provides better interpretability for business applications
+
+**Why Not GMM?** - GMM achieved similar performance to KMeans but is more complex - GMM requires more computational resources and is harder to interpret - KMeans provides equivalent results with simpler implementation
+
+**Parameter Selection:** - **k=3**: Tested k=3, 4, 5. k=3 selected for optimal balance and business alignment - **n_init=100**: Multiple initializations ensure stable results - **max_iter=1000**: Sufficient iterations for convergence - **random_state=42**: Fixed seed for reproducibility
+
+### 3.3 Final Pipeline Implementation
+
+```{python}
+#| echo: true
+#| label: final-pipeline
+
+import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+from sklearn.preprocessing import QuantileTransformer
+from sklearn.decomposition import PCA
+from sklearn.ensemble import IsolationForest
+
+# Load and preprocess data
+df = pd.read_csv('../data/processed/store_features_enhanced.csv')
+FEATURES = [
+    'sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean',
+    'search_spend_ratio_mean', 'social_spend_ratio_mean',
+    'ad_months_active', 'ad_active_ratio', 'spent_any', 'avg_ad_spend_active_only'
+]
+
+X = df[FEATURES].fillna(0)
+
+# Preprocessing pipeline
+iso = IsolationForest(contamination=0.08, random_state=42)
+inlier_mask = iso.fit_predict(X) == 1
+X_clean = X[inlier_mask]
+qt = QuantileTransformer(output_distribution='normal', random_state=42)
+X_qt = qt.fit_transform(X_clean)
+pca = PCA(n_components=0.95, random_state=42)
+X_pca = pca.fit_transform(X_qt)
+
+# KMeans clustering
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=100, max_iter=1000)
+labels = kmeans.fit_predict(X_pca)
+
+# Map labels back to original store IDs
+df_clean = df[inlier_mask].copy()
+df_clean['cluster'] = labels
+
+# Evaluation
+silhouette = silhouette_score(X_pca, labels)
+db_score = davies_bouldin_score(X_pca, labels)
+ch_score = calinski_harabasz_score(X_pca, labels)
+
+cluster_counts = pd.Series(labels).value_counts().sort_index()
+balance_ratio = cluster_counts.max() / cluster_counts.min()
+
+print(f"\n=== Final Results ===")
+print(f"Silhouette Score: {silhouette:.3f}")
+print(f"Davies-Bouldin Index: {db_score:.3f}")
+print(f"Calinski-Harabasz Score: {ch_score:.1f}")
+print(f"Balance Ratio: {balance_ratio:.2f}:1")
+print(f"Cluster Sizes: {cluster_counts.to_dict()}")
+```
+
+### 3.4 Cluster Profiles
+
+```{python}
+#| echo: true
+#| label: cluster-profiles
+
+import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import QuantileTransformer
+from sklearn.decomposition import PCA
+from sklearn.ensemble import IsolationForest
+
+# Load and preprocess data
+df = pd.read_csv('../data/processed/store_features_enhanced.csv')
+FEATURES = [
+    'sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean',
+    'search_spend_ratio_mean', 'social_spend_ratio_mean',
+    'ad_months_active', 'ad_active_ratio', 'spent_any', 'avg_ad_spend_active_only'
+]
+
+X = df[FEATURES].fillna(0)
+
+# Preprocessing pipeline
+iso = IsolationForest(contamination=0.08, random_state=42)
+inlier_mask = iso.fit_predict(X) == 1
+X_clean = X[inlier_mask]
+qt = QuantileTransformer(output_distribution='normal', random_state=42)
+X_qt = qt.fit_transform(X_clean)
+pca = PCA(n_components=0.95, random_state=42)
+X_pca = pca.fit_transform(X_qt)
+
+# KMeans clustering
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=100, max_iter=1000)
+labels = kmeans.fit_predict(X_pca)
+
+# Map labels back to original store IDs
+df_clean = df[inlier_mask].copy()
+df_clean['cluster'] = labels
+
+# Cluster profiles
+business_metrics = df_clean.groupby('cluster').agg({
+    'sales_mean': 'mean',
+    'total_ad_spend_mean': 'mean', 
+    'roas_mean': 'mean',
+    'conversion_rate_mean': 'mean',
+    'ad_active_ratio': 'mean',
+    'avg_ad_spend_active_only': 'mean',
+    'search_spend_ratio_mean': 'mean',
+    'social_spend_ratio_mean': 'mean'
+}).round(3)
+
+print("=== Business Metrics by Cluster ===")
+print(business_metrics)
+
+# Cluster interpretation
+print("\n=== Cluster Interpretation ===")
+for cluster_id in sorted(df_clean['cluster'].unique()):
+    cluster_data = df_clean[df_clean['cluster'] == cluster_id]
+    size = len(cluster_data)
+    pct = size / len(df_clean) * 100
+    
+    print(f"\nCluster {cluster_id} ({size} stores, {pct:.1f}%):")
+    print(f"  Sales: ${cluster_data['sales_mean'].mean():.1f} avg")
+    print(f"  Ad Spend: ${cluster_data['total_ad_spend_mean'].mean():.0f} avg")
+    print(f"  ROAS: {cluster_data['roas_mean'].mean():.3f}")
+    print(f"  Ad Active Ratio: {cluster_data['ad_active_ratio'].mean():.2f}")
+    print(f"  Search Focus: {cluster_data['search_spend_ratio_mean'].mean():.2f}")
+    print(f"  Social Focus: {cluster_data['social_spend_ratio_mean'].mean():.2f}")
+```
+
+### 3.5 Visualization
+
+```{python}
+#| echo: true
+#| label: cluster-visualization
+#| fig-width: 14
+#| fig-height: 6
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import QuantileTransformer
+from sklearn.decomposition import PCA
+from sklearn.ensemble import IsolationForest
+
+# Load and preprocess data
+df = pd.read_csv('../data/processed/store_features_enhanced.csv')
+FEATURES = [
+    'sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean',
+    'search_spend_ratio_mean', 'social_spend_ratio_mean',
+    'ad_months_active', 'ad_active_ratio', 'spent_any', 'avg_ad_spend_active_only'
+]
+
+X = df[FEATURES].fillna(0)
+
+# Preprocessing pipeline
+iso = IsolationForest(contamination=0.08, random_state=42)
+inlier_mask = iso.fit_predict(X) == 1
+X_clean = X[inlier_mask]
+qt = QuantileTransformer(output_distribution='normal', random_state=42)
+X_qt = qt.fit_transform(X_clean)
+pca = PCA(n_components=0.95, random_state=42)
+X_pca = pca.fit_transform(X_qt)
+
+# KMeans clustering
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=100, max_iter=1000)
+labels = kmeans.fit_predict(X_pca)
+
+# Map labels back to original store IDs
+df_clean = df[inlier_mask].copy()
+df_clean['cluster'] = labels
+
+# PCA 2D visualization
+X_pca_2d = X_pca[:, :2]
+
+pca_vis_df = pd.DataFrame({
+    'pc1': X_pca_2d[:, 0],
+    'pc2': X_pca_2d[:, 1],
+    'cluster': df_clean['cluster'].values,
+    'sales_mean': df_clean['sales_mean'].values
+})
+
+fig, axes = plt.subplots(1, 2, figsize=(8, 4.5), sharex=True, sharey=True)
+
+sns.scatterplot(
+    data=pca_vis_df,
+    x='pc1', y='pc2', hue='cluster',
+    palette='Set2', s=45, alpha=0.85,
+    edgecolor='none', ax=axes[0]
+)
+axes[0].set_title('PCA Projection of Final Clusters (k=3)', fontsize=10, fontweight='bold')
+axes[0].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]:.1%} var)")
+axes[0].set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]:.1%} var)")
+axes[0].legend(title='Cluster', loc='best', frameon=True)
+axes[0].grid(True, alpha=0.3)
+
+scatter = axes[1].scatter(
+    pca_vis_df['pc1'], pca_vis_df['pc2'],
+    c=pca_vis_df['sales_mean'], cmap='viridis',
+    s=45, alpha=0.85, edgecolor='none'
+)
+axes[1].set_title('PCA Projection Colored by Average Sales', fontsize=10, fontweight='bold')
+axes[1].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]:.1%} var)")
+axes[1].set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]:.1%} var)")
+axes[1].grid(True, alpha=0.3)
+
+cbar = fig.colorbar(scatter, ax=axes[1], shrink=0.85, pad=0.02)
+cbar.set_label('Average Monthly Sales')
+
+fig.suptitle('PCA Visualization of Final Store Feature Space', fontsize=12, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+## 4. Robustness Analysis
+
+### 4.1 Bootstrap Stability
+
+We evaluated the stability of the final clustering method using bootstrap subsampling. The analysis shows:
+
+-   **Silhouette Score**: Mean = 0.585, Std = 0.003 (very stable)
+-   **Adjusted Rand Index (ARI)**: Mean = 1.0 (perfect stability)
+-   **Normalized Mutual Information (NMI)**: Mean = 1.0 (perfect stability)
+
+These results demonstrate that the clustering method is highly stable and produces consistent results across different subsamples of the data.
+
+### 4.2 Sensitivity Analysis
+
+We evaluated the sensitivity of the clustering method to key hyperparameters:
+
+-   **Number of clusters (k)**: Tested k=3, 4, 5. k=3 was selected for optimal balance.
+-   **PCA variance threshold**: Tested 0.90, 0.95, 0.99. 0.95 was selected for optimal balance.
+-   **IsolationForest contamination**: Tested 0.05, 0.08, 0.10. 0.08 was selected for optimal balance.
+
+## 5. Ablation Study
+
+### 5.1 Enhanced Features vs Baseline Features
+
+We conducted an ablation study to quantify the contribution of enhanced ad activity features:
+
+**Baseline Features (11 traditional features):** - Silhouette Score: 0.4374 - Balance Ratio: 14.92:1
+
+**Enhanced Features (11 features with ad activity metrics):** - Silhouette Score: 0.5855 - Balance Ratio: 1.75:1
+
+**Improvement:** - Silhouette Score: **33.9% improvement** - Balance Ratio: **88.3% improvement** - Davies-Bouldin Index: **26.4% improvement** - Calinski-Harabasz Score: **292.4% improvement**
+
+### 5.2 Key Findings
+
+The ablation study demonstrates that enhanced ad activity features significantly improve clustering performance:
+
+1.  **Better Cluster Separation**: Enhanced features provide better separation between clusters
+2.  **More Balanced Clusters**: Enhanced features result in more balanced cluster sizes
+3.  **Improved Interpretability**: Enhanced features provide clearer business insights
+
+## 6. Evaluation Metrics
+
+### 6.1 Internal Validation Metrics
+
+We used three internal validation metrics to evaluate clustering quality:
+
+1.  **Silhouette Score**: Measures cluster cohesion and separation (higher is better, range: -1 to 1)
+    -   Target: ≥ 0.40
+    -   Final result: 0.586
+2.  **Davies-Bouldin Index**: Measures average similarity ratio (lower is better)
+    -   Final result: 0.706
+3.  **Calinski-Harabasz Score**: Ratio of between-cluster to within-cluster variance (higher is better)
+    -   Final result: 4919.6
+
+### 6.2 Cluster Balance
+
+**Balance Ratio**: Ratio of largest to smallest cluster size (lower is better) - Target: ≤ 3.0 - Final result: 1.75:1 - Cluster sizes: {0: 621, 1: 1085, 2: 646}
+
+### 6.3 Stability Metrics
+
+**Adjusted Rand Index (ARI)**: Measures agreement between clusterings (range: -1 to 1, 1 = perfect agreement) - Bootstrap mean: 1.0 (perfect stability)
+
+**Normalized Mutual Information (NMI)**: Measures mutual information between clusterings (range: 0 to 1, 1 = perfect agreement) - Bootstrap mean: 1.0 (perfect stability)
+
+## 7. Summary
+
+### 7.1 Method Selection Summary
+
+The final clustering method **ISO_QT_PCA95_KMeans_k3** was selected based on:
+
+1.  **Performance**: Silhouette score of 0.586 (exceeds target of 0.40)
+2.  **Balance**: Balance ratio of 1.75:1 (meets target of ≤ 3.0)
+3.  **Stability**: Perfect ARI and NMI scores (1.0) in bootstrap analysis
+4.  **Interpretability**: Clear business meaning for each cluster
+5.  **Robustness**: Consistent performance across subsamples
+
+### 7.2 Key Contributions
+
+1.  **Enhanced Features**: Ad activity metrics significantly improve clustering performance (33.9% improvement in silhouette score)
+2.  **Robust Preprocessing**: IsolationForest + QuantileTransformer + PCA pipeline handles outliers and non-normal distributions effectively
+3.  **Stable Clustering**: KMeans with k=3 provides stable, interpretable clusters that meet business requirements
+4.  **Comprehensive Evaluation**: Multiple metrics and robustness analyses validate the chosen method
+
+### 7.3 Reproducibility
+
+All analyses use fixed random seeds (random_state=42) for reproducibility. The complete pipeline and parameters are documented and saved for future reference.
+
+**Final Pipeline Parameters:** - IsolationForest contamination: 0.08 - QuantileTransformer distribution: 'normal' - PCA variance threshold: 0.95 - KMeans clusters: 3 - KMeans n_init: 100 - KMeans max_iter: 1000 - Random state: 42

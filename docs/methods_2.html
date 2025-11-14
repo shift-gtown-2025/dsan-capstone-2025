@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>methods_2 – Project Title</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Project Title</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./eda_2.html"> 
+<span class="menu-text">EDA - Project 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./methods_2.html" aria-current="page"> 
+<span class="menu-text">Methods - Project 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./conclusion_2.html"> 
+<span class="menu-text">Conclusion - Project 2</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">1. Feature Engineering</a>
+  <ul class="collapse">
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">1.1 Feature Selection</a></li>
+  <li><a href="#enhanced-features-vs-baseline-features" id="toc-enhanced-features-vs-baseline-features" class="nav-link" data-scroll-target="#enhanced-features-vs-baseline-features">1.2 Enhanced Features vs Baseline Features</a></li>
+  </ul></li>
+  <li><a href="#preprocessing-pipeline" id="toc-preprocessing-pipeline" class="nav-link" data-scroll-target="#preprocessing-pipeline">2. Preprocessing Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#preprocessing-steps" id="toc-preprocessing-steps" class="nav-link" data-scroll-target="#preprocessing-steps">2.1 Preprocessing Steps</a></li>
+  <li><a href="#preprocessing-method-selection" id="toc-preprocessing-method-selection" class="nav-link" data-scroll-target="#preprocessing-method-selection">2.2 Preprocessing Method Selection</a></li>
+  </ul></li>
+  <li><a href="#clustering-algorithm" id="toc-clustering-algorithm" class="nav-link" data-scroll-target="#clustering-algorithm">3. Clustering Algorithm</a>
+  <ul class="collapse">
+  <li><a href="#algorithm-comparison" id="toc-algorithm-comparison" class="nav-link" data-scroll-target="#algorithm-comparison">3.1 Algorithm Comparison</a></li>
+  <li><a href="#final-method-iso_qt_pca95_kmeans_k3" id="toc-final-method-iso_qt_pca95_kmeans_k3" class="nav-link" data-scroll-target="#final-method-iso_qt_pca95_kmeans_k3">3.2 Final Method: ISO_QT_PCA95_KMeans_k3</a></li>
+  <li><a href="#final-pipeline-implementation" id="toc-final-pipeline-implementation" class="nav-link" data-scroll-target="#final-pipeline-implementation">3.3 Final Pipeline Implementation</a></li>
+  <li><a href="#cluster-profiles" id="toc-cluster-profiles" class="nav-link" data-scroll-target="#cluster-profiles">3.4 Cluster Profiles</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">3.5 Visualization</a></li>
+  </ul></li>
+  <li><a href="#robustness-analysis" id="toc-robustness-analysis" class="nav-link" data-scroll-target="#robustness-analysis">4. Robustness Analysis</a>
+  <ul class="collapse">
+  <li><a href="#bootstrap-stability" id="toc-bootstrap-stability" class="nav-link" data-scroll-target="#bootstrap-stability">4.1 Bootstrap Stability</a></li>
+  <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link" data-scroll-target="#sensitivity-analysis">4.2 Sensitivity Analysis</a></li>
+  </ul></li>
+  <li><a href="#ablation-study" id="toc-ablation-study" class="nav-link" data-scroll-target="#ablation-study">5. Ablation Study</a>
+  <ul class="collapse">
+  <li><a href="#enhanced-features-vs-baseline-features-1" id="toc-enhanced-features-vs-baseline-features-1" class="nav-link" data-scroll-target="#enhanced-features-vs-baseline-features-1">5.1 Enhanced Features vs Baseline Features</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">5.2 Key Findings</a></li>
+  </ul></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics">6. Evaluation Metrics</a>
+  <ul class="collapse">
+  <li><a href="#internal-validation-metrics" id="toc-internal-validation-metrics" class="nav-link" data-scroll-target="#internal-validation-metrics">6.1 Internal Validation Metrics</a></li>
+  <li><a href="#cluster-balance" id="toc-cluster-balance" class="nav-link" data-scroll-target="#cluster-balance">6.2 Cluster Balance</a></li>
+  <li><a href="#stability-metrics" id="toc-stability-metrics" class="nav-link" data-scroll-target="#stability-metrics">6.3 Stability Metrics</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">7. Summary</a>
+  <ul class="collapse">
+  <li><a href="#method-selection-summary" id="toc-method-selection-summary" class="nav-link" data-scroll-target="#method-selection-summary">7.1 Method Selection Summary</a></li>
+  <li><a href="#key-contributions" id="toc-key-contributions" class="nav-link" data-scroll-target="#key-contributions">7.2 Key Contributions</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">7.3 Reproducibility</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Methods</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This section documents the comprehensive methodology for store clustering analysis, including feature engineering, preprocessing strategies, clustering algorithm selection, and robustness evaluation.</p>
+</section>
+<section id="feature-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering">1. Feature Engineering</h2>
+<section id="feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="feature-selection">1.1 Feature Selection</h3>
+<p>For clustering analysis, we selected 11 key features that capture different aspects of store performance:</p>
+<p><strong>Core Business Metrics (7 features):</strong> - <code>sales_mean</code>: Average monthly sales - <code>total_ad_spend_mean</code>: Average monthly ad spend - <code>roas_mean</code>: Return on ad spend - <code>conversion_rate_mean</code>: Conversion rate - <code>website_visits_mean</code>: Average website visits - <code>search_spend_ratio_mean</code>: Search ad spend ratio - <code>social_spend_ratio_mean</code>: Social ad spend ratio</p>
+<p><strong>Enhanced Ad Activity Metrics (4 features):</strong> - <code>ad_months_active</code>: Number of months with ad activity - <code>ad_active_ratio</code>: Ratio of months with ad activity - <code>spent_any</code>: Binary indicator of any ad spend - <code>avg_ad_spend_active_only</code>: Average ad spend for active months only</p>
+<div id="feature-selection" class="cell" data-message="false" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load enhanced features</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Selected Features for Clustering ==="</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total features: </span><span class="sc">{</span><span class="bu">len</span>(FEATURES)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feat <span class="kw">in</span> <span class="bu">enumerate</span>(FEATURES, <span class="dv">1</span>):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feat<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if all features exist</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>missing_features <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> FEATURES <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> df.columns]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> missing_features:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">⚠️ Missing features: </span><span class="sc">{</span>missing_features<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✅ All features available"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Selected Features for Clustering ===
+Total features: 11
+1. sales_mean
+2. total_ad_spend_mean
+3. roas_mean
+4. conversion_rate_mean
+5. website_visits_mean
+6. search_spend_ratio_mean
+7. social_spend_ratio_mean
+8. ad_months_active
+9. ad_active_ratio
+10. spent_any
+11. avg_ad_spend_active_only
+
+✅ All features available</code></pre>
+</div>
+</div>
+</section>
+<section id="enhanced-features-vs-baseline-features" class="level3">
+<h3 class="anchored" data-anchor-id="enhanced-features-vs-baseline-features">1.2 Enhanced Features vs Baseline Features</h3>
+<p>The enhanced feature set includes ad activity metrics that provide additional insights into store advertising behavior. An ablation study demonstrates that these enhanced features significantly improve clustering performance by 33.9% in silhouette score.</p>
+</section>
+</section>
+<section id="preprocessing-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="preprocessing-pipeline">2. Preprocessing Pipeline</h2>
+<section id="preprocessing-steps" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing-steps">2.1 Preprocessing Steps</h3>
+<p>The final preprocessing pipeline consists of three steps:</p>
+<ol type="1">
+<li><strong>IsolationForest Outlier Removal</strong>: Removes ~8% of outliers (contamination=0.08)</li>
+<li><strong>QuantileTransformer Normalization</strong>: Maps features to normal distribution</li>
+<li><strong>PCA Dimensionality Reduction</strong>: Retains 95% of variance (reduces to 5 components)</li>
+</ol>
+</section>
+<section id="preprocessing-method-selection" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing-method-selection">2.2 Preprocessing Method Selection</h3>
+<p>We systematically tested different preprocessing combinations to select the optimal pipeline:</p>
+<p><strong>Scalers Tested:</strong> - <strong>MinMaxScaler</strong>: Scales features to [0, 1] range - <strong>RobustScaler</strong>: Uses median and IQR, robust to outliers - <strong>QuantileTransformer</strong>: Maps features to normal distribution (selected) - <strong>PowerTransformer</strong>: Applies Yeo-Johnson transformation</p>
+<p><strong>Why IsolationForest + QuantileTransformer + PCA (ISO_QT_PCA95)?</strong></p>
+<ol type="1">
+<li><strong>IsolationForest for Outlier Removal</strong>:
+<ul>
+<li>Tested contamination rates: 0.05, 0.08, 0.10</li>
+<li>Selected 0.08 as optimal balance between removing noise and preserving data</li>
+<li>Removes ~8% of outliers (205 samples) while maintaining cluster structure</li>
+</ul></li>
+<li><strong>QuantileTransformer for Normalization</strong>:
+<ul>
+<li>Maps features to normal distribution, handling skewed data effectively</li>
+<li>Outperformed MinMaxScaler and RobustScaler in clustering quality</li>
+<li>Essential for features with highly skewed distributions (sales, ad spend)</li>
+</ul></li>
+<li><strong>PCA for Dimensionality Reduction</strong>:
+<ul>
+<li>Tested variance thresholds: 0.90, 0.95, 0.99</li>
+<li>Selected 0.95 (5 components) as optimal balance between dimensionality reduction and information retention</li>
+<li>Reduces from 11 features to 5 components while retaining 96.7% variance</li>
+</ul></li>
+</ol>
+<div id="preprocessing-pipeline" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> QuantileTransformer</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Initial features shape: </span><span class="sc">{</span>X<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: IsolationForest outlier removal</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After outlier removal: </span><span class="sc">{</span>X_clean<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> samples (removed </span><span class="sc">{</span><span class="bu">len</span>(X) <span class="op">-</span> X_clean<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: QuantileTransformer normalization</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After Quantile normalization: </span><span class="sc">{</span>X_qt<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: PCA 95% variance</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After PCA: </span><span class="sc">{</span>X_pca<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> components (explained variance: </span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initial features shape: (2557, 11)
+After outlier removal: 2352 samples (removed 205)
+After Quantile normalization: (2352, 11)
+After PCA: 5 components (explained variance: 0.967)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="clustering-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-algorithm">3. Clustering Algorithm</h2>
+<section id="algorithm-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="algorithm-comparison">3.1 Algorithm Comparison</h3>
+<p>We systematically compared multiple clustering algorithms to select the optimal method:</p>
+<p><strong>Algorithms Tested:</strong> - <strong>KMeans</strong>: Centroid-based, stable and interpretable (selected) - <strong>DBSCAN</strong>: Density-based, flexible cluster shapes - <strong>GMM (Gaussian Mixture Model)</strong>: Soft clustering, probabilistic assignments - <strong>Spectral Clustering</strong>: Graph-based, good for non-convex clusters</p>
+<p><strong>Comparison Results:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Algorithm</th>
+<th>Silhouette Score</th>
+<th>Balance Ratio</th>
+<th>Clusters</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>KMeans (k=3)</strong></td>
+<td><strong>0.586</strong></td>
+<td><strong>1.75:1</strong></td>
+<td><strong>3</strong></td>
+<td><strong>Selected: Best balance</strong></td>
+</tr>
+<tr class="even">
+<td>DBSCAN</td>
+<td>0.664</td>
+<td>2.25:1</td>
+<td>3</td>
+<td>Higher silhouette but less balanced</td>
+</tr>
+<tr class="odd">
+<td>GMM (tied, k=3)</td>
+<td>0.586</td>
+<td>1.75:1</td>
+<td>3</td>
+<td>Similar to KMeans, more complex</td>
+</tr>
+<tr class="even">
+<td>GMM (diag, k=3)</td>
+<td>0.586</td>
+<td>1.75:1</td>
+<td>3</td>
+<td>Similar to KMeans, more complex</td>
+</tr>
+<tr class="odd">
+<td>Spectral (k=3)</td>
+<td>&lt; 0.40</td>
+<td>&gt; 3.0:1</td>
+<td>3</td>
+<td>Underperformed, unstable</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="final-method-iso_qt_pca95_kmeans_k3" class="level3">
+<h3 class="anchored" data-anchor-id="final-method-iso_qt_pca95_kmeans_k3">3.2 Final Method: ISO_QT_PCA95_KMeans_k3</h3>
+<p><strong>Why KMeans Was Selected:</strong></p>
+<ol type="1">
+<li><strong>Performance</strong>: Silhouette score of 0.586 (exceeds target of ≥ 0.40)</li>
+<li><strong>Balance</strong>: Balance ratio of 1.75:1 (meets target of ≤ 3.0)</li>
+<li><strong>Stability</strong>: Consistent results across multiple runs (ARI = 1.0, NMI = 1.0)</li>
+<li><strong>Interpretability</strong>: Clear business meaning for each cluster (centroid-based)</li>
+<li><strong>Simplicity</strong>: Easy to understand and implement for business users</li>
+<li><strong>Reproducibility</strong>: Deterministic results with fixed random seed</li>
+<li><strong>Business Requirement</strong>: Number of clusters = 3 matches business needs</li>
+</ol>
+<p><strong>Why Not DBSCAN?</strong> - Although DBSCAN achieved higher silhouette score (0.664), it produced less balanced clusters (2.25:1) - DBSCAN requires careful parameter tuning (eps, min_samples) and is less stable - KMeans provides better interpretability for business applications</p>
+<p><strong>Why Not GMM?</strong> - GMM achieved similar performance to KMeans but is more complex - GMM requires more computational resources and is harder to interpret - KMeans provides equivalent results with simpler implementation</p>
+<p><strong>Parameter Selection:</strong> - <strong>k=3</strong>: Tested k=3, 4, 5. k=3 selected for optimal balance and business alignment - <strong>n_init=100</strong>: Multiple initializations ensure stable results - <strong>max_iter=1000</strong>: Sufficient iterations for convergence - <strong>random_state=42</strong>: Fixed seed for reproducibility</p>
+</section>
+<section id="final-pipeline-implementation" class="level3">
+<h3 class="anchored" data-anchor-id="final-pipeline-implementation">3.3 Final Pipeline Implementation</h3>
+<div id="final-pipeline" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score, davies_bouldin_score, calinski_harabasz_score</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> QuantileTransformer</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and preprocess data</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing pipeline</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># KMeans clustering</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">100</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.fit_predict(X_pca)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Map labels back to original store IDs</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[inlier_mask].copy()</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'cluster'</span>] <span class="op">=</span> labels</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>silhouette <span class="op">=</span> silhouette_score(X_pca, labels)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>db_score <span class="op">=</span> davies_bouldin_score(X_pca, labels)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>ch_score <span class="op">=</span> calinski_harabasz_score(X_pca, labels)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>cluster_counts <span class="op">=</span> pd.Series(labels).value_counts().sort_index()</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>balance_ratio <span class="op">=</span> cluster_counts.<span class="bu">max</span>() <span class="op">/</span> cluster_counts.<span class="bu">min</span>()</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== Final Results ==="</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Silhouette Score: </span><span class="sc">{</span>silhouette<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Davies-Bouldin Index: </span><span class="sc">{</span>db_score<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Calinski-Harabasz Score: </span><span class="sc">{</span>ch_score<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Balance Ratio: </span><span class="sc">{</span>balance_ratio<span class="sc">:.2f}</span><span class="ss">:1"</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cluster Sizes: </span><span class="sc">{</span>cluster_counts<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Final Results ===
+Silhouette Score: 0.586
+Davies-Bouldin Index: 0.706
+Calinski-Harabasz Score: 4919.6
+Balance Ratio: 1.75:1
+Cluster Sizes: {0: 621, 1: 1085, 2: 646}</code></pre>
+</div>
+</div>
+</section>
+<section id="cluster-profiles" class="level3">
+<h3 class="anchored" data-anchor-id="cluster-profiles">3.4 Cluster Profiles</h3>
+<div id="cluster-profiles" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> QuantileTransformer</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and preprocess data</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing pipeline</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># KMeans clustering</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">100</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.fit_predict(X_pca)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Map labels back to original store IDs</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[inlier_mask].copy()</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'cluster'</span>] <span class="op">=</span> labels</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster profiles</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>business_metrics <span class="op">=</span> df_clean.groupby(<span class="st">'cluster'</span>).agg({</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_ad_spend_mean'</span>: <span class="st">'mean'</span>, </span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">'roas_mean'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">'conversion_rate_mean'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_active_ratio'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'avg_ad_spend_active_only'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'social_spend_ratio_mean'</span>: <span class="st">'mean'</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Business Metrics by Cluster ==="</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(business_metrics)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster interpretation</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Cluster Interpretation ==="</span>)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cluster_id <span class="kw">in</span> <span class="bu">sorted</span>(df_clean[<span class="st">'cluster'</span>].unique()):</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    cluster_data <span class="op">=</span> df_clean[df_clean[<span class="st">'cluster'</span>] <span class="op">==</span> cluster_id]</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="bu">len</span>(cluster_data)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> size <span class="op">/</span> <span class="bu">len</span>(df_clean) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cluster </span><span class="sc">{</span>cluster_id<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>size<span class="sc">}</span><span class="ss"> stores, </span><span class="sc">{</span>pct<span class="sc">:.1f}</span><span class="ss">%):"</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Sales: $</span><span class="sc">{</span>cluster_data[<span class="st">'sales_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> avg"</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Ad Spend: $</span><span class="sc">{</span>cluster_data[<span class="st">'total_ad_spend_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.0f}</span><span class="ss"> avg"</span>)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  ROAS: </span><span class="sc">{</span>cluster_data[<span class="st">'roas_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Ad Active Ratio: </span><span class="sc">{</span>cluster_data[<span class="st">'ad_active_ratio'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Search Focus: </span><span class="sc">{</span>cluster_data[<span class="st">'search_spend_ratio_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Social Focus: </span><span class="sc">{</span>cluster_data[<span class="st">'social_spend_ratio_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Business Metrics by Cluster ===
+         sales_mean  total_ad_spend_mean  roas_mean  conversion_rate_mean  \
+cluster                                                                     
+0            14.787              502.895      0.360                 0.003   
+1            35.253             6114.209      0.027                 0.003   
+2            21.695             2052.974      0.317                 0.003   
+
+         ad_active_ratio  avg_ad_spend_active_only  search_spend_ratio_mean  \
+cluster                                                                       
+0                  0.377                  1175.857                    0.000   
+1                  0.667                  9171.313                    0.344   
+2                  0.514                  3813.736                    0.206   
+
+         social_spend_ratio_mean  
+cluster                           
+0                          0.216  
+1                          0.119  
+2                          0.138  
+
+=== Cluster Interpretation ===
+
+Cluster 0 (621 stores, 26.4%):
+  Sales: $14.8 avg
+  Ad Spend: $503 avg
+  ROAS: 0.360
+  Ad Active Ratio: 0.38
+  Search Focus: 0.00
+  Social Focus: 0.22
+
+Cluster 1 (1085 stores, 46.1%):
+  Sales: $35.3 avg
+  Ad Spend: $6114 avg
+  ROAS: 0.027
+  Ad Active Ratio: 0.67
+  Search Focus: 0.34
+  Social Focus: 0.12
+
+Cluster 2 (646 stores, 27.5%):
+  Sales: $21.7 avg
+  Ad Spend: $2053 avg
+  ROAS: 0.317
+  Ad Active Ratio: 0.51
+  Search Focus: 0.21
+  Social Focus: 0.14</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization" class="level3">
+<h3 class="anchored" data-anchor-id="visualization">3.5 Visualization</h3>
+<div id="cell-cluster-visualization" class="cell" data-fig-height="6" data-fig-width="14" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> QuantileTransformer</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and preprocess data</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing pipeline</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># KMeans clustering</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">100</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.fit_predict(X_pca)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Map labels back to original store IDs</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[inlier_mask].copy()</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'cluster'</span>] <span class="op">=</span> labels</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA 2D visualization</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>X_pca_2d <span class="op">=</span> X_pca[:, :<span class="dv">2</span>]</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>pca_vis_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pc1'</span>: X_pca_2d[:, <span class="dv">0</span>],</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pc2'</span>: X_pca_2d[:, <span class="dv">1</span>],</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cluster'</span>: df_clean[<span class="st">'cluster'</span>].values,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>: df_clean[<span class="st">'sales_mean'</span>].values</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.5</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>pca_vis_df,</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'pc1'</span>, y<span class="op">=</span><span class="st">'pc2'</span>, hue<span class="op">=</span><span class="st">'cluster'</span>,</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    palette<span class="op">=</span><span class="st">'Set2'</span>, s<span class="op">=</span><span class="dv">45</span>, alpha<span class="op">=</span><span class="fl">0.85</span>,</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">'none'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>]</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'PCA Projection of Final Clusters (k=3)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">0</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">1</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(title<span class="op">=</span><span class="st">'Cluster'</span>, loc<span class="op">=</span><span class="st">'best'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> axes[<span class="dv">1</span>].scatter(</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    pca_vis_df[<span class="st">'pc1'</span>], pca_vis_df[<span class="st">'pc2'</span>],</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    c<span class="op">=</span>pca_vis_df[<span class="st">'sales_mean'</span>], cmap<span class="op">=</span><span class="st">'viridis'</span>,</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">45</span>, alpha<span class="op">=</span><span class="fl">0.85</span>, edgecolor<span class="op">=</span><span class="st">'none'</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'PCA Projection Colored by Average Sales'</span>, fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">0</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">1</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(scatter, ax<span class="op">=</span>axes[<span class="dv">1</span>], shrink<span class="op">=</span><span class="fl">0.85</span>, pad<span class="op">=</span><span class="fl">0.02</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'Average Monthly Sales'</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'PCA Visualization of Final Store Feature Space'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="methods_2_files/figure-html/cluster-visualization-output-1.png" id="cluster-visualization" width="751" height="428" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="robustness-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="robustness-analysis">4. Robustness Analysis</h2>
+<section id="bootstrap-stability" class="level3">
+<h3 class="anchored" data-anchor-id="bootstrap-stability">4.1 Bootstrap Stability</h3>
+<p>We evaluated the stability of the final clustering method using bootstrap subsampling. The analysis shows:</p>
+<ul>
+<li><strong>Silhouette Score</strong>: Mean = 0.585, Std = 0.003 (very stable)</li>
+<li><strong>Adjusted Rand Index (ARI)</strong>: Mean = 1.0 (perfect stability)</li>
+<li><strong>Normalized Mutual Information (NMI)</strong>: Mean = 1.0 (perfect stability)</li>
+</ul>
+<p>These results demonstrate that the clustering method is highly stable and produces consistent results across different subsamples of the data.</p>
+</section>
+<section id="sensitivity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-analysis">4.2 Sensitivity Analysis</h3>
+<p>We evaluated the sensitivity of the clustering method to key hyperparameters:</p>
+<ul>
+<li><strong>Number of clusters (k)</strong>: Tested k=3, 4, 5. k=3 was selected for optimal balance.</li>
+<li><strong>PCA variance threshold</strong>: Tested 0.90, 0.95, 0.99. 0.95 was selected for optimal balance.</li>
+<li><strong>IsolationForest contamination</strong>: Tested 0.05, 0.08, 0.10. 0.08 was selected for optimal balance.</li>
+</ul>
+</section>
+</section>
+<section id="ablation-study" class="level2">
+<h2 class="anchored" data-anchor-id="ablation-study">5. Ablation Study</h2>
+<section id="enhanced-features-vs-baseline-features-1" class="level3">
+<h3 class="anchored" data-anchor-id="enhanced-features-vs-baseline-features-1">5.1 Enhanced Features vs Baseline Features</h3>
+<p>We conducted an ablation study to quantify the contribution of enhanced ad activity features:</p>
+<p><strong>Baseline Features (11 traditional features):</strong> - Silhouette Score: 0.4374 - Balance Ratio: 14.92:1</p>
+<p><strong>Enhanced Features (11 features with ad activity metrics):</strong> - Silhouette Score: 0.5855 - Balance Ratio: 1.75:1</p>
+<p><strong>Improvement:</strong> - Silhouette Score: <strong>33.9% improvement</strong> - Balance Ratio: <strong>88.3% improvement</strong> - Davies-Bouldin Index: <strong>26.4% improvement</strong> - Calinski-Harabasz Score: <strong>292.4% improvement</strong></p>
+</section>
+<section id="key-findings" class="level3">
+<h3 class="anchored" data-anchor-id="key-findings">5.2 Key Findings</h3>
+<p>The ablation study demonstrates that enhanced ad activity features significantly improve clustering performance:</p>
+<ol type="1">
+<li><strong>Better Cluster Separation</strong>: Enhanced features provide better separation between clusters</li>
+<li><strong>More Balanced Clusters</strong>: Enhanced features result in more balanced cluster sizes</li>
+<li><strong>Improved Interpretability</strong>: Enhanced features provide clearer business insights</li>
+</ol>
+</section>
+</section>
+<section id="evaluation-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation-metrics">6. Evaluation Metrics</h2>
+<section id="internal-validation-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="internal-validation-metrics">6.1 Internal Validation Metrics</h3>
+<p>We used three internal validation metrics to evaluate clustering quality:</p>
+<ol type="1">
+<li><strong>Silhouette Score</strong>: Measures cluster cohesion and separation (higher is better, range: -1 to 1)
+<ul>
+<li>Target: ≥ 0.40</li>
+<li>Final result: 0.586</li>
+</ul></li>
+<li><strong>Davies-Bouldin Index</strong>: Measures average similarity ratio (lower is better)
+<ul>
+<li>Final result: 0.706</li>
+</ul></li>
+<li><strong>Calinski-Harabasz Score</strong>: Ratio of between-cluster to within-cluster variance (higher is better)
+<ul>
+<li>Final result: 4919.6</li>
+</ul></li>
+</ol>
+</section>
+<section id="cluster-balance" class="level3">
+<h3 class="anchored" data-anchor-id="cluster-balance">6.2 Cluster Balance</h3>
+<p><strong>Balance Ratio</strong>: Ratio of largest to smallest cluster size (lower is better) - Target: ≤ 3.0 - Final result: 1.75:1 - Cluster sizes: {0: 621, 1: 1085, 2: 646}</p>
+</section>
+<section id="stability-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="stability-metrics">6.3 Stability Metrics</h3>
+<p><strong>Adjusted Rand Index (ARI)</strong>: Measures agreement between clusterings (range: -1 to 1, 1 = perfect agreement) - Bootstrap mean: 1.0 (perfect stability)</p>
+<p><strong>Normalized Mutual Information (NMI)</strong>: Measures mutual information between clusterings (range: 0 to 1, 1 = perfect agreement) - Bootstrap mean: 1.0 (perfect stability)</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">7. Summary</h2>
+<section id="method-selection-summary" class="level3">
+<h3 class="anchored" data-anchor-id="method-selection-summary">7.1 Method Selection Summary</h3>
+<p>The final clustering method <strong>ISO_QT_PCA95_KMeans_k3</strong> was selected based on:</p>
+<ol type="1">
+<li><strong>Performance</strong>: Silhouette score of 0.586 (exceeds target of 0.40)</li>
+<li><strong>Balance</strong>: Balance ratio of 1.75:1 (meets target of ≤ 3.0)</li>
+<li><strong>Stability</strong>: Perfect ARI and NMI scores (1.0) in bootstrap analysis</li>
+<li><strong>Interpretability</strong>: Clear business meaning for each cluster</li>
+<li><strong>Robustness</strong>: Consistent performance across subsamples</li>
+</ol>
+</section>
+<section id="key-contributions" class="level3">
+<h3 class="anchored" data-anchor-id="key-contributions">7.2 Key Contributions</h3>
+<ol type="1">
+<li><strong>Enhanced Features</strong>: Ad activity metrics significantly improve clustering performance (33.9% improvement in silhouette score)</li>
+<li><strong>Robust Preprocessing</strong>: IsolationForest + QuantileTransformer + PCA pipeline handles outliers and non-normal distributions effectively</li>
+<li><strong>Stable Clustering</strong>: KMeans with k=3 provides stable, interpretable clusters that meet business requirements</li>
+<li><strong>Comprehensive Evaluation</strong>: Multiple metrics and robustness analyses validate the chosen method</li>
+</ol>
+</section>
+<section id="reproducibility" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibility">7.3 Reproducibility</h3>
+<p>All analyses use fixed random seeds (random_state=42) for reproducibility. The complete pipeline and parameters are documented and saved for future reference.</p>
+<p><strong>Final Pipeline Parameters:</strong> - IsolationForest contamination: 0.08 - QuantileTransformer distribution: ‘normal’ - PCA variance threshold: 0.95 - KMeans clusters: 3 - KMeans n_init: 100 - KMeans max_iter: 1000 - Random state: 42</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Content © Enter Name Here <br> Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Made with <a href="https://www.r-project.org">R</a> and <a href="https://quarto.org">Quarto</a><br> <a href="https://github.com/anly503/lab-2.1">View source on GitHub</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

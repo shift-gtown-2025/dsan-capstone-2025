@@ -1,0 +1,33 @@
+{
+  "method": "ISO_QT_PCA95_KMeans_k3",
+  "isolation_forest_contamination": 0.08,
+  "pca_variance_threshold": 0.95,
+  "kmeans_clusters": 3,
+  "kmeans_n_init": 100,
+  "kmeans_max_iter": 1000,
+  "random_state": 42,
+  "features_used": [
+    "sales_mean",
+    "total_ad_spend_mean",
+    "roas_mean",
+    "conversion_rate_mean",
+    "website_visits_mean",
+    "search_spend_ratio_mean",
+    "social_spend_ratio_mean",
+    "ad_months_active",
+    "ad_active_ratio",
+    "spent_any",
+    "avg_ad_spend_active_only"
+  ],
+  "final_metrics": {
+    "silhouette_score": 0.5855009806352618,
+    "davies_bouldin_index": 0.7062482817332688,
+    "calinski_harabasz_score": 4919.604023560256,
+    "balance_ratio": 1.747181964573269,
+    "cluster_sizes": {
+      "0": 621,
+      "1": 1085,
+      "2": 646
+    }
+  }
+}
