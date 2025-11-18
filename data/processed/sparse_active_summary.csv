@@ -1,0 +1,3 @@
+Category,Threshold (mean units/month),# Series,Share (%)
+Sparse,≤ 0.4,6588,26.9
+Active,> 0.4,17874,73.1
