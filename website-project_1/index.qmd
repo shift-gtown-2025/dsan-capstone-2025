@@ -1,0 +1,31 @@
+# Introduction
+
+---
+title: "Project Overview"
+format: html
+---
+
+# Project Overview
+
+This project addresses forecasting challenges outlined by Shift Digital, 
+including highly seasonal business behavior and sparse store-level data. 
+Our goal is to improve forecasting accuracy across different business types 
+and deliver a pattern-specific modeling pipeline that reduces error and 
+improves stability across diverse retail environments.
+
+## Goals
+- Demand pattern segmentation  
+- Pattern-specific forecasting  
+- Multi-metric evaluation  
+- Robust error analysis  
+- Practical recommendations for retail and marketing planning  
+
+## Key Findings
+
+- No single model performs best for all series.
+- Croston dominates intermittent demand.
+- SARIMA is most reliable for regular and seasonal demand.
+- Prophet underperforms due to limited seasonal depth.
+- Pattern-based modeling improves accuracy by ~25–35%.
+
+Explore the sections in the navigation bar to view the full workflow.
