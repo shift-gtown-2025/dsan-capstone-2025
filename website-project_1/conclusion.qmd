@@ -1,1 +1,48 @@
-# Conclusion
+
+---
+title: "Conclusion"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+This study examined pattern-specific forecasting methods for dealer-level store–item sales data characterized by sparse demand, limited seasonal depth, and short time series. By classifying each series into intermittent, regular, or seasonal patterns using diagnostic statistics such as zero-share, ADI, ACF(12), and seasonal strength, we matched each pattern to an appropriate forecasting model and evaluated performance across six complementary accuracy metrics.
+
+Across all demand patterns, the results demonstrate that **heterogeneous sales behavior requires heterogeneous forecasting models**. No single algorithm performed consistently well across all series. Instead, the pattern-specific framework achieved meaningful improvements in accuracy and stability:
+
+- **Intermittent demand** was best modeled by **Croston**, which outperformed SARIMA across all metrics and displayed lower error dispersion.  
+- **Regular demand** was most accurately forecasted using **SARIMA**, reflecting the model’s ability to capture stable autoregressive structure under low variance.  
+- **Seasonal demand**, despite limited seasonal depth, was handled more reliably by **SARIMA** than by Prophet, which systematically under-forecasted seasonal peaks.
+
+These findings provide strong empirical evidence that a one-size-fits-all forecasting pipeline is suboptimal for dealer-level sales data, particularly when sparsity and short seasonal histories are present. Incorporating a **pattern-classification step** prior to modeling enables the forecasting system to adapt to structural differences in demand and yields substantial improvements in both mean accuracy and variability.
+
+## Limitations
+
+Several limitations should be acknowledged.  
+First, the historical window available for modeling is relatively short, restricting the reliability of seasonality-based methods and limiting the stability of long-horizon forecasts.  
+Second, the dataset contains no covariates such as promotions, pricing, or marketing activity, constraining the usefulness of regression- or machine-learning-based models.  
+Third, only a subset of store–item series was used for the initial evaluation, and some models could not be applied due to insufficient sample length.  
+Finally, forecasting uncertainty is likely to be higher for stores with extremely sparse sales behavior.
+
+These limitations do not invalidate the findings but highlight areas where additional data or longer histories would improve model reliability. 
+
+In addition to the models reported here, we explored exponential smoothing, multiple regression, and several machine-learning methods. However, these approaches could not be applied consistently due to short historical windows, absence of covariates, and extensive sparsity in many series. As a result, only Croston, SARIMA, and Prophet were suitable for systematic evaluation.
+
+
+## Future Work
+
+Future extensions of this research may include:
+
+- expanding the dataset to incorporate **longer historical windows**, particularly for seasonal models  
+- integrating **exogenous variables** (e.g., digital marketing spend, pricing, promotions) to enable regression and machine learning models  
+- developing an automated **routing pipeline** for production deployment  
+- refining the pattern-classification criteria using clustering or probabilistic models  
+- incorporating **prediction intervals** to quantify uncertainty  
+- evaluating the framework on a larger, more diverse sample of store–item combinations  
+
+Together, these enhancements would support a more robust, scalable forecasting system capable of informing operational decisions such as inventory allocation, dealer reporting, and marketing optimization.
+
+## Summary
+
+Overall, the study demonstrates that **pattern-specific forecasting materially improves accuracy over a unified modeling approach** when applied to sparse, heterogeneous dealership sales data. The classification-driven framework provides a practical and interpretable pathway toward more reliable store–item forecasts and lays a foundation for further operational and data-driven advancements.

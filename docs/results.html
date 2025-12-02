@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Conclusion – Sales Forecasting Model Enhancement</title>
+<title>Results – Sales Forecasting Model Enhancement</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,11 +101,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./results.html"> 
+    <a class="nav-link active" href="./results.html" aria-current="page"> 
 <span class="menu-text">Results</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./conclusion.html" aria-current="page"> 
+    <a class="nav-link" href="./conclusion.html"> 
 <span class="menu-text">Conclusion</span></a>
   </li>  
 </ul>
@@ -123,10 +123,17 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  <li><a href="#overall-model-accuracy-mape-comparison" id="toc-overall-model-accuracy-mape-comparison" class="nav-link" data-scroll-target="#overall-model-accuracy-mape-comparison">2. Overall Model Accuracy (MAPE Comparison)</a>
   <ul class="collapse">
-  <li><a href="#limitations" id="toc-limitations" class="nav-link active" data-scroll-target="#limitations">Limitations</a></li>
-  <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future Work</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#summary-of-forecasting-performance-across-all-metrics" id="toc-summary-of-forecasting-performance-across-all-metrics" class="nav-link" data-scroll-target="#summary-of-forecasting-performance-across-all-metrics">Summary of Forecasting Performance Across All Metrics</a></li>
+  </ul></li>
+  <li><a href="#distribution-of-forecast-errors-mape-boxplots" id="toc-distribution-of-forecast-errors-mape-boxplots" class="nav-link" data-scroll-target="#distribution-of-forecast-errors-mape-boxplots">3. Distribution of Forecast Errors (MAPE Boxplots)</a></li>
+  <li><a href="#best-performing-models-win-count-analysis" id="toc-best-performing-models-win-count-analysis" class="nav-link" data-scroll-target="#best-performing-models-win-count-analysis">4. Best-Performing Models (Win Count Analysis)</a></li>
+  <li><a href="#forecast-bias" id="toc-forecast-bias" class="nav-link" data-scroll-target="#forecast-bias">5. Forecast Bias</a></li>
+  <li><a href="#robustness-check-smape-results" id="toc-robustness-check-smape-results" class="nav-link" data-scroll-target="#robustness-check-smape-results">6. Robustness Check: sMAPE Results</a></li>
+  <li><a href="#summary-of-findings" id="toc-summary-of-findings" class="nav-link" data-scroll-target="#summary-of-findings">7. Summary of Findings</a></li>
   </ul>
 </nav>
     </div>
@@ -135,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Conclusion</h1>
+<h1 class="title">Results</h1>
 </div>
 
 
@@ -152,47 +159,164 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This study examined pattern-specific forecasting methods for dealer-level store–item sales data characterized by sparse demand, limited seasonal depth, and short time series. By classifying each series into intermittent, regular, or seasonal patterns using diagnostic statistics such as zero-share, ADI, ACF(12), and seasonal strength, we matched each pattern to an appropriate forecasting model and evaluated performance across six complementary accuracy metrics.</p>
-<p>Across all demand patterns, the results demonstrate that <strong>heterogeneous sales behavior requires heterogeneous forecasting models</strong>. No single algorithm performed consistently well across all series. Instead, the pattern-specific framework achieved meaningful improvements in accuracy and stability:</p>
-<ul>
-<li><strong>Intermittent demand</strong> was best modeled by <strong>Croston</strong>, which outperformed SARIMA across all metrics and displayed lower error dispersion.<br>
-</li>
-<li><strong>Regular demand</strong> was most accurately forecasted using <strong>SARIMA</strong>, reflecting the model’s ability to capture stable autoregressive structure under low variance.<br>
-</li>
-<li><strong>Seasonal demand</strong>, despite limited seasonal depth, was handled more reliably by <strong>SARIMA</strong> than by Prophet, which systematically under-forecasted seasonal peaks.</li>
-</ul>
-<p>These findings provide strong empirical evidence that a one-size-fits-all forecasting pipeline is suboptimal for dealer-level sales data, particularly when sparsity and short seasonal histories are present. Incorporating a <strong>pattern-classification step</strong> prior to modeling enables the forecasting system to adapt to structural differences in demand and yields substantial improvements in both mean accuracy and variability.</p>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<p>Several limitations should be acknowledged.<br>
-First, the historical window available for modeling is relatively short, restricting the reliability of seasonality-based methods and limiting the stability of long-horizon forecasts.<br>
-Second, the dataset contains no covariates such as promotions, pricing, or marketing activity, constraining the usefulness of regression- or machine-learning-based models.<br>
-Third, only a subset of store–item series was used for the initial evaluation, and some models could not be applied due to insufficient sample length.<br>
-Finally, forecasting uncertainty is likely to be higher for stores with extremely sparse sales behavior.</p>
-<p>These limitations do not invalidate the findings but highlight areas where additional data or longer histories would improve model reliability.</p>
-<p>In addition to the models reported here, we explored exponential smoothing, multiple regression, and several machine-learning methods. However, these approaches could not be applied consistently due to short historical windows, absence of covariates, and extensive sparsity in many series. As a result, only Croston, SARIMA, and Prophet were suitable for systematic evaluation.</p>
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<p>This section presents the forecasting results for the sampled store–item series across the three demand patterns: intermittent, regular, and seasonal. Model performance is evaluated using six complementary error metrics—MAPE, MAE, RMSE, sMAPE, Bias, and MASE—to ensure robustness to low-volume series and asymmetric error behavior. The results focus on the models that were found to be practically usable: Croston (intermittent), SARIMA (across all patterns), and Prophet (seasonal).</p>
+<hr>
 </section>
-<section id="future-work" class="level2">
-<h2 class="anchored" data-anchor-id="future-work">Future Work</h2>
-<p>Future extensions of this research may include:</p>
-<ul>
-<li>expanding the dataset to incorporate <strong>longer historical windows</strong>, particularly for seasonal models<br>
-</li>
-<li>integrating <strong>exogenous variables</strong> (e.g., digital marketing spend, pricing, promotions) to enable regression and machine learning models<br>
-</li>
-<li>developing an automated <strong>routing pipeline</strong> for production deployment<br>
-</li>
-<li>refining the pattern-classification criteria using clustering or probabilistic models<br>
-</li>
-<li>incorporating <strong>prediction intervals</strong> to quantify uncertainty<br>
-</li>
-<li>evaluating the framework on a larger, more diverse sample of store–item combinations</li>
-</ul>
-<p>Together, these enhancements would support a more robust, scalable forecasting system capable of informing operational decisions such as inventory allocation, dealer reporting, and marketing optimization.</p>
+<section id="overall-model-accuracy-mape-comparison" class="level1">
+<h1>2. Overall Model Accuracy (MAPE Comparison)</h1>
+<p>Figure X summarizes the mean MAPE achieved by each model within the demand patterns where it could be applied. For intermittent demand, Croston delivers the lowest forecasting error, achieving substantially lower MAPE than SARIMA. This confirms Croston’s suitability for sparse series with zero-inflated structure, where explicitly modeling demand occurrence yields more stable forecasts.</p>
+<p>For regular demand, SARIMA achieves the lowest average MAPE among all tested models, reflecting its ability to capture stable autoregressive behavior when sales volumes are relatively consistent month to month. The model’s differencing and smoothing components are well suited to the modest temporal structure observed in these series.</p>
+<p>For seasonal demand, SARIMA again outperforms Prophet, even though Prophet is specifically designed for decompositional trend–seasonality modeling. The relatively poor Prophet performance is likely attributable to limited seasonal depth in the historical data—many series contain fewer than two full yearly cycles—making it difficult for Prophet to estimate stable seasonal components. SARIMA, in contrast, leverages differencing and short-term dependence rather than requiring strong seasonal structure.</p>
+<div align="center">
+  <img src="p1/mape_comparison_bar.png" width="650">
+  <p><em>Mean MAPE by model and demand pattern.</em></p>
+</div>
+<section id="summary-of-forecasting-performance-across-all-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="summary-of-forecasting-performance-across-all-metrics">Summary of Forecasting Performance Across All Metrics</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 15%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Demand Pattern</th>
+<th>Model</th>
+<th>MAPE</th>
+<th>RMSE</th>
+<th>MAE</th>
+<th>sMAPE</th>
+<th>Bias</th>
+<th>MASE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>intermittent</td>
+<td>Croston</td>
+<td>48.864</td>
+<td>0.522</td>
+<td>0.519</td>
+<td>134.179</td>
+<td>0.011</td>
+<td>1.220</td>
+</tr>
+<tr class="even">
+<td>intermittent</td>
+<td>SARIMA</td>
+<td>80.633</td>
+<td>1.237</td>
+<td>1.069</td>
+<td>159.164</td>
+<td>-0.274</td>
+<td>2.214</td>
+</tr>
+<tr class="odd">
+<td>regular</td>
+<td>SARIMA</td>
+<td>38.848</td>
+<td>0.482</td>
+<td>0.454</td>
+<td>48.427</td>
+<td>0.005</td>
+<td>0.349</td>
+</tr>
+<tr class="even">
+<td>seasonal</td>
+<td>Prophet</td>
+<td>148.904</td>
+<td>3.902</td>
+<td>3.344</td>
+<td>101.285</td>
+<td>-0.861</td>
+<td>2.549</td>
+</tr>
+<tr class="odd">
+<td>seasonal</td>
+<td>SARIMA</td>
+<td>86.126</td>
+<td>2.439</td>
+<td>2.129</td>
+<td>118.171</td>
+<td>-0.748</td>
+<td>1.526</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table presents the full set of evaluation metrics across all models and demand patterns. The results confirm the earlier findings: Croston achieves the lowest errors for intermittent demand across all metrics, SARIMA provides the most accurate and stable forecasts for regular demand, and SARIMA outperforms Prophet for seasonal demand on every metric, including symmetric percentage error and scaled error. Bias patterns further show that Prophet systematically under-forecasts seasonal peaks, whereas SARIMA maintains smaller and more consistent deviations. These results reinforce the importance of using pattern-specific models rather than a single unified forecasting approach.</em></p>
+<hr>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Overall, the study demonstrates that <strong>pattern-specific forecasting materially improves accuracy over a unified modeling approach</strong> when applied to sparse, heterogeneous dealership sales data. The classification-driven framework provides a practical and interpretable pathway toward more reliable store–item forecasts and lays a foundation for further operational and data-driven advancements.</p>
+</section>
+<section id="distribution-of-forecast-errors-mape-boxplots" class="level1">
+<h1>3. Distribution of Forecast Errors (MAPE Boxplots)</h1>
+<p>While mean MAPE provides a summary measure of accuracy, it obscures the variability across individual store–item series. Figure X presents MAPE boxplots for each model within its applicable demand patterns. The distributional patterns reinforce the conclusions above.</p>
+<p>For intermittent demand, Croston not only achieves the lowest mean MAPE but also displays a tighter interquartile range than SARIMA, indicating more stable performance across series. SARIMA shows a wider spread, with several high-error outliers—consistent with the model’s sensitivity to long zero stretches.</p>
+<p>For regular demand, SARIMA exhibits minimal dispersion, suggesting strong reliability across all sampled series. Error magnitudes are consistently low, reflecting the homogeneity of regular demand behavior.</p>
+<p>For seasonal demand, both SARIMA and Prophet show higher variability. However, Prophet’s distribution is substantially more dispersed, with numerous high-error cases driven by misestimated seasonal peaks or insufficient seasonal observations. SARIMA’s distribution, while imperfect, is more concentrated and avoids extreme outliers.</p>
+<div align="center">
+  <img src="p1/mape_boxplot.png" width="650">
+  <p><em>Distribution of MAPE by model and demand pattern.</em></p>
+</div>
+<hr>
+</section>
+<section id="best-performing-models-win-count-analysis" class="level1">
+<h1>4. Best-Performing Models (Win Count Analysis)</h1>
+<p>To further compare model performance, Figure X reports the number of store–item series for which each model achieved the lowest MAPE (“wins”). This metric highlights dominance within each demand pattern.</p>
+<p>Croston wins the majority of intermittent cases, reflecting its structural advantage for zero-inflated series. SARIMA wins exclusively for regular demand, confirming its appropriateness for stable series. For seasonal demand, SARIMA again wins more frequently than Prophet, reinforcing the earlier observation that Prophet requires richer seasonal histories to perform optimally.</p>
+<p>The win-count results provide a pattern-level summary consistent with both the mean and distributional accuracy evaluations.</p>
+<div align="center">
+  <img src="p1/win_count.png" width="650">
+  <p><em>Number of series where each model achieves the lowest MAPE.</em></p>
+</div>
+<hr>
+</section>
+<section id="forecast-bias" class="level1">
+<h1>5. Forecast Bias</h1>
+<p>Beyond accuracy, understanding systematic over- or under-forecasting is crucial for operational planning. Figure X reports the mean forecast bias across patterns and models.</p>
+<p>Croston shows near-zero bias for intermittent demand, emphasizing its balanced behavior even when sales are highly irregular. SARIMA exhibits small but consistently negative bias for regular demand, indicating slight under-forecasting—likely due to differencing smoothing short-term trends. In seasonal demand, Prophet shows pronounced negative bias, substantially under-forecasting high seasonal peaks. SARIMA’s bias is also negative but notably smaller, suggesting better adaptation to peak-driven patterns.</p>
+<p>These results highlight differences in structural assumptions: Prophet’s decompositional framework over-smooths limited seasonal cycles, while SARIMA preserves short-term momentum more effectively.</p>
+<div align="center">
+  <img src="p1/bias_comparison.png" width="650">
+  <p><em>Mean forecast bias across models and demand patterns.</em></p>
+</div>
+<hr>
+</section>
+<section id="robustness-check-smape-results" class="level1">
+<h1>6. Robustness Check: sMAPE Results</h1>
+<p>Accuracy conclusions are further validated through symmetric MAPE (sMAPE), which mitigates the inflation of percentage errors for low-volume series. As shown in Figure X, the relative ordering of models remains consistent with the MAPE findings:</p>
+<ul>
+<li>Croston maintains the lowest symmetric error for intermittent demand.<br>
+</li>
+<li>SARIMA again performs best for regular demand.<br>
+</li>
+<li>SARIMA outperforms Prophet for seasonal demand.</li>
+</ul>
+<p>The consistency across error metrics indicates that the performance differences are driven by underlying model–data alignment rather than artifacts of the error measure.</p>
+<div align="center">
+  <img src="p1/smape_comparison.png" width="650">
+  <p><em>Mean sMAPE across demand patterns and models.</em></p>
+</div>
+<hr>
+</section>
+<section id="summary-of-findings" class="level1">
+<h1>7. Summary of Findings</h1>
+<p>Across all evaluation metrics and demand patterns, three key results emerge:</p>
+<ol type="1">
+<li><strong>Intermittent demand is best captured by Croston’s method</strong>, which directly models demand occurrence and size.<br>
+</li>
+<li><strong>Regular demand is best modeled by SARIMA</strong>, whose autoregressive structure matches the smooth monthly behavior of these series.<br>
+</li>
+<li><strong>Seasonal demand is most reliably handled by SARIMA, not Prophet</strong>, due to limited seasonal history in the dataset.</li>
+</ol>
+<p>Together, these findings demonstrate that forecasting performance varies sharply across demand patterns and that a one-size-fits-all approach is suboptimal. Pattern-specific model assignment meaningfully improves accuracy, stability, and interpretability of dealer-level sales forecasts.</p>
 
 
 </section>

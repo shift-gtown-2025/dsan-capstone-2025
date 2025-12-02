@@ -3,7 +3,7 @@ project:
   output-dir: ../docs
 
 website:
-  title: "Project Title"
+  title: "Sales Forecasting Model Enhancement"
   navbar:
     left:
       - href: index.qmd
@@ -12,6 +12,8 @@ website:
         text: EDA
       - href: methods.qmd
         text: Methods
+      - href: results.qmd
+        text: Results
       - href: conclusion.qmd
         text: Conclusion
       # - href: 

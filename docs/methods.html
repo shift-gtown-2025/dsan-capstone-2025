@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>methods – Project Title</title>
+<title>Methods – Sales Forecasting Model Enhancement</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,10 +35,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Project Title</span>
+    <span class="navbar-title">Sales Forecasting Model Enhancement</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -135,6 +101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./results.html"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./conclusion.html"> 
 <span class="menu-text">Conclusion</span></a>
   </li>  
@@ -154,51 +124,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">1. Feature Engineering</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  <li><a href="#demand-pattern-classification" id="toc-demand-pattern-classification" class="nav-link" data-scroll-target="#demand-pattern-classification">2. Demand Pattern Classification</a></li>
+  <li><a href="#model-selection-strategy" id="toc-model-selection-strategy" class="nav-link" data-scroll-target="#model-selection-strategy">3. Model Selection Strategy</a>
   <ul class="collapse">
-  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">1.1 Feature Selection</a></li>
-  <li><a href="#enhanced-features-vs-baseline-features" id="toc-enhanced-features-vs-baseline-features" class="nav-link" data-scroll-target="#enhanced-features-vs-baseline-features">1.2 Enhanced Features vs Baseline Features</a></li>
+  <li><a href="#intermittent-demand" id="toc-intermittent-demand" class="nav-link" data-scroll-target="#intermittent-demand">3.1 Intermittent Demand</a></li>
+  <li><a href="#regular-demand" id="toc-regular-demand" class="nav-link" data-scroll-target="#regular-demand">3.2 Regular Demand</a></li>
+  <li><a href="#seasonal-demand" id="toc-seasonal-demand" class="nav-link" data-scroll-target="#seasonal-demand">3.3 Seasonal Demand</a></li>
   </ul></li>
-  <li><a href="#preprocessing-methods-comparison" id="toc-preprocessing-methods-comparison" class="nav-link" data-scroll-target="#preprocessing-methods-comparison">2. Preprocessing Methods Comparison</a>
-  <ul class="collapse">
-  <li><a href="#preprocessing-pipeline-components" id="toc-preprocessing-pipeline-components" class="nav-link" data-scroll-target="#preprocessing-pipeline-components">2.1 Preprocessing Pipeline Components</a></li>
-  <li><a href="#preprocessing-strategy-selection" id="toc-preprocessing-strategy-selection" class="nav-link" data-scroll-target="#preprocessing-strategy-selection">2.2 Preprocessing Strategy Selection</a></li>
-  </ul></li>
-  <li><a href="#clustering-algorithm-comparison" id="toc-clustering-algorithm-comparison" class="nav-link" data-scroll-target="#clustering-algorithm-comparison">3. Clustering Algorithm Comparison</a>
-  <ul class="collapse">
-  <li><a href="#clustering-algorithms-tested" id="toc-clustering-algorithms-tested" class="nav-link" data-scroll-target="#clustering-algorithms-tested">3.1 Clustering Algorithms Tested</a></li>
-  <li><a href="#algorithm-performance-comparison" id="toc-algorithm-performance-comparison" class="nav-link" data-scroll-target="#algorithm-performance-comparison">3.2 Algorithm Performance Comparison</a></li>
-  </ul></li>
-  <li><a href="#final-method-iso_qt_pca95_kmeans_k3" id="toc-final-method-iso_qt_pca95_kmeans_k3" class="nav-link" data-scroll-target="#final-method-iso_qt_pca95_kmeans_k3">4. Final Method: ISO_QT_PCA95_KMeans_k3</a>
-  <ul class="collapse">
-  <li><a href="#method-selection-rationale" id="toc-method-selection-rationale" class="nav-link" data-scroll-target="#method-selection-rationale">4.1 Method Selection Rationale</a></li>
-  <li><a href="#final-pipeline-implementation" id="toc-final-pipeline-implementation" class="nav-link" data-scroll-target="#final-pipeline-implementation">4.2 Final Pipeline Implementation</a></li>
-  <li><a href="#cluster-profiles" id="toc-cluster-profiles" class="nav-link" data-scroll-target="#cluster-profiles">4.3 Cluster Profiles</a></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">4.4 Visualization</a></li>
-  </ul></li>
-  <li><a href="#robustness-analysis" id="toc-robustness-analysis" class="nav-link" data-scroll-target="#robustness-analysis">5. Robustness Analysis</a>
-  <ul class="collapse">
-  <li><a href="#bootstrapsubsample-stability" id="toc-bootstrapsubsample-stability" class="nav-link" data-scroll-target="#bootstrapsubsample-stability">5.1 Bootstrap/Subsample Stability</a></li>
-  <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link" data-scroll-target="#sensitivity-analysis">5.2 Sensitivity Analysis</a></li>
-  </ul></li>
-  <li><a href="#ablation-study" id="toc-ablation-study" class="nav-link" data-scroll-target="#ablation-study">6. Ablation Study</a>
-  <ul class="collapse">
-  <li><a href="#enhanced-features-vs-baseline-features-1" id="toc-enhanced-features-vs-baseline-features-1" class="nav-link" data-scroll-target="#enhanced-features-vs-baseline-features-1">6.1 Enhanced Features vs Baseline Features</a></li>
-  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">6.2 Key Findings</a></li>
-  </ul></li>
-  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics">7. Evaluation Metrics</a>
-  <ul class="collapse">
-  <li><a href="#internal-validation-metrics" id="toc-internal-validation-metrics" class="nav-link" data-scroll-target="#internal-validation-metrics">7.1 Internal Validation Metrics</a></li>
-  <li><a href="#cluster-balance" id="toc-cluster-balance" class="nav-link" data-scroll-target="#cluster-balance">7.2 Cluster Balance</a></li>
-  <li><a href="#stability-metrics" id="toc-stability-metrics" class="nav-link" data-scroll-target="#stability-metrics">7.3 Stability Metrics</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">8. Summary</a>
-  <ul class="collapse">
-  <li><a href="#method-selection-summary" id="toc-method-selection-summary" class="nav-link" data-scroll-target="#method-selection-summary">8.1 Method Selection Summary</a></li>
-  <li><a href="#key-contributions" id="toc-key-contributions" class="nav-link" data-scroll-target="#key-contributions">8.2 Key Contributions</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">8.3 Reproducibility</a></li>
-  </ul></li>
+  <li><a href="#forecasting-pipeline" id="toc-forecasting-pipeline" class="nav-link" data-scroll-target="#forecasting-pipeline">4. Forecasting Pipeline</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics">5. Evaluation Metrics</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">6. Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -224,898 +160,131 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This section documents the comprehensive methodology for store clustering analysis, including feature engineering, preprocessing strategies, clustering algorithm selection, and robustness evaluation. The analysis systematically compares multiple approaches to identify the optimal clustering solution that meets business requirements.</p>
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<p>This study employs a pattern-specific forecasting framework designed to handle the substantial heterogeneity in store–item sales behavior. Preliminary exploratory analysis showed that series differ not only in sales volume but also in sparsity, variability, and seasonal structure. Because a single model family cannot effectively handle all three conditions simultaneously, the forecasting pipeline first classifies each series into a demand pattern—intermittent, regular, or seasonal, and then applies the forecasting model most appropriate for that pattern.</p>
+<p>This approach aligns with best practices in sparse-demand and retail forecasting literature, where model selection is conditioned on demand behavior rather than applied uniformly across all series.</p>
+<hr>
 </section>
-<section id="feature-engineering" class="level2">
-<h2 class="anchored" data-anchor-id="feature-engineering">1. Feature Engineering</h2>
-<section id="feature-selection" class="level3">
-<h3 class="anchored" data-anchor-id="feature-selection">1.1 Feature Selection</h3>
-<p>For clustering analysis, we selected 11 key features that capture different aspects of store performance:</p>
-<p><strong>Core Business Metrics (7 features):</strong> - <code>sales_mean</code>: Average monthly sales - <code>total_ad_spend_mean</code>: Average monthly ad spend - <code>roas_mean</code>: Return on ad spend - <code>conversion_rate_mean</code>: Conversion rate - <code>website_visits_mean</code>: Average website visits - <code>search_spend_ratio_mean</code>: Search ad spend ratio - <code>social_spend_ratio_mean</code>: Social ad spend ratio</p>
-<p><strong>Enhanced Ad Activity Metrics (4 features):</strong> - <code>ad_months_active</code>: Number of months with ad activity - <code>ad_active_ratio</code>: Ratio of months with ad activity - <code>spent_any</code>: Binary indicator of any ad spend - <code>avg_ad_spend_active_only</code>: Average ad spend for active months only</p>
-<div id="feature-selection" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load enhanced features</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>FEATURES <span class="op">=</span> [</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>, <span class="st">'total_ad_spend_mean'</span>, <span class="st">'roas_mean'</span>, <span class="st">'conversion_rate_mean'</span>, <span class="st">'website_visits_mean'</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>, <span class="st">'social_spend_ratio_mean'</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_months_active'</span>, <span class="st">'ad_active_ratio'</span>, <span class="st">'spent_any'</span>, <span class="st">'avg_ad_spend_active_only'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Selected Features for Clustering ==="</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total features: </span><span class="sc">{</span><span class="bu">len</span>(FEATURES)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, feat <span class="kw">in</span> <span class="bu">enumerate</span>(FEATURES, <span class="dv">1</span>):</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>feat<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if all features exist</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>missing_features <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> FEATURES <span class="cf">if</span> f <span class="kw">not</span> <span class="kw">in</span> df.columns]</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> missing_features:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">⚠️ Missing features: </span><span class="sc">{</span>missing_features<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✅ All features available in enhanced dataset"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Selected Features for Clustering ===
-Total features: 11
-1. sales_mean
-2. total_ad_spend_mean
-3. roas_mean
-4. conversion_rate_mean
-5. website_visits_mean
-6. search_spend_ratio_mean
-7. social_spend_ratio_mean
-8. ad_months_active
-9. ad_active_ratio
-10. spent_any
-11. avg_ad_spend_active_only
-
-✅ All features available in enhanced dataset</code></pre>
-</div>
-</div>
-</section>
-<section id="enhanced-features-vs-baseline-features" class="level3">
-<h3 class="anchored" data-anchor-id="enhanced-features-vs-baseline-features">1.2 Enhanced Features vs Baseline Features</h3>
-<p>The enhanced feature set includes ad activity metrics that provide additional insights into store advertising behavior. An ablation study (Section 4) demonstrates that these enhanced features significantly improve clustering performance.</p>
-</section>
-</section>
-<section id="preprocessing-methods-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="preprocessing-methods-comparison">2. Preprocessing Methods Comparison</h2>
-<section id="preprocessing-pipeline-components" class="level3">
-<h3 class="anchored" data-anchor-id="preprocessing-pipeline-components">2.1 Preprocessing Pipeline Components</h3>
-<p>We systematically tested different combinations of preprocessing components:</p>
-<p><strong>Scalers:</strong> - MinMaxScaler: Scales features to [0, 1] range - RobustScaler: Uses median and IQR, robust to outliers - QuantileTransformer: Maps features to uniform or normal distribution - PowerTransformer: Applies Yeo-Johnson transformation</p>
-<p><strong>Outlier Handling:</strong> - IsolationForest: Identifies and removes outliers (contamination=0.08)</p>
-<p><strong>Dimensionality Reduction:</strong> - PCA: Principal Component Analysis (95% variance retention) - VarianceThreshold: Removes low-variance features</p>
-<p><strong>Feature Weighting:</strong> - Uniform weights - Activity features weighted 2x or 3x</p>
-</section>
-<section id="preprocessing-strategy-selection" class="level3">
-<h3 class="anchored" data-anchor-id="preprocessing-strategy-selection">2.2 Preprocessing Strategy Selection</h3>
-<div id="preprocessing-comparison" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler, RobustScaler, QuantileTransformer, PowerTransformer</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> VarianceThreshold</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test different preprocessing combinations</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>preprocessing_results <span class="op">=</span> []</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Test 1: MinMaxScaler + PCA</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>scaler1 <span class="op">=</span> MinMaxScaler()</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>X_scaled1 <span class="op">=</span> scaler1.fit_transform(X)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pca1 <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>X_pca1 <span class="op">=</span> pca1.fit_transform(X_scaled1)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>preprocessing_results.append({</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: <span class="st">'MinMaxScaler_PCA95'</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_components'</span>: X_pca1.shape[<span class="dv">1</span>],</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'explained_variance'</span>: pca1.explained_variance_ratio_.<span class="bu">sum</span>()</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Test 2: IsolationForest + QuantileTransformer + PCA (Final Method)</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>pca2 <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>X_pca2 <span class="op">=</span> pca2.fit_transform(X_qt)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>preprocessing_results.append({</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: <span class="st">'ISO_QT_PCA95'</span>,</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_components'</span>: X_pca2.shape[<span class="dv">1</span>],</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'explained_variance'</span>: pca2.explained_variance_ratio_.<span class="bu">sum</span>(),</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'samples_removed'</span>: <span class="bu">len</span>(X) <span class="op">-</span> <span class="bu">len</span>(X_clean)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Test 3: RobustScaler + PCA</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>scaler3 <span class="op">=</span> RobustScaler()</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>X_scaled3 <span class="op">=</span> scaler3.fit_transform(X)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>pca3 <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>X_pca3 <span class="op">=</span> pca3.fit_transform(X_scaled3)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>preprocessing_results.append({</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: <span class="st">'RobustScaler_PCA95'</span>,</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_components'</span>: X_pca3.shape[<span class="dv">1</span>],</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'explained_variance'</span>: pca3.explained_variance_ratio_.<span class="bu">sum</span>()</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>preprocessing_df <span class="op">=</span> pd.DataFrame(preprocessing_results)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Preprocessing Methods Comparison ==="</span>)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(preprocessing_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Preprocessing Methods Comparison ===
-            method  n_components  explained_variance  samples_removed
-MinMaxScaler_PCA95             5            0.979640              NaN
-      ISO_QT_PCA95             5            0.966819            205.0
-RobustScaler_PCA95             1            0.999680              NaN</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="clustering-algorithm-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="clustering-algorithm-comparison">3. Clustering Algorithm Comparison</h2>
-<section id="clustering-algorithms-tested" class="level3">
-<h3 class="anchored" data-anchor-id="clustering-algorithms-tested">3.1 Clustering Algorithms Tested</h3>
-<p>We evaluated multiple clustering algorithms:</p>
-<p><strong>Partitioning Methods:</strong> - <strong>KMeans</strong>: Centroid-based, stable and interpretable - <strong>GMM (Gaussian Mixture Model)</strong>: Soft clustering, probabilistic assignments</p>
-<p><strong>Density-Based Methods:</strong> - <strong>DBSCAN</strong>: Flexible cluster shapes, handles noise</p>
-<p><strong>Graph-Based Methods:</strong> - <strong>Spectral Clustering</strong>: Uses graph Laplacian, good for non-convex clusters</p>
-</section>
-<section id="algorithm-performance-comparison" class="level3">
-<h3 class="anchored" data-anchor-id="algorithm-performance-comparison">3.2 Algorithm Performance Comparison</h3>
-<div id="clustering-comparison" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans, DBSCAN, SpectralClustering</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.mixture <span class="im">import</span> GaussianMixture</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score, davies_bouldin_score, calinski_harabasz_score</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> QuantileTransformer</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate_clustering(X, labels):</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Evaluate clustering performance"""</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    n_clusters <span class="op">=</span> <span class="bu">len</span>(<span class="bu">set</span>(labels)) <span class="op">-</span> (<span class="dv">1</span> <span class="cf">if</span> <span class="op">-</span><span class="dv">1</span> <span class="kw">in</span> labels <span class="cf">else</span> <span class="dv">0</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n_clusters <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter noise points for DBSCAN</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">-</span><span class="dv">1</span> <span class="kw">in</span> labels:</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        mask <span class="op">=</span> labels <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mask.<span class="bu">sum</span>() <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        X_eval, y_eval <span class="op">=</span> X[mask], labels[mask]</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        X_eval, y_eval <span class="op">=</span> X, labels</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(X_eval, y_eval)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> davies_bouldin_score(X_eval, y_eval)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    ch <span class="op">=</span> calinski_harabasz_score(X_eval, y_eval)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> pd.Series(y_eval).value_counts()</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    balance <span class="op">=</span> counts.<span class="bu">max</span>() <span class="op">/</span> counts.<span class="bu">min</span>()</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">'silhouette'</span>: sil,</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">'davies_bouldin'</span>: db,</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">'calinski_harabasz'</span>: ch,</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'balance_ratio'</span>: balance,</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'n_clusters'</span>: n_clusters,</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'n_noise'</span>: <span class="bu">int</span>((labels <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>).<span class="bu">sum</span>()) <span class="cf">if</span> <span class="op">-</span><span class="dv">1</span> <span class="kw">in</span> labels <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure X is defined (from previous code blocks)</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'X'</span> <span class="kw">not</span> <span class="kw">in</span> <span class="bu">locals</span>():</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Use preprocessed data from final method</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>clustering_results <span class="op">=</span> []</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Test KMeans with k=3, 4, 5</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    km <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">100</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> km.fit_predict(X_pca)</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> evaluate_clustering(X_pca, labels)</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> metrics:</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        metrics[<span class="st">'algorithm'</span>] <span class="op">=</span> <span class="st">'KMeans'</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>        metrics[<span class="st">'k'</span>] <span class="op">=</span> k</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>        clustering_results.append(metrics)</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Test DBSCAN</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> eps <span class="kw">in</span> [<span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">1.2</span>]:</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> min_samples <span class="kw">in</span> [<span class="dv">8</span>, <span class="dv">12</span>]:</span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>        db <span class="op">=</span> DBSCAN(eps<span class="op">=</span>eps, min_samples<span class="op">=</span>min_samples)</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> db.fit_predict(X_pca)</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>        metrics <span class="op">=</span> evaluate_clustering(X_pca, labels)</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> metrics <span class="kw">and</span> metrics[<span class="st">'n_clusters'</span>] <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>            metrics[<span class="st">'algorithm'</span>] <span class="op">=</span> <span class="st">'DBSCAN'</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>            metrics[<span class="st">'eps'</span>] <span class="op">=</span> eps</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>            metrics[<span class="st">'min_samples'</span>] <span class="op">=</span> min_samples</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>            clustering_results.append(metrics)</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Test GMM</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cov_type <span class="kw">in</span> [<span class="st">'tied'</span>, <span class="st">'diag'</span>]:</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>            gmm <span class="op">=</span> GaussianMixture(n_components<span class="op">=</span>k, covariance_type<span class="op">=</span>cov_type, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>            labels <span class="op">=</span> gmm.fit_predict(X_pca)</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>            metrics <span class="op">=</span> evaluate_clustering(X_pca, labels)</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> metrics:</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>                metrics[<span class="st">'algorithm'</span>] <span class="op">=</span> <span class="ss">f'GMM_</span><span class="sc">{</span>cov_type<span class="sc">}</span><span class="ss">'</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>                metrics[<span class="st">'k'</span>] <span class="op">=</span> k</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>                clustering_results.append(metrics)</span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span>:</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Test Spectral Clustering</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>        sp <span class="op">=</span> SpectralClustering(n_clusters<span class="op">=</span>k, affinity<span class="op">=</span><span class="st">'nearest_neighbors'</span>, n_neighbors<span class="op">=</span><span class="dv">15</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> sp.fit_predict(X_pca)</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>        metrics <span class="op">=</span> evaluate_clustering(X_pca, labels)</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> metrics:</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>            metrics[<span class="st">'algorithm'</span>] <span class="op">=</span> <span class="st">'Spectral'</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>            metrics[<span class="st">'k'</span>] <span class="op">=</span> k</span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>            clustering_results.append(metrics)</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span>:</span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>clustering_df <span class="op">=</span> pd.DataFrame(clustering_results)</span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> clustering_df.empty:</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter by criteria: silhouette &gt;= 0.40, balance &lt;= 3.0, clusters &gt;= 3</span></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>    filtered <span class="op">=</span> clustering_df[</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>        (clustering_df[<span class="st">'silhouette'</span>] <span class="op">&gt;=</span> <span class="fl">0.40</span>) <span class="op">&amp;</span></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>        (clustering_df[<span class="st">'balance_ratio'</span>] <span class="op">&lt;=</span> <span class="fl">3.0</span>) <span class="op">&amp;</span></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>        (clustering_df[<span class="st">'n_clusters'</span>] <span class="op">&gt;=</span> <span class="dv">3</span>)</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>    ].sort_values([<span class="st">'silhouette'</span>, <span class="st">'balance_ratio'</span>], ascending<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])</span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=== Clustering Algorithms Comparison ==="</span>)</span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Top methods meeting criteria (silhouette &gt;= 0.40, balance &lt;= 3.0, clusters &gt;= 3):"</span>)</span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    display_cols <span class="op">=</span> [<span class="st">'algorithm'</span>, <span class="st">'silhouette'</span>, <span class="st">'davies_bouldin'</span>, <span class="st">'balance_ratio'</span>, <span class="st">'n_clusters'</span>]</span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'k'</span> <span class="kw">in</span> filtered.columns:</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>        display_cols.append(<span class="st">'k'</span>)</span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(filtered[display_cols].head(<span class="dv">10</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/qqmian/miniforge3/lib/python3.12/site-packages/sklearn/manifold/_spectral_embedding.py:328: UserWarning:
-
-Graph is not fully connected, spectral embedding may not work as expected.
-
-/Users/qqmian/miniforge3/lib/python3.12/site-packages/sklearn/manifold/_spectral_embedding.py:328: UserWarning:
-
-Graph is not fully connected, spectral embedding may not work as expected.
-
-/Users/qqmian/miniforge3/lib/python3.12/site-packages/sklearn/manifold/_spectral_embedding.py:328: UserWarning:
-
-Graph is not fully connected, spectral embedding may not work as expected.
-</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Clustering Algorithms Comparison ===
-Top methods meeting criteria (silhouette &gt;= 0.40, balance &lt;= 3.0, clusters &gt;= 3):
-algorithm  silhouette  davies_bouldin  balance_ratio  n_clusters   k
-   DBSCAN    0.663644        0.529451       2.250000           3 NaN
-   DBSCAN    0.646747        0.562214       2.017822           3 NaN
-   DBSCAN    0.639311        0.578989       1.905204           3 NaN
-   DBSCAN    0.630849        0.598613       1.856631           3 NaN
-   KMeans    0.585501        0.706248       1.747182           3 3.0
- GMM_tied    0.585501        0.706248       1.747182           3 3.0
- GMM_diag    0.585501        0.706248       1.747182           3 3.0</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="final-method-iso_qt_pca95_kmeans_k3" class="level2">
-<h2 class="anchored" data-anchor-id="final-method-iso_qt_pca95_kmeans_k3">4. Final Method: ISO_QT_PCA95_KMeans_k3</h2>
-<section id="method-selection-rationale" class="level3">
-<h3 class="anchored" data-anchor-id="method-selection-rationale">4.1 Method Selection Rationale</h3>
-<p>After comprehensive evaluation, we selected <strong>ISO_QT_PCA95_KMeans_k3</strong> as the final clustering method based on the following criteria:</p>
-<ol type="1">
-<li><strong>Silhouette Score ≥ 0.40</strong>: Measures cluster cohesion and separation</li>
-<li><strong>Balance Ratio ≤ 3.0</strong>: Ensures reasonably balanced cluster sizes</li>
-<li><strong>Number of Clusters = 3</strong>: Matches business requirement</li>
-<li><strong>Reproducibility</strong>: Consistent results across runs</li>
-<li><strong>Interpretability</strong>: Clear business meaning for each cluster</li>
-</ol>
-</section>
-<section id="final-pipeline-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="final-pipeline-implementation">4.2 Final Pipeline Implementation</h3>
-<p>The final pipeline consists of four steps:</p>
-<ol type="1">
-<li><strong>IsolationForest Outlier Removal</strong>: Removes ~8% of outliers (contamination=0.08)</li>
-<li><strong>QuantileTransformer Normalization</strong>: Maps features to normal distribution</li>
-<li><strong>PCA Dimensionality Reduction</strong>: Retains 95% of variance (5 components)</li>
-<li><strong>KMeans Clustering</strong>: k=3 clusters with 100 initializations</li>
-</ol>
-<div id="final-pipeline" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> QuantileTransformer</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score, davies_bouldin_score, calinski_harabasz_score</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load enhanced features</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/processed/store_features_enhanced.csv'</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[FEATURES].fillna(<span class="dv">0</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Initial features shape: </span><span class="sc">{</span>X<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: IsolationForest outlier removal</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.08</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>inlier_mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>X_clean <span class="op">=</span> X[inlier_mask]</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After outlier removal: </span><span class="sc">{</span>X_clean<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> samples (removed </span><span class="sc">{</span><span class="bu">len</span>(X) <span class="op">-</span> X_clean<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: QuantileTransformer normalization</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span><span class="st">'normal'</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>X_qt <span class="op">=</span> qt.fit_transform(X_clean)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After Quantile normalization: </span><span class="sc">{</span>X_qt<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: PCA 95% variance</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="fl">0.95</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After PCA: </span><span class="sc">{</span>X_pca<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> components (explained variance: </span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: KMeans k=3</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_init<span class="op">=</span><span class="dv">100</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.fit_predict(X_pca)</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Map labels back to original store IDs</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[inlier_mask].copy()</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'cluster'</span>] <span class="op">=</span> labels</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>silhouette <span class="op">=</span> silhouette_score(X_pca, labels)</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>db_score <span class="op">=</span> davies_bouldin_score(X_pca, labels)</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>ch_score <span class="op">=</span> calinski_harabasz_score(X_pca, labels)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>cluster_counts <span class="op">=</span> pd.Series(labels).value_counts().sort_index()</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>balance_ratio <span class="op">=</span> cluster_counts.<span class="bu">max</span>() <span class="op">/</span> cluster_counts.<span class="bu">min</span>()</span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== Final Results ==="</span>)</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Silhouette Score: </span><span class="sc">{</span>silhouette<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Davies-Bouldin Index: </span><span class="sc">{</span>db_score<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Calinski-Harabasz Score: </span><span class="sc">{</span>ch_score<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Balance Ratio: </span><span class="sc">{</span>balance_ratio<span class="sc">:.2f}</span><span class="ss">:1"</span>)</span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cluster Sizes: </span><span class="sc">{</span>cluster_counts<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Initial features shape: (2557, 11)
-After outlier removal: 2352 samples (removed 205)
-After Quantile normalization: (2352, 11)
-After PCA: 5 components (explained variance: 0.967)
-
-=== Final Results ===
-Silhouette Score: 0.586
-Davies-Bouldin Index: 0.706
-Calinski-Harabasz Score: 4919.6
-Balance Ratio: 1.75:1
-Cluster Sizes: {0: 621, 1: 1085, 2: 646}</code></pre>
-</div>
-</div>
-</section>
-<section id="cluster-profiles" class="level3">
-<h3 class="anchored" data-anchor-id="cluster-profiles">4.3 Cluster Profiles</h3>
-<div id="cluster-profiles" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use df_clean and labels from final-pipeline code block</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (These variables are defined in the previous code block)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate cluster profiles</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>cluster_profiles <span class="op">=</span> df_clean.groupby(<span class="st">'cluster'</span>)[FEATURES].agg([<span class="st">'mean'</span>, <span class="st">'std'</span>]).<span class="bu">round</span>(<span class="dv">3</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Cluster Profiles ==="</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cluster_profiles.head(<span class="dv">20</span>))</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Key business metrics by cluster</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>business_metrics <span class="op">=</span> df_clean.groupby(<span class="st">'cluster'</span>).agg({</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>: <span class="st">'mean'</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_ad_spend_mean'</span>: <span class="st">'mean'</span>, </span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'roas_mean'</span>: <span class="st">'mean'</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'conversion_rate_mean'</span>: <span class="st">'mean'</span>,</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ad_active_ratio'</span>: <span class="st">'mean'</span>,</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'avg_ad_spend_active_only'</span>: <span class="st">'mean'</span>,</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>: <span class="st">'mean'</span>,</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'social_spend_ratio_mean'</span>: <span class="st">'mean'</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">3</span>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Business Metrics by Cluster ==="</span>)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(business_metrics)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Cluster interpretation</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Cluster Interpretation ==="</span>)</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cluster_id <span class="kw">in</span> <span class="bu">sorted</span>(df_clean[<span class="st">'cluster'</span>].unique()):</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    cluster_data <span class="op">=</span> df_clean[df_clean[<span class="st">'cluster'</span>] <span class="op">==</span> cluster_id]</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> <span class="bu">len</span>(cluster_data)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> size <span class="op">/</span> <span class="bu">len</span>(df_clean) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Cluster </span><span class="sc">{</span>cluster_id<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>size<span class="sc">}</span><span class="ss"> stores, </span><span class="sc">{</span>pct<span class="sc">:.1f}</span><span class="ss">%):"</span>)</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Sales: $</span><span class="sc">{</span>cluster_data[<span class="st">'sales_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> avg"</span>)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Ad Spend: $</span><span class="sc">{</span>cluster_data[<span class="st">'total_ad_spend_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.0f}</span><span class="ss"> avg"</span>)</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  ROAS: </span><span class="sc">{</span>cluster_data[<span class="st">'roas_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Ad Active Ratio: </span><span class="sc">{</span>cluster_data[<span class="st">'ad_active_ratio'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Search Focus: </span><span class="sc">{</span>cluster_data[<span class="st">'search_spend_ratio_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Social Focus: </span><span class="sc">{</span>cluster_data[<span class="st">'social_spend_ratio_mean'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Cluster Profiles ===
-        sales_mean         total_ad_spend_mean           roas_mean         \
-              mean     std                mean       std      mean    std   
-cluster                                                                     
-0           14.787  15.473             502.895   649.617     0.360  1.155   
-1           35.253  25.154            6114.209  4603.467     0.027  0.204   
-2           21.695  18.733            2052.974  2168.881     0.317  0.986   
-
-        conversion_rate_mean        website_visits_mean             ...  \
-                        mean    std                mean        std  ...   
-cluster                                                             ...   
-0                      0.003  0.003            7234.258   8309.286  ...   
-1                      0.003  0.003           17837.340  11888.156  ...   
-2                      0.003  0.003           11613.696   9828.435  ...   
-
-        social_spend_ratio_mean        ad_months_active         \
-                           mean    std             mean    std   
-cluster                                                          
-0                         0.216  0.122            9.037  3.706   
-1                         0.119  0.101           16.000  0.000   
-2                         0.138  0.100           12.345  2.986   
-
-        ad_active_ratio        spent_any      avg_ad_spend_active_only  \
-                   mean    std      mean  std                     mean   
-cluster                                                                  
-0                 0.377  0.154       1.0  0.0                 1175.857   
-1                 0.667  0.000       1.0  0.0                 9171.313   
-2                 0.514  0.124       1.0  0.0                 3813.736   
-
-                   
-              std  
-cluster            
-0        1325.483  
-1        6905.201  
-2        3695.106  
-
-[3 rows x 22 columns]
-
-=== Business Metrics by Cluster ===
-         sales_mean  total_ad_spend_mean  roas_mean  conversion_rate_mean  \
-cluster                                                                     
-0            14.787              502.895      0.360                 0.003   
-1            35.253             6114.209      0.027                 0.003   
-2            21.695             2052.974      0.317                 0.003   
-
-         ad_active_ratio  avg_ad_spend_active_only  search_spend_ratio_mean  \
-cluster                                                                       
-0                  0.377                  1175.857                    0.000   
-1                  0.667                  9171.313                    0.344   
-2                  0.514                  3813.736                    0.206   
-
-         social_spend_ratio_mean  
-cluster                           
-0                          0.216  
-1                          0.119  
-2                          0.138  
-
-=== Cluster Interpretation ===
-
-Cluster 0 (621 stores, 26.4%):
-  Sales: $14.8 avg
-  Ad Spend: $503 avg
-  ROAS: 0.360
-  Ad Active Ratio: 0.38
-  Search Focus: 0.00
-  Social Focus: 0.22
-
-Cluster 1 (1085 stores, 46.1%):
-  Sales: $35.3 avg
-  Ad Spend: $6114 avg
-  ROAS: 0.027
-  Ad Active Ratio: 0.67
-  Search Focus: 0.34
-  Social Focus: 0.12
-
-Cluster 2 (646 stores, 27.5%):
-  Sales: $21.7 avg
-  Ad Spend: $2053 avg
-  ROAS: 0.317
-  Ad Active Ratio: 0.51
-  Search Focus: 0.21
-  Social Focus: 0.14</code></pre>
-</div>
-</div>
-</section>
-<section id="visualization" class="level3">
-<h3 class="anchored" data-anchor-id="visualization">4.4 Visualization</h3>
-<div id="cell-cluster-visualization" class="cell" data-fig-height="6" data-fig-width="14" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA 2D visualization</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>X_pca_2d <span class="op">=</span> X_pca[:, :<span class="dv">2</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pca_vis_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pc1'</span>: X_pca_2d[:, <span class="dv">0</span>],</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pc2'</span>: X_pca_2d[:, <span class="dv">1</span>],</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cluster'</span>: df_clean[<span class="st">'cluster'</span>].values,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>: df_clean[<span class="st">'sales_mean'</span>].values</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>pca_vis_df,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'pc1'</span>, y<span class="op">=</span><span class="st">'pc2'</span>, hue<span class="op">=</span><span class="st">'cluster'</span>,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    palette<span class="op">=</span><span class="st">'Set2'</span>, s<span class="op">=</span><span class="dv">45</span>, alpha<span class="op">=</span><span class="fl">0.85</span>,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    edgecolor<span class="op">=</span><span class="st">'none'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>]</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'PCA Projection of Final Clusters (k=3)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">0</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">1</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(title<span class="op">=</span><span class="st">'Cluster'</span>, loc<span class="op">=</span><span class="st">'best'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> axes[<span class="dv">1</span>].scatter(</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    pca_vis_df[<span class="st">'pc1'</span>], pca_vis_df[<span class="st">'pc2'</span>],</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    c<span class="op">=</span>pca_vis_df[<span class="st">'sales_mean'</span>], cmap<span class="op">=</span><span class="st">'viridis'</span>,</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">45</span>, alpha<span class="op">=</span><span class="fl">0.85</span>, edgecolor<span class="op">=</span><span class="st">'none'</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'PCA Projection Colored by Average Sales'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">0</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">1</span>]<span class="sc">:.1%}</span><span class="ss"> var)"</span>)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(scatter, ax<span class="op">=</span>axes[<span class="dv">1</span>], shrink<span class="op">=</span><span class="fl">0.85</span>, pad<span class="op">=</span><span class="fl">0.02</span>)</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'Average Monthly Sales'</span>)</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'PCA Visualization of Final Store Feature Space'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="methods_files/figure-html/cluster-visualization-output-1.png" id="cluster-visualization" width="1313" height="569" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="robustness-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="robustness-analysis">5. Robustness Analysis</h2>
-<section id="bootstrapsubsample-stability" class="level3">
-<h3 class="anchored" data-anchor-id="bootstrapsubsample-stability">5.1 Bootstrap/Subsample Stability</h3>
-<p>We evaluated the stability of the final clustering method using bootstrap subsampling:</p>
-<div id="cell-bootstrap-stability" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score <span class="im">as</span> ARI</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> normalized_mutual_info_score <span class="im">as</span> NMI</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_pipeline(df, feature_cols, contamination<span class="op">=</span><span class="fl">0.08</span>, qt_distribution<span class="op">=</span><span class="st">'normal'</span>, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                 pca_var<span class="op">=</span><span class="fl">0.95</span>, k<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Run the complete clustering pipeline"""</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> df[feature_cols].replace([np.inf, <span class="op">-</span>np.inf], np.nan).fillna(<span class="dv">0</span>).values</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Isolation Forest</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    iso <span class="op">=</span> IsolationForest(contamination<span class="op">=</span>contamination, random_state<span class="op">=</span>random_state)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> iso.fit_predict(X) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    X_iso <span class="op">=</span> X[mask]</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Quantile Transformer</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    qt <span class="op">=</span> QuantileTransformer(output_distribution<span class="op">=</span>qt_distribution, random_state<span class="op">=</span>random_state)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    X_qt <span class="op">=</span> qt.fit_transform(X_iso)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># PCA</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    pca <span class="op">=</span> PCA(n_components<span class="op">=</span>pca_var, random_state<span class="op">=</span>random_state)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    X_pca <span class="op">=</span> pca.fit_transform(X_qt)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KMeans</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    km <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">100</span>, max_iter<span class="op">=</span><span class="dv">1000</span>, random_state<span class="op">=</span>random_state)</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> km.fit_predict(X_pca)</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Metrics</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(X_pca, labels)</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> pd.Series(labels).value_counts()</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    balance <span class="op">=</span> counts.<span class="bu">max</span>() <span class="op">/</span> counts.<span class="bu">min</span>()</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> labels, {</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">'mask_kept'</span>: mask,</span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'silhouette'</span>: sil,</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'balance_ratio'</span>: <span class="bu">float</span>(balance),</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'n_clusters'</span>: <span class="bu">int</span>(<span class="bu">len</span>(np.unique(labels)))</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute baseline</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>base_labels, base_info <span class="op">=</span> run_pipeline(df, FEATURES, contamination<span class="op">=</span><span class="fl">0.08</span>, pca_var<span class="op">=</span><span class="fl">0.95</span>, k<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>baseline_labels <span class="op">=</span> np.full(<span class="bu">len</span>(df), fill_value<span class="op">=</span>np.nan)</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>kept_idx <span class="op">=</span> np.where(base_info[<span class="st">'mask_kept'</span>])[<span class="dv">0</span>]</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>baseline_labels[kept_idx] <span class="op">=</span> base_labels</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsample stability analysis</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> subsample_stability(df, feature_cols, n_runs<span class="op">=</span><span class="dv">30</span>, frac<span class="op">=</span><span class="fl">0.8</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.RandomState(random_state)</span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>    sils, aris, nmis <span class="op">=</span> [], [], []</span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    base_labels_array <span class="op">=</span> baseline_labels.copy()</span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_runs):</span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> rng.choice(df.index.values, size<span class="op">=</span><span class="bu">int</span>(frac <span class="op">*</span> <span class="bu">len</span>(df)), replace<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>        df_sub <span class="op">=</span> df.loc[idx].copy()</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>        labels, info <span class="op">=</span> run_pipeline(df_sub, feature_cols, contamination<span class="op">=</span><span class="fl">0.08</span>, </span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>                                    pca_var<span class="op">=</span><span class="fl">0.95</span>, k<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span>random_state <span class="op">+</span> i)</span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>        sils.append(info[<span class="st">'silhouette'</span>])</span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> base_labels_array <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>            sub_kept_idx <span class="op">=</span> df_sub.index.values[info[<span class="st">'mask_kept'</span>]]</span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>            valid_mask_global <span class="op">=</span> <span class="op">~</span>pd.isna(base_labels_array)</span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>            common_idx <span class="op">=</span> np.intersect1d(sub_kept_idx, df.index.values[valid_mask_global])</span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(common_idx) <span class="op">&gt;</span> <span class="dv">10</span>:</span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>                sub_map <span class="op">=</span> {ix: lab <span class="cf">for</span> ix, lab <span class="kw">in</span> <span class="bu">zip</span>(df_sub.index.values[info[<span class="st">'mask_kept'</span>]], labels)}</span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>                y_sub <span class="op">=</span> np.array([sub_map[ix] <span class="cf">for</span> ix <span class="kw">in</span> common_idx])</span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>                y_base <span class="op">=</span> np.array([base_labels_array[df.index.get_loc(ix)] <span class="cf">for</span> ix <span class="kw">in</span> common_idx])</span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>                aris.append(ARI(y_base, y_sub))</span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>                nmis.append(NMI(y_base, y_sub))</span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame({</span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>        <span class="st">'silhouette'</span>: sils,</span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ARI'</span>: aris <span class="cf">if</span> <span class="bu">len</span>(aris) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> [np.nan] <span class="op">*</span> <span class="bu">len</span>(sils),</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>        <span class="st">'NMI'</span>: nmis <span class="cf">if</span> <span class="bu">len</span>(nmis) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> [np.nan] <span class="op">*</span> <span class="bu">len</span>(sils)</span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>stab_df <span class="op">=</span> subsample_stability(df, FEATURES, n_runs<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Bootstrap Stability Analysis ==="</span>)</span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stab_df.describe())</span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(stab_df[<span class="st">'silhouette'</span>].dropna(), bins<span class="op">=</span><span class="dv">15</span>, color<span class="op">=</span><span class="st">'#4e79a7'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Silhouette Score Distribution'</span>)</span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Silhouette Score'</span>)</span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Frequency'</span>)</span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(stab_df[<span class="st">'ARI'</span>].dropna(), bins<span class="op">=</span><span class="dv">15</span>, color<span class="op">=</span><span class="st">'#f28e2b'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'ARI Distribution'</span>)</span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Adjusted Rand Index'</span>)</span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Frequency'</span>)</span>
-<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].hist(stab_df[<span class="st">'NMI'</span>].dropna(), bins<span class="op">=</span><span class="dv">15</span>, color<span class="op">=</span><span class="st">'#e15759'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">'NMI Distribution'</span>)</span>
-<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Normalized Mutual Information'</span>)</span>
-<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Frequency'</span>)</span>
-<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Bootstrap Stability Analysis ===
-       silhouette   ARI           NMI
-count   30.000000  30.0  3.000000e+01
-mean     0.584797   1.0  1.000000e+00
-std      0.003089   0.0  9.219900e-17
-min      0.571309   1.0  1.000000e+00
-25%      0.584042   1.0  1.000000e+00
-50%      0.584925   1.0  1.000000e+00
-75%      0.585650   1.0  1.000000e+00
-max      0.589906   1.0  1.000000e+00</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="methods_files/figure-html/bootstrap-stability-output-2.png" id="bootstrap-stability" width="1430" height="374" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="sensitivity-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="sensitivity-analysis">5.2 Sensitivity Analysis</h3>
-<p>We evaluated the sensitivity of the clustering method to key hyperparameters:</p>
+<section id="demand-pattern-classification" class="level1">
+<h1>2. Demand Pattern Classification</h1>
+<p>Demand patterns were identified using diagnostic statistics widely used to distinguish between intermittent, stable, and seasonal series. For each store–item series, we computed:</p>
 <ul>
-<li><strong>Number of clusters (k)</strong>: Tested k=3, 4, 5</li>
-<li><strong>PCA variance threshold</strong>: Tested 0.90, 0.95, 0.99</li>
-<li><strong>IsolationForest contamination</strong>: Tested 0.05, 0.08, 0.10</li>
+<li><strong>Zero-share</strong>: proportion of months with zero sales<br>
+</li>
+<li><strong>Average Inter-Demand Interval (ADI)</strong>: mean gap between non-zero sales<br>
+</li>
+<li><strong>Autocorrelation at lag 12 (ACF12)</strong>: degree of annual dependence<br>
+</li>
+<li><strong>Seasonal strength</strong>: STL-based decomposition metric<br>
+</li>
+<li><strong>Coefficient of Variation (CV)</strong>: scaling of variability relative to mean sales</li>
 </ul>
-<p>The final method (k=3, PCA=0.95, contamination=0.08) was selected based on optimal balance between silhouette score, cluster balance, and business requirements.</p>
-</section>
-</section>
-<section id="ablation-study" class="level2">
-<h2 class="anchored" data-anchor-id="ablation-study">6. Ablation Study</h2>
-<section id="enhanced-features-vs-baseline-features-1" class="level3">
-<h3 class="anchored" data-anchor-id="enhanced-features-vs-baseline-features-1">6.1 Enhanced Features vs Baseline Features</h3>
-<p>We conducted an ablation study to quantify the contribution of enhanced ad activity features:</p>
-<div id="ablation-study" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline features (11 traditional features)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>baseline_features <span class="op">=</span> [</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_mean'</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_ad_spend_mean'</span>, </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'roas_mean'</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'conversion_rate_mean'</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'website_visits_mean'</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_spend_ratio_mean'</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'social_spend_ratio_mean'</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ctr_clean_mean'</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'unique_lead_count_mean'</span>,</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'display_spend_ratio_mean'</span>,</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sales_sum'</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Enhanced features (11 features with ad activity metrics)</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>enhanced_features <span class="op">=</span> FEATURES</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Check which baseline features are available</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>available_baseline <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> baseline_features <span class="cf">if</span> f <span class="kw">in</span> df.columns]</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(available_baseline) <span class="op">&lt;</span> <span class="bu">len</span>(baseline_features):</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Warning: Some baseline features missing. Using </span><span class="sc">{</span><span class="bu">len</span>(available_baseline)<span class="sc">}</span><span class="ss"> available features."</span>)</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    baseline_features <span class="op">=</span> available_baseline</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Ablation Study: Enhanced vs Baseline Features ==="</span>)</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Baseline features (</span><span class="sc">{</span><span class="bu">len</span>(baseline_features)<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>baseline_features<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Enhanced features (</span><span class="sc">{</span><span class="bu">len</span>(enhanced_features)<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>enhanced_features<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pipeline with baseline features</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>_, baseline_info <span class="op">=</span> run_pipeline(</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    df, </span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    baseline_features, </span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    contamination<span class="op">=</span><span class="fl">0.08</span>, </span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    qt_distribution<span class="op">=</span><span class="st">'normal'</span>, </span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    pca_var<span class="op">=</span><span class="fl">0.95</span>, </span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    k<span class="op">=</span><span class="dv">3</span>, </span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pipeline with enhanced features</span></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>_, enhanced_info <span class="op">=</span> run_pipeline(</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    df, </span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    enhanced_features, </span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    contamination<span class="op">=</span><span class="fl">0.08</span>, </span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    qt_distribution<span class="op">=</span><span class="st">'normal'</span>, </span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>    pca_var<span class="op">=</span><span class="fl">0.95</span>, </span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    k<span class="op">=</span><span class="dv">3</span>, </span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate improvement</span></span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>baseline_sil <span class="op">=</span> baseline_info[<span class="st">'silhouette'</span>]</span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>enhanced_sil <span class="op">=</span> enhanced_info[<span class="st">'silhouette'</span>]</span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>improvement_pct <span class="op">=</span> ((enhanced_sil <span class="op">-</span> baseline_sil) <span class="op">/</span> baseline_sil) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Ablation Study Results ==="</span>)</span>
-<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Baseline Features (11 traditional features):"</span>)</span>
-<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Silhouette Score: </span><span class="sc">{</span>baseline_sil<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Balance Ratio: </span><span class="sc">{</span>baseline_info[<span class="st">'balance_ratio'</span>]<span class="sc">:.2f}</span><span class="ss">:1"</span>)</span>
-<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Enhanced Features (11 features with ad activity metrics):"</span>)</span>
-<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Silhouette Score: </span><span class="sc">{</span>enhanced_sil<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Balance Ratio: </span><span class="sc">{</span>enhanced_info[<span class="st">'balance_ratio'</span>]<span class="sc">:.2f}</span><span class="ss">:1"</span>)</span>
-<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== Improvement ==="</span>)</span>
-<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Silhouette Score Improvement: </span><span class="sc">{</span>improvement_pct<span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
-<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  (</span><span class="sc">{</span>enhanced_sil<span class="sc">:.4f}</span><span class="ss"> - </span><span class="sc">{</span>baseline_sil<span class="sc">:.4f}</span><span class="ss">) / </span><span class="sc">{</span>baseline_sil<span class="sc">:.4f}</span><span class="ss"> × 100% = </span><span class="sc">{</span>improvement_pct<span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
-<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Create comparison table</span></span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Metric'</span>: [<span class="st">'Silhouette Score'</span>, <span class="st">'Balance Ratio'</span>],</span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Baseline (11 traditional)'</span>: [</span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>baseline_info[<span class="st">'silhouette'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>,</span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>baseline_info[<span class="st">'balance_ratio'</span>]<span class="sc">:.2f}</span><span class="ss">:1"</span></span>
-<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Enhanced (11 with ad activity)'</span>: [</span>
-<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>enhanced_info[<span class="st">'silhouette'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>,</span>
-<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>enhanced_info[<span class="st">'balance_ratio'</span>]<span class="sc">:.2f}</span><span class="ss">:1"</span></span>
-<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Improvement'</span>: [</span>
-<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"+</span><span class="sc">{</span>improvement_pct<span class="sc">:.1f}</span><span class="ss">%"</span>,</span>
-<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>((baseline_info[<span class="st">'balance_ratio'</span>] <span class="op">-</span> enhanced_info[<span class="st">'balance_ratio'</span>]) <span class="op">/</span> baseline_info[<span class="st">'balance_ratio'</span>] <span class="op">*</span> <span class="dv">100</span>)<span class="sc">:.1f}</span><span class="ss">%"</span></span>
-<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Detailed Comparison Table ==="</span>)</span>
-<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparison_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Ablation Study: Enhanced vs Baseline Features ===
-Baseline features (11): ['sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean', 'search_spend_ratio_mean', 'social_spend_ratio_mean', 'ctr_clean_mean', 'unique_lead_count_mean', 'display_spend_ratio_mean', 'sales_sum']
-
-Enhanced features (11): ['sales_mean', 'total_ad_spend_mean', 'roas_mean', 'conversion_rate_mean', 'website_visits_mean', 'search_spend_ratio_mean', 'social_spend_ratio_mean', 'ad_months_active', 'ad_active_ratio', 'spent_any', 'avg_ad_spend_active_only']
-
-============================================================
-=== Ablation Study Results ===
-============================================================
-Baseline Features (11 traditional features):
-  Silhouette Score: 0.4374
-  Balance Ratio: 14.92:1
-
-Enhanced Features (11 features with ad activity metrics):
-  Silhouette Score: 0.5855
-  Balance Ratio: 1.75:1
-
-=== Improvement ===
-Silhouette Score Improvement: 33.9%
-  (0.5855 - 0.4374) / 0.4374 × 100% = 33.9%
-
-=== Detailed Comparison Table ===
-          Metric Baseline (11 traditional) Enhanced (11 with ad activity) Improvement
-Silhouette Score                    0.4374                         0.5855      +33.9%
-   Balance Ratio                   14.92:1                         1.75:1       88.3%</code></pre>
-</div>
-</div>
-</section>
-<section id="key-findings" class="level3">
-<h3 class="anchored" data-anchor-id="key-findings">6.2 Key Findings</h3>
-<p>The ablation study demonstrates that enhanced ad activity features significantly improve clustering performance:</p>
+<p>Classification rules were defined as:</p>
 <ul>
-<li><strong>Silhouette Score</strong>: 33.9% improvement (0.4374 → 0.5855)</li>
-<li><strong>Balance Ratio</strong>: 88.3% improvement (14.92:1 → 1.75:1)</li>
-<li><strong>Davies-Bouldin Index</strong>: 26.4% improvement (better separation)</li>
-<li><strong>Calinski-Harabasz Score</strong>: 292.4% improvement (better cluster separation)</li>
+<li><strong>Intermittent</strong>
+<ul>
+<li>Zero-share ≥ 0.5<br>
+</li>
+<li>ADI ≥ 1.5<br>
+</li>
+</ul></li>
+<li><strong>Seasonal</strong>
+<ul>
+<li>Seasonal strength ≥ 0.5 <strong>or</strong> ACF(12) ≥ 0.5<br>
+</li>
+</ul></li>
+<li><strong>Regular</strong>
+<ul>
+<li>All remaining series with low zeros and weak seasonality</li>
+</ul></li>
 </ul>
+<p>These diagnostics ensure that forecasting models are matched to the structural characteristics of each series, improving model stability and accuracy.</p>
+<div align="center">
+<img src="p1/zero_vs_adi.png" width="550">
+</div>
+<hr>
 </section>
-</section>
-<section id="evaluation-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="evaluation-metrics">7. Evaluation Metrics</h2>
-<section id="internal-validation-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="internal-validation-metrics">7.1 Internal Validation Metrics</h3>
-<p>We used three internal validation metrics to evaluate clustering quality:</p>
-<ol type="1">
-<li><strong>Silhouette Score</strong>: Measures cluster cohesion and separation (higher is better, range: -1 to 1)
+<section id="model-selection-strategy" class="level1">
+<h1>3. Model Selection Strategy</h1>
+<p>Because demand patterns differ in structure and sparsity, each pattern is paired with a different model family.</p>
+<section id="intermittent-demand" class="level2">
+<h2 class="anchored" data-anchor-id="intermittent-demand">3.1 Intermittent Demand</h2>
+<p>Intermittent series exhibit long zero stretches and isolated spikes, making conventional autoregressive models unsuitable. For these series, we apply:</p>
 <ul>
-<li>Target: ≥ 0.40</li>
-<li>Final result: 0.586</li>
-</ul></li>
-<li><strong>Davies-Bouldin Index</strong>: Measures average similarity ratio (lower is better)
+<li><strong>Croston’s Method</strong><br>
+</li>
+<li>SARIMA as a weak benchmark, primarily to illustrate poor performance</li>
+</ul>
+<p>These models explicitly separate the probability of demand occurrence from expected demand size, which has been shown to yield superior accuracy in zero-inflated environments.</p>
+</section>
+<section id="regular-demand" class="level2">
+<h2 class="anchored" data-anchor-id="regular-demand">3.2 Regular Demand</h2>
+<p>Regular series show stable, low-variance month-to-month sales without strong seasonal cycles. These characteristics align well with classical time-series models. Therefore:</p>
 <ul>
-<li>Final result: 0.706</li>
-</ul></li>
-<li><strong>Calinski-Harabasz Score</strong>: Ratio of between-cluster to within-cluster variance (higher is better)
+<li><strong>SARIMA</strong> is used as the primary estimator</li>
+</ul>
+<p>Its autoregressive and moving-average terms effectively capture the smooth temporal structure that characterizes these series.</p>
+</section>
+<section id="seasonal-demand" class="level2">
+<h2 class="anchored" data-anchor-id="seasonal-demand">3.3 Seasonal Demand</h2>
+<p>Seasonal series exhibit recurring demand peaks. These are modeled using:</p>
 <ul>
-<li>Final result: 4919.6</li>
-</ul></li>
-</ol>
-</section>
-<section id="cluster-balance" class="level3">
-<h3 class="anchored" data-anchor-id="cluster-balance">7.2 Cluster Balance</h3>
-<p><strong>Balance Ratio</strong>: Ratio of largest to smallest cluster size (lower is better) - Target: ≤ 3.0 - Final result: 1.75:1 - Cluster sizes: {0: 621, 1: 1085, 2: 646}</p>
-</section>
-<section id="stability-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="stability-metrics">7.3 Stability Metrics</h3>
-<p><strong>Adjusted Rand Index (ARI)</strong>: Measures agreement between clusterings (range: -1 to 1, 1 = perfect agreement) - Bootstrap mean: 1.0 (perfect stability)</p>
-<p><strong>Normalized Mutual Information (NMI)</strong>: Measures mutual information between clusterings (range: 0 to 1, 1 = perfect agreement) - Bootstrap mean: 1.0 (perfect stability)</p>
+<li><strong>Seasonal SARIMA</strong>, and<br>
+</li>
+<li><strong>Prophet</strong>, a decompositional model with flexible trend and seasonality</li>
+</ul>
+<p>Prophet is included because it handles incomplete seasonal cycles more robustly than SARIMA, although its performance depends on the presence of multiple seasonal periods.</p>
+<div align="center">
+<img src="p1/model_availability_clean.png" width="650">
+</div>
+<p>It shows which models were applicable to each demand pattern. Croston was valid only for intermittent demand, SARIMA was usable across all patterns, and Prophet ran successfully only for seasonal series. Machine learning and other time-series models were excluded because the data lacked sufficient length or structure. This confirms that a pattern-specific modeling strategy is required.</p>
+<hr>
 </section>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">8. Summary</h2>
-<section id="method-selection-summary" class="level3">
-<h3 class="anchored" data-anchor-id="method-selection-summary">8.1 Method Selection Summary</h3>
-<p>The final clustering method <strong>ISO_QT_PCA95_KMeans_k3</strong> was selected based on:</p>
-<ol type="1">
-<li><strong>Performance</strong>: Silhouette score of 0.586 (exceeds target of 0.40)</li>
-<li><strong>Balance</strong>: Balance ratio of 1.75:1 (meets target of ≤ 3.0)</li>
-<li><strong>Stability</strong>: Perfect ARI and NMI scores (1.0) in bootstrap analysis</li>
-<li><strong>Interpretability</strong>: Clear business meaning for each cluster</li>
-<li><strong>Robustness</strong>: Consistent performance across subsamples</li>
-</ol>
+<section id="forecasting-pipeline" class="level1">
+<h1>4. Forecasting Pipeline</h1>
+<p>All store–item time series follow a unified five-stage forecasting workflow:</p>
+<p><strong>1. Data Aggregation</strong><br>
+Monthly units are computed for every store–item combination.</p>
+<p><strong>2. Feature Extraction</strong><br>
+Diagnostic indicators (zero-share, ADI, ACF12, seasonal strength, CV) are computed.</p>
+<p><strong>3. Pattern Assignment</strong><br>
+Each series is labeled intermittent, regular, or seasonal using the rules described above.</p>
+<p><strong>4. Model Application</strong><br>
+Models are assigned based on pattern classification. Hyperparameters are kept consistent across series to avoid overfitting short horizons.</p>
+<p><strong>5. Accuracy Evaluation</strong><br>
+Accuracy is computed using six complementary metrics to ensure robustness across sparse and non-sparse structures.</p>
+<div align="center">
+<img src="p1/mape_comparison_bar.png" width="650">
+</div>
+<p>It compares the average MAPE for each model within each demand pattern. Croston performs best for intermittent demand, SARIMA consistently delivers the lowest error for regular demand, and SARIMA also outperforms Prophet for seasonal demand. These differences confirm that no single model performs well across all patterns, motivating the use of pattern-specific forecasting models.</p>
+<hr>
 </section>
-<section id="key-contributions" class="level3">
-<h3 class="anchored" data-anchor-id="key-contributions">8.2 Key Contributions</h3>
-<ol type="1">
-<li><strong>Enhanced Features</strong>: Ad activity metrics significantly improve clustering performance (33.9% improvement in silhouette score)</li>
-<li><strong>Robust Preprocessing</strong>: IsolationForest + QuantileTransformer + PCA pipeline handles outliers and non-normal distributions effectively</li>
-<li><strong>Stable Clustering</strong>: KMeans with k=3 provides stable, interpretable clusters that meet business requirements</li>
-<li><strong>Comprehensive Evaluation</strong>: Multiple metrics and robustness analyses validate the chosen method</li>
-</ol>
+<section id="evaluation-metrics" class="level1">
+<h1>5. Evaluation Metrics</h1>
+<p>Forecast accuracy is evaluated using six standard measures that capture both scale-dependent and relative error characteristics:</p>
+<ul>
+<li><strong>MAE</strong> – Mean Absolute Error<br>
+</li>
+<li><strong>RMSE</strong> – Root Mean Square Error<br>
+</li>
+<li><strong>MAPE</strong> – Mean Absolute Percentage Error<br>
+</li>
+<li><strong>sMAPE</strong> – Symmetric MAPE (robust to low volumes)<br>
+</li>
+<li><strong>MASE</strong> – Mean Absolute Scaled Error (scale-free benchmark)<br>
+</li>
+<li><strong>Bias</strong> – Mean Forecast Error (systematic under- or over-prediction)</li>
+</ul>
+<p>Using multiple metrics ensures that conclusions do not rely on a single error measure, which is essential for sparse-demand forecasting where percentage metrics can behave erratically.</p>
+<hr>
 </section>
-<section id="reproducibility" class="level3">
-<h3 class="anchored" data-anchor-id="reproducibility">8.3 Reproducibility</h3>
-<p>All analyses use fixed random seeds (random_state=42) for reproducibility. The complete pipeline and parameters are documented and saved for future reference.</p>
-<p><strong>Final Pipeline Parameters:</strong> - IsolationForest contamination: 0.08 - QuantileTransformer distribution: ‘normal’ - PCA variance threshold: 0.95 - KMeans clusters: 3 - KMeans n_init: 100 - KMeans max_iter: 1000 - Random state: 42</p>
+<section id="summary" class="level1">
+<h1>6. Summary</h1>
+<p>The methodological framework combines pattern classification with model specialization, ensuring that each series receives a forecasting model aligned with its structural behavior. This design directly addresses the challenges posed by sparse, low-volume, and short seasonal time series, and provides a principled foundation for evaluating performance differences across business types.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1201,6 +370,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1311,6 +482,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

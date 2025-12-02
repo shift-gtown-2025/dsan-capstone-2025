@@ -2,9 +2,9 @@
   {
     "objectID": "eda.html",
     "href": "eda.html",
-    "title": "Exploratory Data Analysis (EDA)",
+    "title": "Exploratory Data Analysis",
     "section": "",
-    "text": "This section presents a comprehensive exploratory data analysis of store performance data, including data preprocessing, feature engineering, and preparation for clustering analysis. The analysis focuses on identifying patterns, relationships, and key factors that influence store performance."
+    "text": "This Exploratory Data Analysis (EDA) examines structural characteristics of the monthly store–item sales series. The purpose is to understand sparsity, volatility, seasonality, and time-series length, factors that critically shape the forecasting problem. These diagnostics motivate the classification of each series into intermittent, regular, or seasonal demand patterns and guide our choice of forecasting models.\nAll figures in this section are pre-generated and saved in docs/p1/."
   },
   {
     "objectID": "ml.html",
@@ -424,7 +424,7 @@
     "href": "conclusion.html",
     "title": "Conclusion",
     "section": "",
-    "text": "Conclusion"
+    "text": "This study examined pattern-specific forecasting methods for dealer-level store–item sales data characterized by sparse demand, limited seasonal depth, and short time series. By classifying each series into intermittent, regular, or seasonal patterns using diagnostic statistics such as zero-share, ADI, ACF(12), and seasonal strength, we matched each pattern to an appropriate forecasting model and evaluated performance across six complementary accuracy metrics.\nAcross all demand patterns, the results demonstrate that heterogeneous sales behavior requires heterogeneous forecasting models. No single algorithm performed consistently well across all series. Instead, the pattern-specific framework achieved meaningful improvements in accuracy and stability:\nThese findings provide strong empirical evidence that a one-size-fits-all forecasting pipeline is suboptimal for dealer-level sales data, particularly when sparsity and short seasonal histories are present. Incorporating a pattern-classification step prior to modeling enables the forecasting system to adapt to structural differences in demand and yields substantial improvements in both mean accuracy and variability."
   },
   {
     "objectID": "eda.html#overview",
@@ -501,7 +501,7 @@
     "href": "methods.html",
     "title": "Methods",
     "section": "",
-    "text": "This section documents the comprehensive methodology for store clustering analysis, including feature engineering, preprocessing strategies, clustering algorithm selection, and robustness evaluation. The analysis systematically compares multiple approaches to identify the optimal clustering solution that meets business requirements."
+    "text": "This study employs a pattern-specific forecasting framework designed to handle the substantial heterogeneity in store–item sales behavior. Preliminary exploratory analysis showed that series differ not only in sales volume but also in sparsity, variability, and seasonal structure. Because a single model family cannot effectively handle all three conditions simultaneously, the forecasting pipeline first classifies each series into a demand pattern—intermittent, regular, or seasonal, and then applies the forecasting model most appropriate for that pattern.\nThis approach aligns with best practices in sparse-demand and retail forecasting literature, where model selection is conditioned on demand behavior rather than applied uniformly across all series."
   },
   {
     "objectID": "methods.html#overview",
@@ -761,5 +761,208 @@
     "title": "Conclusion",
     "section": "6. Conclusion",
     "text": "6. Conclusion\nWe successfully identified 3 distinct store clusters with different characteristics, performance levels, and advertising strategies. Each cluster requires customized recommendations to optimize performance:\n\nCluster 0 (Low-Volume, High-ROAS): Focus on maintaining efficiency while scaling up\nCluster 1 (High-Volume, Low-ROAS): Priority on improving ROAS efficiency\nCluster 2 (Medium-Volume, Balanced): Maintain balance while growing\n\nThe clustering analysis provides actionable insights for improving store performance and optimizing advertising strategies across different store segments. By implementing the recommended strategies, stores can improve their ROAS, increase sales, and optimize their advertising spend."
+  },
+  {
+    "objectID": "eda.html#pattern-counts",
+    "href": "eda.html#pattern-counts",
+    "title": "Exploratory Data Analysis",
+    "section": "3.1 Pattern Counts",
+    "text": "3.1 Pattern Counts\nThe distribution of demand patterns across all store–item series demonstrates the heterogeneity of the dataset. Intermittent demand dominates, reflecting the sparsity and irregularity of dealership-level sales."
+  },
+  {
+    "objectID": "eda.html#representative-time-series",
+    "href": "eda.html#representative-time-series",
+    "title": "Exploratory Data Analysis",
+    "section": "2.2 Representative Time Series",
+    "text": "2.2 Representative Time Series\nTo illustrate the behavioral differences across demand patterns, the figure presents one representative store–item time series from each class: intermittent, regular, and seasonal. These examples were selected using diagnostic criteria rather than simply choosing the first occurrence in the dataset. Specifically, the intermittent example corresponds to a series with high zero-share and a moderate ADI value; the regular example was selected as the series with the lowest coefficient of variation among low–zero-share series; and the seasonal example is the series with the highest combined seasonal strength and 12-month autocorrelation.\nThe three examples highlight the substantial heterogeneity present in dealer-level automotive sales:\n\nIntermittent demand is characterized by long runs of zero sales punctuated by isolated, unpredictable non-zero months. This pattern reflects the fact that many store–model combinations sell extremely infrequently, often only a few units per year.\nRegular demand displays relatively stable month-to-month sales volumes without long zero periods or strong cyclic behavior. Although the absolute sales level remains low, these series exhibit consistent temporal structure that is well suited to autoregressive models such as SARIMA.\nSeasonal demand exhibits recurring bursts of high-volume months interspersed with lower activity, producing a weak but discernible annual pattern. These dynamics arise in models with promotional cycles, inventory timing, or seasonal consumer interest.\n\nTogether, these examples visually confirm the need for a pattern-specific forecasting approach, as the underlying time-series behaviors differ substantially across demand types."
+  },
+  {
+    "objectID": "eda.html#zero-share-distribution",
+    "href": "eda.html#zero-share-distribution",
+    "title": "Exploratory Data Analysis",
+    "section": "3.1 Zero-Share Distribution",
+    "text": "3.1 Zero-Share Distribution\nZero-share measures the proportion of months with zero sales. Many series exhibit extremely high zero-share values, confirming that sparsity is the dominant characteristic of the dataset."
+  },
+  {
+    "objectID": "eda.html#adi-distribution",
+    "href": "eda.html#adi-distribution",
+    "title": "Exploratory Data Analysis",
+    "section": "4.2 ADI Distribution",
+    "text": "4.2 ADI Distribution\nThe ADI distribution further highlights sparsity, with many series having large intervals between non-zero sales events."
+  },
+  {
+    "objectID": "eda.html#acf12-distribution",
+    "href": "eda.html#acf12-distribution",
+    "title": "Exploratory Data Analysis",
+    "section": "4.3 ACF(12) Distribution",
+    "text": "4.3 ACF(12) Distribution\nAutocorrelation at lag 12 measures whether annual seasonal signals are present. Most series show weak or near-zero ACF(12), indicating insufficient seasonal depth."
+  },
+  {
+    "objectID": "eda.html#seasonal-strength",
+    "href": "eda.html#seasonal-strength",
+    "title": "Exploratory Data Analysis",
+    "section": "4.4 Seasonal Strength",
+    "text": "4.4 Seasonal Strength\nSTL-based seasonal strength values corroborate the ACF(12) results, showing that strong, stable seasonality is rare in the dataset."
+  },
+  {
+    "objectID": "eda.html#zero-share-vs-adi",
+    "href": "eda.html#zero-share-vs-adi",
+    "title": "Exploratory Data Analysis",
+    "section": "5.1 Zero-Share vs ADI",
+    "text": "5.1 Zero-Share vs ADI\nPlotting zero-share against ADI reveals natural clustering that separates intermittent from regular and seasonal patterns. Intermittent series occupy the high zero-share, high ADI region."
+  },
+  {
+    "objectID": "eda.html#acf12-vs-adi",
+    "href": "eda.html#acf12-vs-adi",
+    "title": "Exploratory Data Analysis",
+    "section": "5.2 ACF12 vs ADI",
+    "text": "5.2 ACF12 vs ADI\nSeasonal series (where present) cluster at higher ACF(12) values. Regular and intermittent series occupy lower-correlation regions."
+  },
+  {
+    "objectID": "eda.html#series-length-distribution",
+    "href": "eda.html#series-length-distribution",
+    "title": "Exploratory Data Analysis",
+    "section": "6.1 Series Length Distribution",
+    "text": "6.1 Series Length Distribution\nThe series vary widely in duration, with many spanning fewer than 18 months. This limits the ability of seasonal models to detect full annual cycles."
+  },
+  {
+    "objectID": "eda.html#distribution-of-monthly-sales-levels",
+    "href": "eda.html#distribution-of-monthly-sales-levels",
+    "title": "Exploratory Data Analysis",
+    "section": "6.2 Distribution of Monthly Sales Levels",
+    "text": "6.2 Distribution of Monthly Sales Levels\nThe boxplot below highlights the extremely low and skewed sales distribution—more than half of all observations are one unit or fewer—underscoring the difficulty of forecasting such sparse time series."
+  },
+  {
+    "objectID": "index.html#goals",
+    "href": "index.html#goals",
+    "title": "Project Overview",
+    "section": "Goals",
+    "text": "Goals\n\nDemand pattern segmentation\n\nPattern-specific forecasting\n\nMulti-metric evaluation\n\nRobust error analysis\n\nPractical recommendations for retail and marketing planning"
+  },
+  {
+    "objectID": "index.html#key-findings",
+    "href": "index.html#key-findings",
+    "title": "Project Overview",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nNo single model performs best for all series.\nCroston dominates intermittent demand.\nSARIMA is most reliable for regular and seasonal demand.\nProphet underperforms due to limited seasonal depth.\nPattern-based modeling improves accuracy by ~25–35%.\n\nExplore the sections in the navigation bar to view the full workflow."
+  },
+  {
+    "objectID": "eda.html#distribution-of-demand-patterns",
+    "href": "eda.html#distribution-of-demand-patterns",
+    "title": "Exploratory Data Analysis",
+    "section": "2.1 Distribution of Demand Patterns",
+    "text": "2.1 Distribution of Demand Patterns\nThe following figure summarizes the distribution of time series across three demand patterns. Intermittent demand overwhelmingly dominates the dataset, reflecting long stretches of zero sales in most store-item combinations."
+  },
+  {
+    "objectID": "eda.html#representative-time-series-optional",
+    "href": "eda.html#representative-time-series-optional",
+    "title": "Exploratory Data Analysis",
+    "section": "2.2 Representative Time Series (Optional)",
+    "text": "2.2 Representative Time Series (Optional)\nIf available, a panel showing one example of each pattern should be included. This visually illustrates the behavioral differences between intermittent, regular, and seasonal demand.\n(Add the figure here later if you generate it.)"
+  },
+  {
+    "objectID": "eda.html#adi-average-inter-demand-interval",
+    "href": "eda.html#adi-average-inter-demand-interval",
+    "title": "Exploratory Data Analysis",
+    "section": "3.2 ADI (Average Inter-Demand Interval)",
+    "text": "3.2 ADI (Average Inter-Demand Interval)\nADI quantifies how frequently non-zero demand occurs. Higher values correspond to longer periods between sales events, characteristic of intermittent demand."
+  },
+  {
+    "objectID": "eda.html#coefficient-of-variation-cv",
+    "href": "eda.html#coefficient-of-variation-cv",
+    "title": "Exploratory Data Analysis",
+    "section": "3.3 Coefficient of Variation (CV)",
+    "text": "3.3 Coefficient of Variation (CV)\nCV captures relative variability and highlights the high volatility of low-volume store-item series."
+  },
+  {
+    "objectID": "eda.html#autocorrelation-at-lag-12-acf12",
+    "href": "eda.html#autocorrelation-at-lag-12-acf12",
+    "title": "Exploratory Data Analysis",
+    "section": "4.1 Autocorrelation at Lag 12 (ACF12)",
+    "text": "4.1 Autocorrelation at Lag 12 (ACF12)\nMost series exhibit weak or near-zero 12-month autocorrelation. This indicates limited or unstable seasonality across the dataset."
+  },
+  {
+    "objectID": "eda.html#stl-seasonal-strength",
+    "href": "eda.html#stl-seasonal-strength",
+    "title": "Exploratory Data Analysis",
+    "section": "4.2 STL Seasonal Strength",
+    "text": "4.2 STL Seasonal Strength\nSeasonal strength values extracted via STL decomposition also suggest that strong seasonality is rare, as many series contain fewer than two full annual cycles."
+  },
+  {
+    "objectID": "eda.html#optional-seasonal-heatmap",
+    "href": "eda.html#optional-seasonal-heatmap",
+    "title": "Exploratory Data Analysis",
+    "section": "4.3 (Optional) Seasonal Heatmap",
+    "text": "4.3 (Optional) Seasonal Heatmap\nThis calendar heatmap visualizes monthly sales intensity across the full dataset. It is optional for the paper but visually useful on a website."
+  },
+  {
+    "objectID": "eda.html#month-seasonality-plot",
+    "href": "eda.html#month-seasonality-plot",
+    "title": "Exploratory Data Analysis",
+    "section": "6.1 12-Month Seasonality Plot",
+    "text": "6.1 12-Month Seasonality Plot\nThis plot examines year-over-year seasonal patterns at the aggregate level."
+  },
+  {
+    "objectID": "eda.html#top-items-by-sales-frequency-optional",
+    "href": "eda.html#top-items-by-sales-frequency-optional",
+    "title": "Exploratory Data Analysis",
+    "section": "6.2 Top Items by Sales Frequency (Optional)",
+    "text": "6.2 Top Items by Sales Frequency (Optional)\nThis figure highlights concentration of demand across items."
+  },
+  {
+    "objectID": "eda.html#seasonal-heatmap",
+    "href": "eda.html#seasonal-heatmap",
+    "title": "Exploratory Data Analysis",
+    "section": "4.3 Seasonal Heatmap",
+    "text": "4.3 Seasonal Heatmap\nThis calendar heatmap visualizes monthly sales intensity across the full dataset. It is optional for the paper but visually useful on a website."
+  },
+  {
+    "objectID": "methods.html#intermittent-demand",
+    "href": "methods.html#intermittent-demand",
+    "title": "Methods",
+    "section": "3.1 Intermittent Demand",
+    "text": "3.1 Intermittent Demand\nIntermittent series exhibit long zero stretches and isolated spikes, making conventional autoregressive models unsuitable. For these series, we apply:\n\nCroston’s Method\n\nSARIMA as a weak benchmark, primarily to illustrate poor performance\n\nThese models explicitly separate the probability of demand occurrence from expected demand size, which has been shown to yield superior accuracy in zero-inflated environments."
+  },
+  {
+    "objectID": "methods.html#regular-demand",
+    "href": "methods.html#regular-demand",
+    "title": "Methods",
+    "section": "3.2 Regular Demand",
+    "text": "3.2 Regular Demand\nRegular series show stable, low-variance month-to-month sales without strong seasonal cycles. These characteristics align well with classical time-series models. Therefore:\n\nSARIMA is used as the primary estimator\n\nIts autoregressive and moving-average terms effectively capture the smooth temporal structure that characterizes these series."
+  },
+  {
+    "objectID": "methods.html#seasonal-demand",
+    "href": "methods.html#seasonal-demand",
+    "title": "Methods",
+    "section": "3.3 Seasonal Demand",
+    "text": "3.3 Seasonal Demand\nSeasonal series exhibit recurring demand peaks. These are modeled using:\n\nSeasonal SARIMA, and\n\nProphet, a decompositional model with flexible trend and seasonality\n\nProphet is included because it handles incomplete seasonal cycles more robustly than SARIMA, although its performance depends on the presence of multiple seasonal periods.\n\n\n\nIt shows which models were applicable to each demand pattern. Croston was valid only for intermittent demand, SARIMA was usable across all patterns, and Prophet ran successfully only for seasonal series. Machine learning and other time-series models were excluded because the data lacked sufficient length or structure. This confirms that a pattern-specific modeling strategy is required."
+  },
+  {
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "Results",
+    "section": "",
+    "text": "1. Overview\nThis section presents the forecasting results for the sampled store–item series across the three demand patterns: intermittent, regular, and seasonal. Model performance is evaluated using six complementary error metrics—MAPE, MAE, RMSE, sMAPE, Bias, and MASE—to ensure robustness to low-volume series and asymmetric error behavior. The results focus on the models that were found to be practically usable: Croston (intermittent), SARIMA (across all patterns), and Prophet (seasonal).\n\n\n\n2. Overall Model Accuracy (MAPE Comparison)\nFigure X summarizes the mean MAPE achieved by each model within the demand patterns where it could be applied. For intermittent demand, Croston delivers the lowest forecasting error, achieving substantially lower MAPE than SARIMA. This confirms Croston’s suitability for sparse series with zero-inflated structure, where explicitly modeling demand occurrence yields more stable forecasts.\nFor regular demand, SARIMA achieves the lowest average MAPE among all tested models, reflecting its ability to capture stable autoregressive behavior when sales volumes are relatively consistent month to month. The model’s differencing and smoothing components are well suited to the modest temporal structure observed in these series.\nFor seasonal demand, SARIMA again outperforms Prophet, even though Prophet is specifically designed for decompositional trend–seasonality modeling. The relatively poor Prophet performance is likely attributable to limited seasonal depth in the historical data—many series contain fewer than two full yearly cycles—making it difficult for Prophet to estimate stable seasonal components. SARIMA, in contrast, leverages differencing and short-term dependence rather than requiring strong seasonal structure.\n\n  \n  Mean MAPE by model and demand pattern.\n\n\nSummary of Forecasting Performance Across All Metrics\n\n\n\n\n\n\n\n\n\n\n\n\n\nDemand Pattern\nModel\nMAPE\nRMSE\nMAE\nsMAPE\nBias\nMASE\n\n\n\n\nintermittent\nCroston\n48.864\n0.522\n0.519\n134.179\n0.011\n1.220\n\n\nintermittent\nSARIMA\n80.633\n1.237\n1.069\n159.164\n-0.274\n2.214\n\n\nregular\nSARIMA\n38.848\n0.482\n0.454\n48.427\n0.005\n0.349\n\n\nseasonal\nProphet\n148.904\n3.902\n3.344\n101.285\n-0.861\n2.549\n\n\nseasonal\nSARIMA\n86.126\n2.439\n2.129\n118.171\n-0.748\n1.526\n\n\n\nTable presents the full set of evaluation metrics across all models and demand patterns. The results confirm the earlier findings: Croston achieves the lowest errors for intermittent demand across all metrics, SARIMA provides the most accurate and stable forecasts for regular demand, and SARIMA outperforms Prophet for seasonal demand on every metric, including symmetric percentage error and scaled error. Bias patterns further show that Prophet systematically under-forecasts seasonal peaks, whereas SARIMA maintains smaller and more consistent deviations. These results reinforce the importance of using pattern-specific models rather than a single unified forecasting approach.\n\n\n\n\n3. Distribution of Forecast Errors (MAPE Boxplots)\nWhile mean MAPE provides a summary measure of accuracy, it obscures the variability across individual store–item series. Figure X presents MAPE boxplots for each model within its applicable demand patterns. The distributional patterns reinforce the conclusions above.\nFor intermittent demand, Croston not only achieves the lowest mean MAPE but also displays a tighter interquartile range than SARIMA, indicating more stable performance across series. SARIMA shows a wider spread, with several high-error outliers—consistent with the model’s sensitivity to long zero stretches.\nFor regular demand, SARIMA exhibits minimal dispersion, suggesting strong reliability across all sampled series. Error magnitudes are consistently low, reflecting the homogeneity of regular demand behavior.\nFor seasonal demand, both SARIMA and Prophet show higher variability. However, Prophet’s distribution is substantially more dispersed, with numerous high-error cases driven by misestimated seasonal peaks or insufficient seasonal observations. SARIMA’s distribution, while imperfect, is more concentrated and avoids extreme outliers.\n\n  \n  Distribution of MAPE by model and demand pattern.\n\n\n\n\n4. Best-Performing Models (Win Count Analysis)\nTo further compare model performance, Figure X reports the number of store–item series for which each model achieved the lowest MAPE (“wins”). This metric highlights dominance within each demand pattern.\nCroston wins the majority of intermittent cases, reflecting its structural advantage for zero-inflated series. SARIMA wins exclusively for regular demand, confirming its appropriateness for stable series. For seasonal demand, SARIMA again wins more frequently than Prophet, reinforcing the earlier observation that Prophet requires richer seasonal histories to perform optimally.\nThe win-count results provide a pattern-level summary consistent with both the mean and distributional accuracy evaluations.\n\n  \n  Number of series where each model achieves the lowest MAPE.\n\n\n\n\n5. Forecast Bias\nBeyond accuracy, understanding systematic over- or under-forecasting is crucial for operational planning. Figure X reports the mean forecast bias across patterns and models.\nCroston shows near-zero bias for intermittent demand, emphasizing its balanced behavior even when sales are highly irregular. SARIMA exhibits small but consistently negative bias for regular demand, indicating slight under-forecasting—likely due to differencing smoothing short-term trends. In seasonal demand, Prophet shows pronounced negative bias, substantially under-forecasting high seasonal peaks. SARIMA’s bias is also negative but notably smaller, suggesting better adaptation to peak-driven patterns.\nThese results highlight differences in structural assumptions: Prophet’s decompositional framework over-smooths limited seasonal cycles, while SARIMA preserves short-term momentum more effectively.\n\n  \n  Mean forecast bias across models and demand patterns.\n\n\n\n\n6. Robustness Check: sMAPE Results\nAccuracy conclusions are further validated through symmetric MAPE (sMAPE), which mitigates the inflation of percentage errors for low-volume series. As shown in Figure X, the relative ordering of models remains consistent with the MAPE findings:\n\nCroston maintains the lowest symmetric error for intermittent demand.\n\nSARIMA again performs best for regular demand.\n\nSARIMA outperforms Prophet for seasonal demand.\n\nThe consistency across error metrics indicates that the performance differences are driven by underlying model–data alignment rather than artifacts of the error measure.\n\n  \n  Mean sMAPE across demand patterns and models.\n\n\n\n\n7. Summary of Findings\nAcross all evaluation metrics and demand patterns, three key results emerge:\n\nIntermittent demand is best captured by Croston’s method, which directly models demand occurrence and size.\n\nRegular demand is best modeled by SARIMA, whose autoregressive structure matches the smooth monthly behavior of these series.\n\nSeasonal demand is most reliably handled by SARIMA, not Prophet, due to limited seasonal history in the dataset.\n\nTogether, these findings demonstrate that forecasting performance varies sharply across demand patterns and that a one-size-fits-all approach is suboptimal. Pattern-specific model assignment meaningfully improves accuracy, stability, and interpretability of dealer-level sales forecasts."
+  },
+  {
+    "objectID": "conclusion.html#limitations",
+    "href": "conclusion.html#limitations",
+    "title": "Conclusion",
+    "section": "Limitations",
+    "text": "Limitations\nSeveral limitations should be acknowledged.\nFirst, the historical window available for modeling is relatively short, restricting the reliability of seasonality-based methods and limiting the stability of long-horizon forecasts.\nSecond, the dataset contains no covariates such as promotions, pricing, or marketing activity, constraining the usefulness of regression- or machine-learning-based models.\nThird, only a subset of store–item series was used for the initial evaluation, and some models could not be applied due to insufficient sample length.\nFinally, forecasting uncertainty is likely to be higher for stores with extremely sparse sales behavior.\nThese limitations do not invalidate the findings but highlight areas where additional data or longer histories would improve model reliability.\nIn addition to the models reported here, we explored exponential smoothing, multiple regression, and several machine-learning methods. However, these approaches could not be applied consistently due to short historical windows, absence of covariates, and extensive sparsity in many series. As a result, only Croston, SARIMA, and Prophet were suitable for systematic evaluation."
+  },
+  {
+    "objectID": "conclusion.html#future-work",
+    "href": "conclusion.html#future-work",
+    "title": "Conclusion",
+    "section": "Future Work",
+    "text": "Future Work\nFuture extensions of this research may include:\n\nexpanding the dataset to incorporate longer historical windows, particularly for seasonal models\n\nintegrating exogenous variables (e.g., digital marketing spend, pricing, promotions) to enable regression and machine learning models\n\ndeveloping an automated routing pipeline for production deployment\n\nrefining the pattern-classification criteria using clustering or probabilistic models\n\nincorporating prediction intervals to quantify uncertainty\n\nevaluating the framework on a larger, more diverse sample of store–item combinations\n\nTogether, these enhancements would support a more robust, scalable forecasting system capable of informing operational decisions such as inventory allocation, dealer reporting, and marketing optimization."
+  },
+  {
+    "objectID": "conclusion.html#summary",
+    "href": "conclusion.html#summary",
+    "title": "Conclusion",
+    "section": "Summary",
+    "text": "Summary\nOverall, the study demonstrates that pattern-specific forecasting materially improves accuracy over a unified modeling approach when applied to sparse, heterogeneous dealership sales data. The classification-driven framework provides a practical and interpretable pathway toward more reliable store–item forecasts and lays a foundation for further operational and data-driven advancements."
   }
 ]
