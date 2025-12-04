@@ -8,7 +8,7 @@ format:
 
 # 1. Overview
 
-This study employs a pattern-specific forecasting framework designed to handle the substantial heterogeneity in store–item sales behavior. Preliminary exploratory analysis showed that series differ not only in sales volume but also in sparsity, variability, and seasonal structure. Because a single model family cannot effectively handle all three conditions simultaneously, the forecasting pipeline first classifies each series into a demand pattern—intermittent, regular, or seasonal, and then applies the forecasting model most appropriate for that pattern.
+This study employs a pattern-specific forecasting framework designed to handle the substantial heterogeneity in store–item sales behavior. Preliminary exploratory analysis showed that series differ not only in sales volume but also in sparsity, variability, and seasonal structure. Because a single model family cannot effectively handle all three conditions simultaneously, the forecasting pipeline first classifies each series into a demand pattern from intermittent, regular, or seasonal, and then applies the forecasting model most appropriate for that pattern.
 
 This approach aligns with best practices in sparse-demand and retail forecasting literature, where model selection is conditioned on demand behavior rather than applied uniformly across all series.
 

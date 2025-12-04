@@ -8,17 +8,47 @@ format:
 
 # 1. Overview
 
-This section presents the forecasting results for the sampled store–item series across the three demand patterns: intermittent, regular, and seasonal. Model performance is evaluated using six complementary error metrics—MAPE, MAE, RMSE, sMAPE, Bias, and MASE—to ensure robustness to low-volume series and asymmetric error behavior. The results focus on the models that were found to be practically usable: Croston (intermittent), SARIMA (across all patterns), and Prophet (seasonal).
+This section presents the forecasting results for the sampled store–item series across the three demand patterns: intermittent, regular, and seasonal. Model performance is evaluated using six complementary error metrics MAPE, MAE, RMSE, sMAPE, Bias, and MASE to ensure robustness to low-volume series and asymmetric error behavior. The results focus on the models that were found to be practically usable: Croston (intermittent), SARIMA (across all patterns), and Prophet (seasonal).
 
+
+## Universal SARIMA vs. Pattern-Specific Forecasting
+
+To evaluate whether pattern-specific routing provides measurable benefits over a
+single universal model, we compared our proposed framework against a baseline
+SARIMA model applied to all series. Results show consistent improvements across
+all major forecasting metrics.
+
+### Summary Table
+
+| Metric   | Universal SARIMA | Pattern-Specific Routing | % Improvement |
+|----------|------------------|---------------------------|--------------:|
+| MAPE     | 76.415           | 57.946                    | 24.2%         |
+| RMSE     | 1.712            | 1.148                     | 33.0%         |
+| MAE      | 1.496            | 1.034                     | 30.9%         |
+| sMAPE    | 120.211          | 100.259                   | 16.6%         |
+| Bias     | -0.464           | -0.244                    | 47.5%         |
+| MASE     | 1.559            | 1.032                     | 33.8%         |
+
+### Visual Comparison
+
+```{=html}
+<div align="center">
+<img src="p1/pattern_specific_vs_universal.png" width="650">
+<p style="font-size: 0.9em; color: #555;">
+Figure: Direct comparison of forecasting accuracy between a universal SARIMA baseline
+and the proposed pattern-specific routing. Lower values indicate better performance.
+</p>
+</div>
+```
 ---
 
 # 2. Overall Model Accuracy (MAPE Comparison)
 
-Figure X summarizes the mean MAPE achieved by each model within the demand patterns where it could be applied. For intermittent demand, Croston delivers the lowest forecasting error, achieving substantially lower MAPE than SARIMA. This confirms Croston’s suitability for sparse series with zero-inflated structure, where explicitly modeling demand occurrence yields more stable forecasts.
+Figure summarizes the mean MAPE achieved by each model within the demand patterns where it could be applied. For intermittent demand, Croston delivers the lowest forecasting error, achieving substantially lower MAPE than SARIMA. This confirms Croston’s suitability for sparse series with zero-inflated structure, where explicitly modeling demand occurrence yields more stable forecasts.
 
 For regular demand, SARIMA achieves the lowest average MAPE among all tested models, reflecting its ability to capture stable autoregressive behavior when sales volumes are relatively consistent month to month. The model’s differencing and smoothing components are well suited to the modest temporal structure observed in these series.
 
-For seasonal demand, SARIMA again outperforms Prophet, even though Prophet is specifically designed for decompositional trend–seasonality modeling. The relatively poor Prophet performance is likely attributable to limited seasonal depth in the historical data—many series contain fewer than two full yearly cycles—making it difficult for Prophet to estimate stable seasonal components. SARIMA, in contrast, leverages differencing and short-term dependence rather than requiring strong seasonal structure.
+For seasonal demand, SARIMA again outperforms Prophet, even though Prophet is specifically designed for decompositional trend–seasonality modeling. The relatively poor Prophet performance is likely attributable to limited seasonal depth in the historical data, many series contain fewer than two full yearly cycles—making it difficult for Prophet to estimate stable seasonal components. SARIMA, in contrast, leverages differencing and short-term dependence rather than requiring strong seasonal structure.
 
 ```{=html}
 <div align="center">
@@ -40,13 +70,15 @@ For seasonal demand, SARIMA again outperforms Prophet, even though Prophet is sp
 
 *Table presents the full set of evaluation metrics across all models and demand patterns. The results confirm the earlier findings: Croston achieves the lowest errors for intermittent demand across all metrics, SARIMA provides the most accurate and stable forecasts for regular demand, and SARIMA outperforms Prophet for seasonal demand on every metric, including symmetric percentage error and scaled error. Bias patterns further show that Prophet systematically under-forecasts seasonal peaks, whereas SARIMA maintains smaller and more consistent deviations. These results reinforce the importance of using pattern-specific models rather than a single unified forecasting approach.*
 
+
+
 ---
 
 # 3. Distribution of Forecast Errors (MAPE Boxplots)
 
-While mean MAPE provides a summary measure of accuracy, it obscures the variability across individual store–item series. Figure X presents MAPE boxplots for each model within its applicable demand patterns. The distributional patterns reinforce the conclusions above.
+While mean MAPE provides a summary measure of accuracy, it obscures the variability across individual store–item series. Figure presents MAPE boxplots for each model within its applicable demand patterns. The distributional patterns reinforce the conclusions above.
 
-For intermittent demand, Croston not only achieves the lowest mean MAPE but also displays a tighter interquartile range than SARIMA, indicating more stable performance across series. SARIMA shows a wider spread, with several high-error outliers—consistent with the model’s sensitivity to long zero stretches.
+For intermittent demand, Croston not only achieves the lowest mean MAPE but also displays a tighter interquartile range than SARIMA, indicating more stable performance across series. SARIMA shows a wider spread, with several high-error outliers, which is consistent with the model’s sensitivity to long zero stretches.
 
 For regular demand, SARIMA exhibits minimal dispersion, suggesting strong reliability across all sampled series. Error magnitudes are consistently low, reflecting the homogeneity of regular demand behavior.
 
@@ -63,7 +95,7 @@ For seasonal demand, both SARIMA and Prophet show higher variability. However, P
 
 # 4. Best-Performing Models (Win Count Analysis)
 
-To further compare model performance, Figure X reports the number of store–item series for which each model achieved the lowest MAPE (“wins”). This metric highlights dominance within each demand pattern.
+To further compare model performance, Figure reports the number of store–item series for which each model achieved the lowest MAPE (“wins”). This metric highlights dominance within each demand pattern.
 
 Croston wins the majority of intermittent cases, reflecting its structural advantage for zero-inflated series. SARIMA wins exclusively for regular demand, confirming its appropriateness for stable series. For seasonal demand, SARIMA again wins more frequently than Prophet, reinforcing the earlier observation that Prophet requires richer seasonal histories to perform optimally.
 
@@ -80,9 +112,9 @@ The win-count results provide a pattern-level summary consistent with both the m
 
 # 5. Forecast Bias
 
-Beyond accuracy, understanding systematic over- or under-forecasting is crucial for operational planning. Figure X reports the mean forecast bias across patterns and models.
+Beyond accuracy, understanding systematic over- or under-forecasting is crucial for operational planning. Figure reports the mean forecast bias across patterns and models.
 
-Croston shows near-zero bias for intermittent demand, emphasizing its balanced behavior even when sales are highly irregular. SARIMA exhibits small but consistently negative bias for regular demand, indicating slight under-forecasting—likely due to differencing smoothing short-term trends. In seasonal demand, Prophet shows pronounced negative bias, substantially under-forecasting high seasonal peaks. SARIMA’s bias is also negative but notably smaller, suggesting better adaptation to peak-driven patterns.
+Croston shows near-zero bias for intermittent demand, emphasizing its balanced behavior even when sales are highly irregular. SARIMA exhibits small but consistently negative bias for regular demand, indicating slight under-forecasting It is likely due to differencing smoothing short-term trends. In seasonal demand, Prophet shows pronounced negative bias, substantially under-forecasting high seasonal peaks. SARIMA’s bias is also negative but notably smaller, suggesting better adaptation to peak-driven patterns.
 
 These results highlight differences in structural assumptions: Prophet’s decompositional framework over-smooths limited seasonal cycles, while SARIMA preserves short-term momentum more effectively.
 
@@ -97,7 +129,7 @@ These results highlight differences in structural assumptions: Prophet’s decom
 
 # 6. Robustness Check: sMAPE Results
 
-Accuracy conclusions are further validated through symmetric MAPE (sMAPE), which mitigates the inflation of percentage errors for low-volume series. As shown in Figure X, the relative ordering of models remains consistent with the MAPE findings:
+Accuracy conclusions are further validated through symmetric MAPE (sMAPE), which mitigates the inflation of percentage errors for low-volume series. As shown in the figure, the relative ordering of models remains consistent with the MAPE findings:
 
 - Croston maintains the lowest symmetric error for intermittent demand.  
 - SARIMA again performs best for regular demand.  

@@ -149,7 +149,7 @@ This plot examines year-over-year seasonal patterns at the aggregate level.
 </div>
 ```
 
-## 6.2 Top Items by Sales Frequency (Optional)
+## 6.2 Top Items by Sales Frequency
 
 This figure highlights concentration of demand across items.
 

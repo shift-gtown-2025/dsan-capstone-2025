@@ -126,6 +126,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#limitations" id="toc-limitations" class="nav-link active" data-scroll-target="#limitations">Limitations</a></li>
   <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future Work</a></li>
+  <li><a href="#business-implications-for-shift-digital" id="toc-business-implications-for-shift-digital" class="nav-link" data-scroll-target="#business-implications-for-shift-digital">Business Implications for Shift Digital</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
@@ -189,6 +190,36 @@ Finally, forecasting uncertainty is likely to be higher for stores with extremel
 <li>evaluating the framework on a larger, more diverse sample of store–item combinations</li>
 </ul>
 <p>Together, these enhancements would support a more robust, scalable forecasting system capable of informing operational decisions such as inventory allocation, dealer reporting, and marketing optimization.</p>
+</section>
+<section id="business-implications-for-shift-digital" class="level2">
+<h2 class="anchored" data-anchor-id="business-implications-for-shift-digital">Business Implications for Shift Digital</h2>
+<p>This analysis reveals several insights that directly affect Shift Digital’s forecasting operations:</p>
+<ol type="1">
+<li>Forecast accuracy can be improved substantially with minimal system changes.</li>
+</ol>
+<p>A pattern-specific workflow reduces MAPE by 24%, RMSE by 33%, and MASE by 34% compared with using a single SARIMA model for all stores. For clients, this translates to more stable reporting, fewer unexpected fluctuations, and greater confidence in automated recommendations.</p>
+<ol start="2" type="1">
+<li>Different business types require different forecasting strategies.</li>
+</ol>
+<p>Sparse dealers behave unpredictably under traditional models; Croston provides a more reliable baseline.</p>
+<p>Regular dealers respond well to SARIMA, improving day-to-day operational accuracy.</p>
+<p>Seasonal dealers require models that handle short and noisy cycles; SARIMA performs best even with limited depth.</p>
+<p>A universal modeling strategy systematically over- or under-forecasts specific store types, lowering trust in the platform.</p>
+<ol start="3" type="1">
+<li>This approach is easy to operationalize.</li>
+</ol>
+<p>The required changes fit naturally into Shift’s existing pipeline:</p>
+<p>Add a preprocessing layer calculating zero-share, ADI, and seasonal strength</p>
+<p>Assign each series to Croston for intermittent, SARIMA for regular/seasonal, Prophet for limited use only</p>
+<p>Forecasts flow through the existing job scheduler and reporting system</p>
+<p>No new infrastructure or machine-learning platform is required.</p>
+<ol start="4" type="1">
+<li>Strategic value for Shift’s product teams</li>
+</ol>
+<p>More consistent accuracy across diverse clients</p>
+<p>Stronger messaging in sales conversations (“adaptive modeling” instead of “one-size-fits-all”)</p>
+<p>A scalable framework compatible with longer-term ML upgrades</p>
+<p>A clear roadmap for future enhancements (adding covariates, longer history, hybrid models)</p>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>

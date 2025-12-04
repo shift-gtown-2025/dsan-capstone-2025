@@ -1,11 +1,10 @@
-# Introduction
-
 ---
-title: "Project Overview"
-format: html
+title: "Introduction"
+format:
+  html:
+    toc: true
+    toc-depth: 3
 ---
-
-# Project Overview
 
 This project addresses forecasting challenges outlined by Shift Digital, 
 including highly seasonal business behavior and sparse store-level data. 

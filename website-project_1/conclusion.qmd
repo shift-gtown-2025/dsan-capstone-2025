@@ -43,6 +43,47 @@ Future extensions of this research may include:
 
 Together, these enhancements would support a more robust, scalable forecasting system capable of informing operational decisions such as inventory allocation, dealer reporting, and marketing optimization.
 
+## Business Implications for Shift Digital
+
+This analysis reveals several insights that directly affect Shift Digital’s forecasting operations:
+
+1. Forecast accuracy can be improved substantially with minimal system changes.
+
+A pattern-specific workflow reduces MAPE by 24%, RMSE by 33%, and MASE by 34% compared with using a single SARIMA model for all stores.
+For clients, this translates to more stable reporting, fewer unexpected fluctuations, and greater confidence in automated recommendations.
+
+2. Different business types require different forecasting strategies.
+
+Sparse dealers behave unpredictably under traditional models; Croston provides a more reliable baseline.
+
+Regular dealers respond well to SARIMA, improving day-to-day operational accuracy.
+
+Seasonal dealers require models that handle short and noisy cycles; SARIMA performs best even with limited depth.
+
+A universal modeling strategy systematically over- or under-forecasts specific store types, lowering trust in the platform.
+
+3. This approach is easy to operationalize.
+
+The required changes fit naturally into Shift’s existing pipeline:
+
+Add a preprocessing layer calculating zero-share, ADI, and seasonal strength
+
+Assign each series to Croston for intermittent, SARIMA for regular/seasonal, Prophet for limited use only
+
+Forecasts flow through the existing job scheduler and reporting system
+
+No new infrastructure or machine-learning platform is required.
+
+4. Strategic value for Shift’s product teams
+
+More consistent accuracy across diverse clients
+
+Stronger messaging in sales conversations (“adaptive modeling” instead of “one-size-fits-all”)
+
+A scalable framework compatible with longer-term ML upgrades
+
+A clear roadmap for future enhancements (adding covariates, longer history, hybrid models)
+
 ## Summary
 
 Overall, the study demonstrates that **pattern-specific forecasting materially improves accuracy over a unified modeling approach** when applied to sparse, heterogeneous dealership sales data. The classification-driven framework provides a practical and interpretable pathway toward more reliable store–item forecasts and lays a foundation for further operational and data-driven advancements.
