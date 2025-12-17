@@ -1,4 +1,4 @@
-# Project 2: Store Performance Analysis & Clustering
+# Store Performance Analysis & Clustering
 
 ## Overview
 
